@@ -1,0 +1,21 @@
+<svg id="indisponible_1_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208 208">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e20613;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 6px;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_17" data-name="Ellipse 17" class="cls-1" cx="104" cy="104" r="104" transform="translate(0 0)"/>
+  <g id="croix_1_" transform="translate(43.748 43.535)">
+    <path id="Tracé_13" data-name="Tracé 13" class="cls-2" d="M61.5,61.2l60.465,60.465,60.109-60.109" transform="translate(-61.5 -61.2)"/>
+    <path id="Tracé_14" data-name="Tracé 14" class="cls-2" d="M61.5,206.665,121.965,146.2l60.109,60.109" transform="translate(-61.5 -85.735)"/>
+  </g>
+</svg>

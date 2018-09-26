@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3b599c;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="fb" transform="translate(-346 -898)">
+    <circle id="Ellipse_3" data-name="Ellipse 3" class="cls-1" cx="30" cy="30" r="30" transform="translate(346 898)"/>
+    <path id="Tracé_22" data-name="Tracé 22" class="cls-2" d="M20.555.314V6.87H15.541a1.981,1.981,0,0,0-2.43,2.314v5.9h7.443v7.6H13.112V42.619h-8.1V22.682H0V15.2H5.515V8.529S4.743-1.884,20.555.314Z" transform="translate(366 906.99)"/>
+  </g>
+</svg>

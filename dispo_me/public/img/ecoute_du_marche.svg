@@ -1,0 +1,22 @@
+<svg id="écoute_du_marché_1_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208.259 208.259">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff3c00;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 6px;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_16" data-name="Ellipse 16" class="cls-1" cx="104.129" cy="104.129" r="104.129" transform="translate(0 0)"/>
+  <g id="oreille_1_" transform="translate(66.025 44.016)">
+    <path id="Tracé_10" data-name="Tracé 10" class="cls-2" d="M92.7,100.261S94.053,62.085,132.728,61.8c0,0,41.1.641,35.683,45.441,0,0-2.279,12.464-23.077,59.116,0,0-3.063,9.544-18.02,14.316,0,0-13.817,4.843-22.293-2.92,0,0-3.419.641-8.191-22.507" transform="translate(-92.7 -61.8)"/>
+    <path id="Tracé_11" data-name="Tracé 11" class="cls-2" d="M162.823,104.52s-.641-30.2-32.407-26.638c0,0-16.524,1.353-22.72,23.077a30.9,30.9,0,0,0,.926,12.464,21.156,21.156,0,0,0,8.618,11.823" transform="translate(-96.941 -66.344)"/>
+    <path id="Tracé_12" data-name="Tracé 12" class="cls-2" d="M109.2,127.251s18.8-4.772,26.5,2.137c0,0,10.47,7.407,8.476,27.991,0,0,.641,6.624-4.63,9.259l-21.225,8.333s-5.983,2.564-5.057-2.778c1.567-9.4,2.279-12.037-1.852-18.447" transform="translate(-97.448 -80.172)"/>
+  </g>
+</svg>

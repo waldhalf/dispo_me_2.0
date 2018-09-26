@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff2674;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="malt" transform="translate(-526 -898)">
+    <circle id="Ellipse_5" data-name="Ellipse 5" class="cls-1" cx="30" cy="30" r="30" transform="translate(526 898)"/>
+    <g id="Groupe_5" data-name="Groupe 5" transform="translate(539.169 910.941)">
+      <path id="Tracé_24" data-name="Tracé 24" class="cls-2" d="M33.682,15.336,15.536,33.482a4.225,4.225,0,0,1-5.974,0h0a4.225,4.225,0,0,1,0-5.974L27.708,9.362a4.225,4.225,0,0,1,5.974,0h0A4.225,4.225,0,0,1,33.682,15.336Z" transform="translate(-4.613 -4.51)"/>
+      <path id="Tracé_25" data-name="Tracé 25" class="cls-2" d="M34.146,8.731,38.382,4.5s-.223-4.013-3.79-4.5c0,0-4.146-.357-4.592,4.369Z" transform="translate(-16.625)"/>
+      <path id="Tracé_26" data-name="Tracé 26" class="cls-2" d="M32.846,55.9l4.236,4.236s-.223,4.013-3.79,4.5c0,0-4.146.357-4.592-4.369Z" transform="translate(-15.904 -30.985)"/>
+      <path id="Tracé_27" data-name="Tracé 27" class="cls-2" d="M21.107,14.379l-1.338,1.159H10.808s-3.968-3.611,0-6.821a4.323,4.323,0,0,1,5.261,0Z" transform="translate(-5.012 -4.355)"/>
+      <path id="Tracé_28" data-name="Tracé 28" class="cls-2" d="M40.6,52.059,41.938,50.9H50.9s3.968,3.611,0,6.821a4.323,4.323,0,0,1-5.261,0Z" transform="translate(-22.499 -28.214)"/>
+      <path id="Tracé_29" data-name="Tracé 29" class="cls-2" d="M13.375,28.4,4.86,36.871S0,37,0,32.769A4.19,4.19,0,0,1,4.057,28.4h9.318Z" transform="translate(0 -15.746)"/>
+      <path id="Tracé_30" data-name="Tracé 30" class="cls-2" d="M46.4,37.17,54.916,28.7s4.86-.134,4.86,4.1a4.19,4.19,0,0,1-4.057,4.369Z" transform="translate(-25.713 -15.911)"/>
+    </g>
+  </g>
+</svg>

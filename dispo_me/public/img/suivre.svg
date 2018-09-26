@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230.282 60">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #848484;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 22px;
+        font-family: Roboto-Regular, Roboto;
+      }
+    </style>
+  </defs>
+  <g id="suivre" transform="translate(-1326 -280)">
+    <rect id="Rectangle_41" data-name="Rectangle 41" class="cls-1" width="230.282" height="60" rx="13" transform="translate(1326 280)"/>
+    <text id="Suivre-2" data-name="Suivre" class="cls-2" transform="translate(1349.07 298)"><tspan x="0" y="21">Suivre</tspan></text>
+  </g>
+</svg>

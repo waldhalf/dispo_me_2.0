@@ -1,0 +1,1 @@
+<h1>Texte de la RGPD à implémenter</h1>

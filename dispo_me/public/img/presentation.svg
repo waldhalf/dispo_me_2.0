@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 251">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-4, .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        font-size: 30px;
+        font-family: Montserrat-Bold, Montserrat;
+        font-weight: 700;
+      }
+
+      .cls-3, .cls-5, .cls-8 {
+        fill: none;
+      }
+
+      .cls-4 {
+        font-size: 22px;
+        font-family: Montserrat-Medium, Montserrat;
+        font-weight: 500;
+      }
+
+      .cls-5 {
+        stroke: #fff;
+        stroke-width: 5px;
+      }
+
+      .cls-6, .cls-7 {
+        stroke: none;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.497" y1="-0.03" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#7b7b7b" stop-opacity="0.259"/>
+      <stop offset="0.351" stop-color="#3e3e3e" stop-opacity="0.627"/>
+      <stop offset="1"/>
+    </linearGradient>
+  </defs>
+  <g id="Groupe_101" data-name="Groupe 101" transform="translate(0 -832)">
+    <rect id="Rectangle_145" data-name="Rectangle 145" class="cls-1" width="1920" height="242" transform="translate(0 841)"/>
+    <g id="Groupe_48" data-name="Groupe 48" transform="translate(-221 25)">
+      <g id="_1" data-name="1" transform="translate(445 636)">
+        <text id="_1-2" data-name="1" class="cls-2" transform="translate(195 182)"><tspan x="0" y="29">1</tspan></text>
+        <g id="Tracé_48" data-name="Tracé 48" class="cls-3" transform="translate(172 171)">
+          <path class="cls-6" d="M30,0A30,30,0,1,1,0,30,30,30,0,0,1,30,0Z"/>
+          <path class="cls-7" d="M 30 5 C 26.62282562255859 5 23.34931182861328 5.660301208496094 20.27041244506836 6.962574005126953 C 17.29402542114258 8.221473693847656 14.61989974975586 10.02476119995117 12.32233810424805 12.32233810424805 C 10.02476119995117 14.61989974975586 8.221473693847656 17.29402542114258 6.962574005126953 20.27041244506836 C 5.660301208496094 23.34931182861328 5 26.62282562255859 5 30 C 5 33.37717437744141 5.660301208496094 36.65068817138672 6.962574005126953 39.72958755493164 C 8.221473693847656 42.70597457885742 10.02476119995117 45.38010025024414 12.32233810424805 47.67766189575195 C 14.61989974975586 49.97523880004883 17.29402542114258 51.77852630615234 20.27041244506836 53.03742599487305 C 23.34931182861328 54.33969879150391 26.62282562255859 55 30 55 C 33.37717437744141 55 36.65068817138672 54.33969879150391 39.72958755493164 53.03742599487305 C 42.70597457885742 51.77852630615234 45.38010025024414 49.97523880004883 47.67766189575195 47.67766189575195 C 49.97523880004883 45.38010025024414 51.77852630615234 42.70597457885742 53.03742599487305 39.72958755493164 C 54.33969879150391 36.65068817138672 55 33.37717437744141 55 30 C 55 26.62282562255859 54.33969879150391 23.34931182861328 53.03742599487305 20.27041244506836 C 51.77852630615234 17.29402542114258 49.97523880004883 14.61989974975586 47.67766189575195 12.32233810424805 C 45.38010025024414 10.02476119995117 42.70597457885742 8.221473693847656 39.72958755493164 6.962574005126953 C 36.65068817138672 5.660301208496094 33.37717437744141 5 30 5 M 30 0 C 46.56853866577148 0 60 13.43146133422852 60 30 C 60 46.56853866577148 46.56853866577148 60 30 60 C 13.43146133422852 60 0 46.56853866577148 0 30 C 0 13.43146133422852 13.43146133422852 0 30 0 Z"/>
+        </g>
+      </g>
+      <text id="Renseignez_vos_informations_ainsi_que_vos_disponibilités" data-name="Renseignez vos informations ainsi que vos disponibilités" class="cls-4" transform="translate(481 882)"><tspan x="4.96" y="21">Renseignez vos informations </tspan><tspan x="16.807" y="51">ainsi que vos disponibilités</tspan></text>
+    </g>
+    <g id="Groupe_49" data-name="Groupe 49" transform="translate(-201 75)">
+      <g id="_2" data-name="2" transform="translate(959 586)">
+        <text id="_2-2" data-name="2" class="cls-2" transform="translate(194 182)"><tspan x="0" y="29">2</tspan></text>
+        <g id="Ellipse_41" data-name="Ellipse 41" class="cls-5" transform="translate(172 171)">
+          <circle class="cls-6" cx="30" cy="30" r="30"/>
+          <circle class="cls-8" cx="30" cy="30" r="27.5"/>
+        </g>
+      </g>
+      <text id="Un_lien_unique_vous_est_alors_attribué._Recopiez_le_lien_et_synchronisez_le_sur_tous_vos_profils" data-name="Un lien unique vous est alors attribué. Recopiez le lien et synchronisez le sur tous vos profils" class="cls-4" transform="translate(995 832)"><tspan x="5.62" y="21">Un lien unique vous est alors </tspan><tspan x="14.607" y="51">attribué. Recopiez le lien et </tspan><tspan x="11.505" y="81">synchronisez le sur tous vos </tspan><tspan x="130.723" y="111">profils</tspan></text>
+    </g>
+    <g id="Groupe_50" data-name="Groupe 50" transform="translate(1246 55)">
+      <g id="_3" data-name="3" transform="translate(25 606)">
+        <text id="_3-2" data-name="3" class="cls-2" transform="translate(194 182)"><tspan x="0" y="29">3</tspan></text>
+        <g id="Ellipse_41-2" data-name="Ellipse 41" class="cls-5" transform="translate(172 171)">
+          <circle class="cls-6" cx="30" cy="30" r="30"/>
+          <circle class="cls-8" cx="30" cy="30" r="27.5"/>
+        </g>
+      </g>
+      <text id="Changez_sans_délai_et_sans_contrainte_votre_statut_sur_l_ensemble_des_plateformes" data-name="Changez sans délai et sans contrainte votre statut sur l&apos;ensemble des plateformes" class="cls-4" transform="translate(82 852)"><tspan x="12.202" y="21">Changez sans délai et sans </tspan><tspan x="15.953" y="51">contrainte votre statut sur </tspan><tspan x="8.209" y="81">l&apos;ensemble des plateformes</tspan></text>
+    </g>
+  </g>
+</svg>

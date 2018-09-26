@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.497 184">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #353535;
+      }
+
+      .cls-2, .cls-4 {
+        fill: #ff003b;
+      }
+
+      .cls-3 {
+        font-size: 27px;
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-4 {
+        font-size: 42px;
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="Groupe_112" data-name="Groupe 112" transform="translate(-1333.503 -1242)">
+    <g id="Groupe_111" data-name="Groupe 111" transform="translate(936.523 -416.813)">
+      <circle id="Ellipse_80" data-name="Ellipse 80" class="cls-1" cx="72.783" cy="72.783" r="72.783" transform="translate(396.98 1671.379)"/>
+      <path id="Tracé_71" data-name="Tracé 71" class="cls-2" d="M-2679.293,6328.424l-41.826-66.235s20.85-12.113,41.826-12.113,42.078,12.113,42.078,12.113Z" transform="translate(3149.055 -4584.263)"/>
+    </g>
+    <g id="Groupe_93" data-name="Groupe 93" transform="translate(612 -391)">
+      <text id="UX_designers_font_aujourd_hui_partis_de_notre_communauté" data-name="UX designers font aujourd&apos;hui partis de notre communauté" class="cls-3" transform="translate(888 1681)"><tspan x="39.692" y="24">UX designers font </tspan><tspan x="25.843" y="55">aujourd&apos;hui partis de </tspan><tspan x="34.438" y="86">notre communauté</tspan></text>
+      <text id="_150" data-name="150" class="cls-4" transform="translate(993 1633)"><tspan x="7.462" y="38">150</tspan></text>
+    </g>
+  </g>
+</svg>

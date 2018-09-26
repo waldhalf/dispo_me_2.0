@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 529">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #fff;
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-1 {
+        font-size: 22px;
+      }
+
+      .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: #fff;
+      }
+
+      .cls-3 {
+        font-size: 17px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Groupe_121" data-name="Groupe 121" transform="translate(-74 -708)">
+    <g id="Groupe_66" data-name="Groupe 66" transform="translate(0 -189)">
+      <g id="_1" data-name="1" transform="translate(-5 720)">
+        <text id="_1-2" data-name="1" class="cls-1" transform="translate(186 180)"><tspan x="0" y="20">1</tspan></text>
+        <g id="Ellipse_41" data-name="Ellipse 41" class="cls-2" transform="translate(178 177)">
+          <circle class="cls-4" cx="14.5" cy="14.5" r="14.5"/>
+          <circle class="cls-5" cx="14.5" cy="14.5" r="14"/>
+        </g>
+      </g>
+      <text id="Renseignez_vos_informations_ainsi_que_vos_disponibilités" data-name="Renseignez vos informations ainsi que vos disponibilités" class="cls-3" transform="translate(74 936)"><tspan x="0" y="15">Renseignez vos informations </tspan><tspan x="0" y="36">ainsi que vos disponibilités</tspan></text>
+    </g>
+    <g id="Groupe_67" data-name="Groupe 67" transform="translate(0 -179)">
+      <g id="_1-3" data-name="1" transform="translate(-5 898)">
+        <text id="_2" data-name="2" class="cls-1" transform="translate(186 179)"><tspan x="0" y="20">2</tspan></text>
+        <g id="Ellipse_41-2" data-name="Ellipse 41" class="cls-2" transform="translate(178 177)">
+          <circle class="cls-4" cx="14.5" cy="14.5" r="14.5"/>
+          <circle class="cls-5" cx="14.5" cy="14.5" r="14"/>
+        </g>
+      </g>
+      <text id="Un_lien_unique_vous_est_alors_attribué._Recopiez_le_lien_et_synchronisez_le_sur_tous_vos_profils" data-name="Un lien unique vous est alors attribué. Recopiez le lien et synchronisez le sur tous vos profils" class="cls-3" transform="translate(74 1117)"><tspan x="0" y="15">Un lien unique vous est alors </tspan><tspan x="0" y="36">attribué. Recopiez le lien et </tspan><tspan x="0" y="57">synchronisez le sur tous vos </tspan><tspan x="0" y="78">profils</tspan></text>
+    </g>
+    <g id="Groupe_68" data-name="Groupe 68" transform="translate(0 -214)">
+      <g id="_1-4" data-name="1" transform="translate(-5 1170)">
+        <text id="_3" data-name="3" class="cls-1" transform="translate(187 180)"><tspan x="0" y="20">3</tspan></text>
+        <g id="Ellipse_41-3" data-name="Ellipse 41" class="cls-2" transform="translate(178 177)">
+          <circle class="cls-4" cx="14.5" cy="14.5" r="14.5"/>
+          <circle class="cls-5" cx="14.5" cy="14.5" r="14"/>
+        </g>
+      </g>
+      <text id="Changez_sans_délai_et_sans_contrainte_votre_statut_sur_l_ensemble_des_plateformes" data-name="Changez sans délai et sans contrainte votre statut sur l&apos;ensemble des plateformes" class="cls-3" transform="translate(75 1385)"><tspan x="0" y="15">Changez sans délai et sans </tspan><tspan x="0" y="36">contrainte votre statut sur </tspan><tspan x="0" y="57">l&apos;ensemble des plateformes</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 423.021 153">
+  <defs>
+    <style>
+      .cls-1, .cls-5 {
+        fill: #00ff5b;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-width: 6px;
+      }
+
+      .cls-3 {
+        stroke-width: 7px;
+      }
+
+      .cls-4 {
+        fill: #353535;
+        font-size: 27px;
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-5 {
+        font-size: 42px;
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="Groupe_115" data-name="Groupe 115" transform="translate(-264.979 -1769)">
+    <g id="Groupe_113" data-name="Groupe 113">
+      <g id="recherche_d_x27_emploi_1_" transform="translate(264.979 1769)">
+        <circle id="Ellipse_14" data-name="Ellipse 14" class="cls-1" cx="75.566" cy="75.566" r="75.566" transform="translate(0 0)"/>
+        <g id="recherche_1_" transform="translate(35.612 35.302)">
+          <g id="loupe_1_">
+            <circle id="Ellipse_15" data-name="Ellipse 15" class="cls-2" cx="39.54" cy="39.54" r="39.54"/>
+            <line id="Ligne_17" data-name="Ligne 17" class="cls-2" x2="18.607" y2="18.659" transform="translate(66.107 69.777)"/>
+          </g>
+          <g id="sac_1_" transform="translate(15.558 20.365)">
+            <line id="Ligne_18" data-name="Ligne 18" class="cls-2" x2="14.627" transform="translate(2.171 25.895)"/>
+            <line id="Ligne_19" data-name="Ligne 19" class="cls-2" x2="14.679" transform="translate(32.149 25.895)"/>
+            <path id="Tracé_8" data-name="Tracé 8" class="cls-2" d="M144.278,114.006H129.909a6.306,6.306,0,1,0-12.612,0H102.618A3.629,3.629,0,0,0,99,117.624v12.663a3.578,3.578,0,0,0,2.171,3.308v10.337a3.629,3.629,0,0,0,3.618,3.618h37.318a3.629,3.629,0,0,0,3.618-3.618V133.6a3.578,3.578,0,0,0,2.171-3.308V117.624A3.7,3.7,0,0,0,144.278,114.006Z" transform="translate(-99 -107.7)"/>
+            <path id="Tracé_9" data-name="Tracé 9" class="cls-3" d="M145.427,117.4a.816.816,0,0,0-.827.827h1.706A.9.9,0,0,0,145.427,117.4Z" transform="translate(-121.031 -112.386)"/>
+            <rect id="Rectangle_28" data-name="Rectangle 28" class="cls-2" width="15.351" height="6.616" transform="translate(16.798 22.949)"/>
+          </g>
+        </g>
+      </g>
+      <g id="Groupe_94" data-name="Groupe 94" transform="translate(-213 -330)">
+        <text id="sont_disponibles_à_l_heure_actuelle" data-name="sont disponibles à l&apos;heure actuelle" class="cls-4" transform="translate(650 2153)"><tspan x="17.427" y="24">sont disponibles à </tspan><tspan x="35.113" y="55">l&apos;heure actuelle</tspan></text>
+        <text id="_72" data-name="72" class="cls-5" transform="translate(742 2099)"><tspan x="9.642" y="38">72</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

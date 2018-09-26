@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449 285">
+  <defs>
+    <style>
+      .cls-1, .cls-7 {
+        fill: #fa9445;
+      }
+
+      .cls-2, .cls-5 {
+        fill: #fa5745;
+      }
+
+      .cls-3, .cls-6 {
+        fill: #fa6f45;
+      }
+
+      .cls-4 {
+        fill: #353535;
+        font-size: 27px;
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-5, .cls-6, .cls-7 {
+        font-size: 42px;
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="Groupe_116" data-name="Groupe 116" transform="translate(-1223 -1762)">
+    <g id="Groupe_114" data-name="Groupe 114">
+      <g id="Groupe_95" data-name="Groupe 95" transform="translate(133 -608)">
+        <rect id="Rectangle_187" data-name="Rectangle 187" class="cls-1" width="117.813" height="86.839" transform="translate(1134 2434.161)"/>
+        <rect id="Rectangle_188" data-name="Rectangle 188" class="cls-2" width="117.813" height="151" transform="translate(1262.875 2370)"/>
+        <rect id="Rectangle_189" data-name="Rectangle 189" class="cls-3" width="117.813" height="112.835" transform="translate(1391.751 2408.165)"/>
+      </g>
+      <g id="Groupe_96" data-name="Groupe 96" transform="translate(1138 -780)">
+        <text id="Photoshop" class="cls-4" transform="translate(262 2785)"><tspan x="0.447" y="24">Photoshop</tspan></text>
+        <text id="_75_" data-name="75 %" class="cls-5" transform="translate(262 2736)"><tspan x="16.635" y="38">75 %</tspan></text>
+      </g>
+      <g id="Groupe_97" data-name="Groupe 97" transform="translate(1271 -816)">
+        <text id="Illustrator" class="cls-4" transform="translate(288 2821)"><tspan x="0.984" y="24">Illustrator</tspan></text>
+        <text id="_69_" data-name="69 %" class="cls-6" transform="translate(296 2774)"><tspan x="0.635" y="38">69 %</tspan></text>
+      </g>
+      <g id="Groupe_98" data-name="Groupe 98" transform="translate(571 -773)">
+        <text id="_57_" data-name="57 %" class="cls-7" transform="translate(672 2728)"><tspan x="7.635" y="38">57 %</tspan></text>
+        <text id="Wireframes" class="cls-4" transform="translate(652 2778)"><tspan x="0.497" y="24">Wireframes</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

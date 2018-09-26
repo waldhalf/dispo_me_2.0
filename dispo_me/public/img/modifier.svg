@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.785 47.254">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #343434;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+    </style>
+  </defs>
+  <g id="modifier" transform="translate(-243 -258)">
+    <rect id="Rectangle_29" data-name="Rectangle 29" class="cls-1" width="47.785" height="47.254" rx="13" transform="translate(243 258)"/>
+    <g id="crayon" transform="translate(0 0.763)">
+      <path id="Tracé_15" data-name="Tracé 15" class="cls-2" d="M0,0V22.593l2.755,4.624L5.51,22.593V0Z" transform="translate(276.77 268.076) rotate(45)"/>
+      <path id="Tracé_16" data-name="Tracé 16" class="cls-3" d="M2277.152,3046.107h-17.116v27.012h24.3v-11.811" transform="translate(-2006.035 -2778.87)"/>
+    </g>
+  </g>
+</svg>

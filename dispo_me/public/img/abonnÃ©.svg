@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230.282 37">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6c7cff;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 22px;
+        font-family: Roboto-Regular, Roboto;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="abonné" transform="translate(-1571 -595)">
+    <rect id="Rectangle_46" data-name="Rectangle 46" class="cls-1" width="230.282" height="37" rx="13" transform="translate(1571 595)"/>
+    <text id="Abonné-2" data-name="Abonné" class="cls-2" transform="translate(1594.07 601)"><tspan x="0" y="21">Abonné</tspan></text>
+    <path id="Tracé_31" data-name="Tracé 31" class="cls-3" d="M.3,8.859s4.43,3.076,5.472,4.806c0,0,6.162-10.64,13.458-13.264" transform="translate(1764.403 606.968)"/>
+  </g>
+</svg>

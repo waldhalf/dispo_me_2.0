@@ -1,0 +1,37 @@
+<svg id="recherche_emploi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207.933 207.933">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00ff5b;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-width: 6px;
+      }
+
+      .cls-3 {
+        stroke-width: 7px;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_14" data-name="Ellipse 14" class="cls-1" cx="103.967" cy="103.967" r="103.967" transform="translate(0 0)"/>
+  <g id="recherche_1_" transform="translate(48.997 48.57)">
+    <g id="loupe_1_">
+      <circle id="Ellipse_15" data-name="Ellipse 15" class="cls-2" cx="54.401" cy="54.401" r="54.401"/>
+      <line id="Ligne_17" data-name="Ligne 17" class="cls-2" x2="25.601" y2="25.672" transform="translate(90.953 96.002)"/>
+    </g>
+    <g id="sac_1_" transform="translate(21.405 28.018)">
+      <line id="Ligne_18" data-name="Ligne 18" class="cls-2" x2="20.125" transform="translate(2.987 35.627)"/>
+      <line id="Ligne_19" data-name="Ligne 19" class="cls-2" x2="20.196" transform="translate(44.232 35.627)"/>
+      <path id="Tracé_8" data-name="Tracé 8" class="cls-2" d="M161.295,116.376H141.525a8.676,8.676,0,0,0-17.351,0h-20.2A4.992,4.992,0,0,0,99,121.354v17.423a4.923,4.923,0,0,0,2.987,4.551V157.55a4.992,4.992,0,0,0,4.978,4.978h51.343a4.992,4.992,0,0,0,4.978-4.978V143.327a4.923,4.923,0,0,0,2.987-4.551V121.354A5.087,5.087,0,0,0,161.295,116.376Z" transform="translate(-99 -107.7)"/>
+      <path id="Tracé_9" data-name="Tracé 9" class="cls-3" d="M145.738,117.4a1.123,1.123,0,0,0-1.138,1.138h2.347A1.236,1.236,0,0,0,145.738,117.4Z" transform="translate(-112.173 -110.502)"/>
+      <rect id="Rectangle_28" data-name="Rectangle 28" class="cls-2" width="21.12" height="9.102" transform="translate(23.112 31.574)"/>
+    </g>
+  </g>
+</svg>
