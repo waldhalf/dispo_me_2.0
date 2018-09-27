@@ -41,15 +41,21 @@ class PostController extends Controller
         $validatesData = $request->validate([
             'post_title' => 'required|max:255',
             'post_text' => 'required',
-            // 'post_image' => 'mimes:png, jpg, jpeg',
+            'post_image' => 'required|mimes:png,jpg,jpeg|max:2048',
         ]);
-       
-        // Save dans DB si validation OK
+        // On récupére id de l'author ainsi que l'image
+        // pour save le post
         $user_id = Auth::id();
+        $image = $request->file('post_image');
+        $newImageName = rand(). '.' . $image->getClientOriginalExtension();
+        $newImageName = 'img/post_img/'.$newImageName;
+        $image->move(public_path('img/post_img'), $newImageName);
+        // Save dans DB si validation OK
         $post = new PostModel;
         $post->title = $request->post_title;
         $post->content = $request->post_text;
         $post->author_id = $user_id;
+        $post->img_path = $newImageName;
         $post->save();
 
         // On créé un flash message qui sera envoyé à la prochaine view (only once)
@@ -67,7 +73,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = PostModel::where('id', $id);
+        return view ('show_post')->with('Post', $post);
     }
 
     /**

@@ -18,6 +18,7 @@ class CreatePostModelsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->integer('author_id')->unsigned();
+            $table->string('img_path');
             $table->timestamps();
         });
     }
