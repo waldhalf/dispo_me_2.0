@@ -137,7 +137,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        return view('delete_post');
+        $post = PostModel::find($id);
+        $post->delete();
+        return redirect()->route('posts.index');
         
     }
 }
