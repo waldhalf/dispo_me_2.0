@@ -1,99 +1,269 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                    <a href="{{ url('/home') }}">Home</a>
-                    @if ($user=Auth::user()->is_admin == 1)
-                        <a href="{{ url('/admin') }}">admin</a>
-                    @endif
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dispo.me</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ '/css/main.css' }}" />
+		<link rel="stylesheet" href="{{ '/css/font-awesome.min.css' }}" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		
+	</head>
+	<body class="is-preload">
+		
+		<!-- Wrapper -->
+		<div id="wrapper" class="fade-in">
+			
+			<!-- Intro -->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="#">Dispo.me</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Naviguer
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="/public/posts">Présentation des jobs!</a>
+								<a class="dropdown-item" href="#">Another action</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" href="#">Disabled</a>
+						</li>
+					</ul>
+					@if (Route::has('login'))
+					<div class="top-right links">
+						@auth
+						<a href="{{ url('/home') }}">Home</a>
+						@if ($user=Auth::user()->is_admin == 1)
+						<a href="{{ url('/admin') }}">admin</a>
+						@endif
+						@else
+						<a href="{{ route('login') }}">Login</a>
+						<a href="{{ route('register') }}">Register</a>
+						@endauth
+					</div>
+					@endif
+				</div>
+			</nav>
+			<div id="intro">
+				<h1>Changez instantanément vos 
+					disponibilités<br />
+				</h1>
+				<p> Prenez votre planning en main!</p>
+				<ul class="actions">
+					<li><img src="../img/nbr1.png" alt="number1" class="imgnbr"> Renseignez vos informations ainsi que vos disponibilités</li>
+					<li><img src="../img/nbr2.png" alt="number1" class="imgnbr"> Un lien unique vous est attribué. Recopiez le lien et synchronisez le avec tous vos profils.</li>
+					<li><img src="../img/nbr3.png" alt="number1" class="imgnbr"> Changez sans délai et sans contrainte votre statut sur l'ensemble des plateformes.</li>
+				</ul>
+			</div>
+			
+			<!-- Header -->
+			<header id="header">
+				<a href="/" class="logo">Dispo.me</a>
+			</header>
+			
+			<!-- Nav -->
+			<nav id="nav">
+				<ul class="links">
+					<li class="active"><a href="index.html">A la une</a></li>
+					@if ($user=Auth::user())
+					<li><a href="generic.html">Mon profil</a></li>
+					@endif
+					@if ($user=Auth::user())
+					<li><a href="elements.html">Mes disponibilités</a></li>
+					@endif
+				</ul>
+				<ul class="icons">
+					<li><a href="#"><img src="../img/twitter-logo_318-40459.jpg " alt="logo-twitter"  class="logo-img"></a></li>
+					<li><a href="#"><img src="../img/facebook-symbol_318-37686.jpg" alt="logo-facebook"  class="logo-img"></a></li>
+					<li><a href="#"><img src="../img/logo-instagram.png" alt="logo-instagram"  class="logo-img"></a></li>
+					<li><a href="#"><img src="../img/logo-github.png" alt="logo-github"  class="logo-img"></a></li>
+				</ul>
+			</nav>
+			
+			<!-- Main -->
+			<div id="main">
+				<!-- Featured Post -->
+				<article class="post featured">
+					<header class="major">
+						<span class="date">{{ date('j M, Y', strtotime($posts[0]->updated_at))}}</span>
+						<h2><a href="#">{{ $posts[0]->title }}</a></h2>
+							<p>{{ substr($posts[0]->content, 0, 400)}}{{strlen($posts[0]->content) > 400 ? "..." : ""}}</p>
+							</header>
+							<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
+							<ul class="actions special">
+								<li><a href="#" class="button large">Lire le focus</a></li>
+							</ul>
+						</article>
+						
+						<!-- Posts -->
+						<section class="posts">
+							<article>
+								<header>
+									<span class="date">{{ date('j M, Y', strtotime($posts[1]->updated_at)) }}</span>
+									<h2><a href="#">{{ $posts[1]->title }}</a></h2>
+									</header>
+									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+									<p>{{ substr($posts[1]->content, 0, 400)}}{{strlen($posts[1]->content) > 400 ? "..." : ""}}</p>
+									<ul class="actions special">
+										<li><a href="#" class="button">Lire le focus</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<span class="date">{{ date('j M, Y', strtotime($posts[2]->updated_at)) }}</span>
+										<h2><a href="#">{{ $posts[2]->title }}</a></h2>
+										</header>
+										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+										<p>{{ substr($posts[2]->content, 0, 400)}}{{strlen($posts[2]->content) > 400 ? "..." : ""}}</p>
+										<ul class="actions special">
+											<li><a href="#" class="button">Lire le focus</a></li>
+										</ul>
+									</article>
+									<article>
+										<header>
+											<span class="date">{{ date('j M, Y', strtotime($posts[3]->updated_at)) }}</span>
+											<h2><a href="#"></a>{{ $posts[3]->title }}</h2>
+											</header>
+											<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+											<p>{{ substr($posts[3]->content, 0, 400)}}{{strlen($posts[3]->content) > 400 ? "..." : ""}}</p>
+											<ul class="actions special">
+												<li><a href="#" class="button">Lire le focus</a></li>
+											</ul>
+										</article>
+										<article>
+											<header>
+												<span class="date">{{ date('j M, Y', strtotime($posts[4]->updated_at)) }}</span>
+												<h2><a href="#"></a>{{ $posts[4]->title }}</h2>
+												</header>
+												<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+												<p>{{ substr($posts[4]->content, 0, 400)}}{{strlen($posts[4]->content) > 400 ? "..." : ""}}</p>
+												<ul class="actions special">
+													<li><a href="#" class="button">Lire le focus</a></li>
+												</ul>
+											</article>
+											<article>
+												<header>
+													<span class="date">{{ date('j M, Y', strtotime($posts[5]->updated_at)) }}</span>
+													<h2><a href="#">{{ $posts[5]->title }}</a></h2>
+													</header>
+													<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+													<p>{{ substr($posts[5]->content, 0, 400)}}{{strlen($posts[5]->content) > 400 ? "..." : ""}}</p>
+													<ul class="actions special">
+														<li><a href="#" class="button">Lire le focus</a></li>
+													</ul>
+												</article>
+												<article>
+													<header>
+														<span class="date">{{ date('j M, Y', strtotime($posts[6]->updated_at)) }}</span>
+														<h2><a href="#">{{ $posts[6]->title }}</a></h2>
+														</header>
+														<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+														<p>{{ substr($posts[6]->content, 0, 400)}}{{strlen($posts[6]->content) > 400 ? "..." : ""}}</p>
+														<ul class="actions special">
+															<li><a href="#" class="button">Lire le focus</a></li>
+														</ul>
+													</article>
+												</section>
+												
+												<!-- Footer -->
+												<footer>
+													<div class="pagination">
+														<!--<a href="#" class="previous">Prev</a>-->
+														<a href="#" class="page active">1</a>
+														<a href="#" class="page">2</a>
+														<a href="#" class="page">3</a>
+														<span class="extra">&hellip;</span>
+														<a href="#" class="page">8</a>
+														<a href="#" class="page">9</a>
+														<a href="#" class="page">10</a>
+														<a href="#" class="next">Next</a>
+													</div>
+												</footer>
+												
+											</div>
+											
+											<!-- Footer -->
+											<footer id="footer">
+												<section>
+													<form method="post" action="#">
+														<div class="fields">
+															<div class="field">
+																<label for="name">Nom</label>
+																<input type="text" name="name" id="name" />
+															</div>
+															<div class="field">
+																<label for="email">Email</label>
+																<input type="text" name="email" id="email" />
+															</div>
+															<div class="field">
+																<label for="message">Message</label>
+																<textarea name="message" id="message" rows="3"></textarea>
+															</div>
+														</div>
+														<ul class="actions">
+															<li><input type="submit" value="Send Message" /></li>
+														</ul>
+													</form>
+												</section>
+												<section class="split contact">
+													<section class="alt">
+														<h3>Addresse</h3>
+														<p>7 bis rue Jacques Daguerre<br />
+															79000 Niort</p>
+														</section>
+														<section>
+															<h3>Téléphone</h3>
+															<p><a href="#">06 28 45 00 79</a></p>
+														</section>
+														<section>
+															<h3>Email</h3>
+															<p><a href="#">benoit.maneuvrier@wekey.fr</a></p>
+														</section>
+														<section>
+															<h3>Social</h3>
+															<ul class="icons alt">
+																<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+																<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+																<li><a href="#" class="icon alt fa-instagram"><span class="label">Google</span></a></li>
+																</ul>
+														</section>
+													</section>
+												</footer>
+												
+												<!-- Copyright -->
+												<div id="copyright">
+													<ul><li>&copy; Dispo.me</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+												</div>
+												
+											</div>
+											
+											<!-- Scripts -->
+											<script src="js/jquery.min.js"></script>
+											<script src="js/jquery.scrollex.min.js"></script>
+											<script src="js/jquery.scrolly.min.js"></script>
+											<script src="js/browser.min.js"></script>
+											<script src="js/breakpoints.min.js"></script>
+											<script src="js/util.js"></script>
+											<script src="js/main.js"></script>
+											<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+											<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+											
+										</body>
+										</html>

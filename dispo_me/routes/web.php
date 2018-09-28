@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome2');
-});
+// Page principale
+Route::get('/', 'PostController@welcome');
+
 
 Auth::routes();
 
@@ -21,8 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/disclaimer', function() {
     return view('disclaimer');
 });
-/* CRUD pour les posts*/
-// Route::resource('posts', 'PostController')->middleware('is_admin');
+
+/* Public posts*/
+Route::get('/public/posts/{id}', function() {
+    return view('public_show_post');
+});
+Route::get('public/posts', 'PublicPostController@index');
+Route::get('public/posts/{id}/show', 'PublicPostController@show');
+
+/* CRUD pour les posts ADMIN*/
 Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('is_admin');
 Route::get('/posts/create', 'PostController@create')->middleware('is_admin');
 Route::post('/posts/create', 'PostController@store')->middleware('is_admin');

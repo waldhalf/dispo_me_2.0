@@ -9,6 +9,21 @@ use Session;
 
 class PostController extends Controller
 {
+
+        /**
+     * Display a listing of the resource on the welcome page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function welcome() {
+        // On récupére les 7 derniers posts (sort DESC)
+        $posts = PostModel::orderBy('id', 'DESC')->take(7)->get();
+
+        // On les envoie à la welcome page
+        return view ('welcome')->with('posts', $posts);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -105,7 +120,7 @@ class PostController extends Controller
             'post_image' => 'required|mimes:png,jpg,jpeg|max:2048',
         ]);
 
-        // On récupére le post qu'on veut update
+        // On récupére le post que l'on veut update
         $post = PostModel::find($id);
 
         // On récupére les data qu'on veut update
@@ -137,8 +152,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        //On récupére le post qui a été passé en paramétre
         $post = PostModel::find($id);
+
+        // On l'efface
         $post->delete();
+
+        // On indique que tout s'est bien passé via un flas message
+        Session::flash('msg', 'Le post a bien été supprimé dans le base de données');
+
         return redirect()->route('posts.index');
         
     }
