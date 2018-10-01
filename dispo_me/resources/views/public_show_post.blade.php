@@ -30,18 +30,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="\">Home
+              <a class="nav-link" href="/">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="/manual">Mode d'emploi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="/contact">Qui sommes-nous?</a>
             </li>
           </ul>
         </div>
@@ -58,23 +55,27 @@
                 
                 
                 <!-- Title -->
-                <h1 class="mt-4">{{ $post->title }}</h1>
-                            
+                <h1 class="mt-4">{{ $post[0]->title }}</h1>         
                 <hr>   
                 <!-- Date/Time -->
-                <p>Le {{ date('j M, Y', strtotime($post->updated_at))}}</p>
+                <p>Le {{ date('j M, Y', strtotime($post[0]->updated_at))}}</p>
+                <hr>
+                <p>Url: <a href="{{ url('/public/posts/'.$post[0]->slug) }}">{{ url('/public/posts/'.$post[0]->slug) }}</a></p>
+                <p><a class="btn btn-primary" href="{{route ('public.posts')}}">Revenir à l'index des métiers</a></p>
                 <hr>
                 <!-- Preview Image -->
-                <img class="img-fluid rounded" src="/{{ $post->img_path }}" alt="image représentant le job" style="width: 900px; height:300px;">
+                <img class="img-fluid rounded" src="/{{ $post[0]->img_path }}" alt="image représentant le job" style="width: 900px; height:300px;">
                 <hr>
                 <!-- Post Content -->
-                <p class="lead">{{ $post->content }} </p>
+                <p class="lead">{{ $post[0]->content }} </p>
                 <hr>
 
             </div> 
         </div>
+        
 
-    </div>
+    
+        </div>
       <!-- /.row -->
 
     </div>

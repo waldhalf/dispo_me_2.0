@@ -30,7 +30,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = PostModel::all();
+        $posts = PostModel::orderBy('id', 'DESC')->paginate(10);
         return view ('index_post')->with('Posts', $posts);
     }
 
@@ -57,6 +57,7 @@ class PostController extends Controller
             'post_title' => 'required|max:255',
             'post_text' => 'required',
             'post_image' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'post_slug' => 'required|alpha_dash|min:4|max:255|unique:post_models,slug',
         ]);
         // On récupére id de l'author ainsi que l'image
         // pour save le post
@@ -71,6 +72,7 @@ class PostController extends Controller
         $post->content = $request->post_text;
         $post->author_id = $user_id;
         $post->img_path = $newImageName;
+        $post->slug = $request->post_slug;
         $post->save();
 
         // On créé un flash message qui sera envoyé à la prochaine view (only once)
@@ -114,14 +116,24 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         // Validation du formulaire update_post
-        $validatesData = $request->validate([
-            'post_title' => 'required|max:255',
-            'post_text' => 'required',
-            'post_image' => 'required|mimes:png,jpg,jpeg|max:2048',
-        ]);
-
-        // On récupére le post que l'on veut update
+        // le if statement est là pour le slug qui doit être 
+        // unique. Lors de l'update comme il est déjà présent en DB
+        // cela causerait un bug sans ce if statement
         $post = PostModel::find($id);
+        if ($request->post_slug == $post->slug) {
+            $validatesData = $request->validate([
+                'post_title' => 'required|max:255',
+                'post_text' => 'required',
+                'post_image' => 'required|mimes:png,jpg,jpeg|max:2048',
+            ]);
+        } else {
+            $validatesData = $request->validate([
+                'post_title' => 'required|max:255',
+                'post_text' => 'required',
+                'post_image' => 'required|mimes:png,jpg,jpeg|max:2048',
+                'post_slug' => 'required|alpha_dash|min:4|max:255|unique:post_models,slug',
+            ]);
+        }
 
         // On récupére les data qu'on veut update
         $user_id = Auth::id();
@@ -135,6 +147,7 @@ class PostController extends Controller
         $post->content = $request->post_text;
         $post->author_id = $user_id;
         $post->img_path = $newImageName;
+        $post->slug = $request->post_slug;
         $post->save();
 
         // On créé un flash message qui sera envoyé à la prochaine view (only once)

@@ -32,7 +32,9 @@
         </tbody>
         @endforeach
 </table>
-
+<div class="text-center">
+    {!! $Posts->links(); !!}
+</div>
 {{-- <img style="width:30px; height:30px;" src="{{$post['img_path']}}" alt="une image" srcset="">  --}}
     
 

@@ -14,7 +14,7 @@ class PublicPostController extends Controller
      */
     public function index()
     {
-        $posts = PostModel::all();
+        $posts = PostModel::orderBy('id', 'desc')->paginate(5);
         return view('public_index_posts')->withPosts($posts);
     }
 
@@ -45,9 +45,9 @@ class PublicPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = PostModel::find($id);
+        $post = PostModel::where('slug','=', $slug)->get();
         return view ('public_show_post')->withPost($post);
     }
 

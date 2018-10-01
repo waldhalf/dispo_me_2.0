@@ -23,25 +23,22 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Dispo.me</a>
+        <a class="navbar-brand" href="/">Dispo.me</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="/">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="/manual">Mode d'emploi</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="/contact">Qui sommes-nous?</a>
             </li>
           </ul>
         </div>
@@ -50,13 +47,11 @@
 
     <!-- Page Content -->
     <div class="container">
-
-        @foreach ($posts as $post)
-        <div class="row">
-            
         <!-- Post Content Column -->
+        <div class="row">
             <div class="col-lg-8">
-                
+            
+                @foreach ($posts as $post)     
                 <!-- Title -->
                 <h1 class="mt-4">{{ $post->title }}</h1>
                             
@@ -64,20 +59,27 @@
                 <!-- Date/Time -->
                 <p>Le {{ date('j M, Y', strtotime($post->updated_at))}}</p>
                 <hr>
+                <p>Url: <a href="{{ url('/public/posts/'.$post->slug) }}">{{ url('/public/posts/'.$post->slug) }}</a></p>
+                <hr>
                 <!-- Preview Image -->
                 <img class="img-fluid rounded" src="/{{ $post->img_path }}" alt="image représentant le job" style="width: 900px; height:300px;">
                 <hr>
                 <!-- Post Content -->
-                <p class="lead">{{ substr($post->content, 0, 400)}}{{strlen($post->content) > 400 ? "..." : ""}} <a href='/public/posts/{{ $post->id }}/show'>Lire la suite</a></p>
+                <p class="lead">{{ substr($post->content, 0, 400)}}{{strlen($post->content) > 400 ? "..." : ""}} <a href="{{ url('/public/posts/'.$post->slug) }}">Lire la suite</a></p>
                 <hr>
 
-            </div> 
+                @endforeach
+            </div>
         </div>
-        @endforeach
-    </div>
-      <!-- /.row -->
+        <!-- Pagination -->
+            <div>
+              {!! $posts->links(); !!}
+            </div> 
 
-    </div>
+
+        
+        
+      </div>
     <!-- /.container -->
 
     <!-- Footer -->
@@ -86,6 +88,7 @@
         <p class="m-0 text-center text-white">Copyright &copy; Dispo.me 2018</p>
       </div>
       <!-- /.container -->
+      
     </footer>
 
 

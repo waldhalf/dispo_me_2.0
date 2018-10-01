@@ -18,16 +18,16 @@ Route::get('/', 'PostController@welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/disclaimer', function() {
-    return view('disclaimer');
-});
+
+
+/* Public miscellaneous*/
+Route::get('/disclaimer', function() { return view('disclaimer'); });
+Route::get('/manual', function() { return view('manual'); });
+Route::get('/contact', function() { return view('contact'); });
 
 /* Public posts*/
-Route::get('/public/posts/{id}', function() {
-    return view('public_show_post');
-});
-Route::get('public/posts', 'PublicPostController@index');
-Route::get('public/posts/{id}/show', 'PublicPostController@show');
+Route::get('public/posts', 'PublicPostController@index')->name('public.posts');
+Route::get('public/posts/{slug}', 'PublicPostController@show');
 
 /* CRUD pour les posts ADMIN*/
 Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('is_admin');

@@ -36,26 +36,31 @@
 								Naviguer
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="/public/posts">Présentation des jobs!</a>
-								<a class="dropdown-item" href="#">Another action</a>
+								<a class="dropdown-item" href="/public/posts">Présentation des métiers!</a>
+								<a class="dropdown-item" href="/manual">Mode d'emploi</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Something else here</a>
+								<a class="dropdown-item" href="/contact">Qui sommes-nous?</a>
 							</div>
 						</li>
+						@if ($user=Auth::user())
 						<li class="nav-item">
-							<a class="nav-link disabled" href="#">Disabled</a>
+							<a class="nav-link active" href="#">Mon profil</a>
 						</li>
+						<li class="nav-item">
+								<a class="nav-link active" href="#">Mes disponibilités</a>
+						</li>
+						@endif
 					</ul>
 					@if (Route::has('login'))
 					<div class="top-right links">
 						@auth
-						<a href="{{ url('/home') }}">Home</a>
+						<a href="{{ url('/home') }}" class="btn btn-primary">Déconnexion</a>
 						@if ($user=Auth::user()->is_admin == 1)
-						<a href="{{ url('/admin') }}">admin</a>
+						<a href="{{ url('/admin') }}" class="btn btn-danger">Admin</a>
 						@endif
 						@else
-						<a href="{{ route('login') }}">Login</a>
-						<a href="{{ route('register') }}">Register</a>
+						<a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+						<a href="{{ route('register') }}" class="btn btn-danger">Register</a>
 						@endauth
 					</div>
 					@endif
@@ -103,12 +108,12 @@
 				<article class="post featured">
 					<header class="major">
 						<span class="date">{{ date('j M, Y', strtotime($posts[0]->updated_at))}}</span>
-						<h2><a href="#">{{ $posts[0]->title }}</a></h2>
+						<h2><a href="/public/posts/{{$posts[0]->id}}/show">{{ $posts[0]->title }}</a></h2>
 							<p>{{ substr($posts[0]->content, 0, 400)}}{{strlen($posts[0]->content) > 400 ? "..." : ""}}</p>
 							</header>
 							<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
 							<ul class="actions special">
-								<li><a href="#" class="button large">Lire le focus</a></li>
+								<li><a href="/public/posts/{{$posts[0]->id}}/show" class="button large">Lire le focus</a></li>
 							</ul>
 						</article>
 						
@@ -117,67 +122,67 @@
 							<article>
 								<header>
 									<span class="date">{{ date('j M, Y', strtotime($posts[1]->updated_at)) }}</span>
-									<h2><a href="#">{{ $posts[1]->title }}</a></h2>
+									<h2><a href="/public/posts/{{$posts[1]->id}}/show">{{ $posts[1]->title }}</a></h2>
 									</header>
 									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
 									<p>{{ substr($posts[1]->content, 0, 400)}}{{strlen($posts[1]->content) > 400 ? "..." : ""}}</p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Lire le focus</a></li>
+										<li><a href="/public/posts/{{$posts[1]->id}}/show" class="button">Lire le focus</a></li>
 									</ul>
 								</article>
 								<article>
 									<header>
 										<span class="date">{{ date('j M, Y', strtotime($posts[2]->updated_at)) }}</span>
-										<h2><a href="#">{{ $posts[2]->title }}</a></h2>
+										<h2><a href="/public/posts/{{$posts[2]->id}}/show">{{ $posts[2]->title }}</a></h2>
 										</header>
 										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
 										<p>{{ substr($posts[2]->content, 0, 400)}}{{strlen($posts[2]->content) > 400 ? "..." : ""}}</p>
 										<ul class="actions special">
-											<li><a href="#" class="button">Lire le focus</a></li>
+											<li><a href="/public/posts/{{$posts[2]->id}}/show" class="button">Lire le focus</a></li>
 										</ul>
 									</article>
 									<article>
 										<header>
 											<span class="date">{{ date('j M, Y', strtotime($posts[3]->updated_at)) }}</span>
-											<h2><a href="#"></a>{{ $posts[3]->title }}</h2>
+											<h2><a href="/public/posts/{{$posts[3]->id}}/show">{{ $posts[3]->title }}</a></h2>
 											</header>
-											<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+											<a href="/public/posts/{{$posts[3]->id}}/show"class="image fit"><img src="images/pic04.jpg" alt="" /></a>
 											<p>{{ substr($posts[3]->content, 0, 400)}}{{strlen($posts[3]->content) > 400 ? "..." : ""}}</p>
 											<ul class="actions special">
-												<li><a href="#" class="button">Lire le focus</a></li>
+												<li><a href="/public/posts/{{$posts[3]->id}}/show" class="button">Lire le focus</a></li>
 											</ul>
 										</article>
 										<article>
 											<header>
 												<span class="date">{{ date('j M, Y', strtotime($posts[4]->updated_at)) }}</span>
-												<h2><a href="#"></a>{{ $posts[4]->title }}</h2>
+												<h2><a href="/public/posts/{{$posts[4]->id}}/show">{{ $posts[4]->title }}</a></h2>
 												</header>
-												<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+												<a href="/public/posts/{{$posts[4]->id}}/show" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
 												<p>{{ substr($posts[4]->content, 0, 400)}}{{strlen($posts[4]->content) > 400 ? "..." : ""}}</p>
 												<ul class="actions special">
-													<li><a href="#" class="button">Lire le focus</a></li>
+													<li><a href="/public/posts/{{$posts[4]->id}}/show" class="button">Lire le focus</a></li>
 												</ul>
 											</article>
 											<article>
 												<header>
 													<span class="date">{{ date('j M, Y', strtotime($posts[5]->updated_at)) }}</span>
-													<h2><a href="#">{{ $posts[5]->title }}</a></h2>
+													<h2><a href="/public/posts/{{$posts[5]->id}}/show">{{ $posts[5]->title }}</a></h2>
 													</header>
 													<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
 													<p>{{ substr($posts[5]->content, 0, 400)}}{{strlen($posts[5]->content) > 400 ? "..." : ""}}</p>
 													<ul class="actions special">
-														<li><a href="#" class="button">Lire le focus</a></li>
+														<li><a href="/public/posts/{{$posts[5]->id}}/show" class="button">Lire le focus</a></li>
 													</ul>
 												</article>
 												<article>
 													<header>
 														<span class="date">{{ date('j M, Y', strtotime($posts[6]->updated_at)) }}</span>
-														<h2><a href="#">{{ $posts[6]->title }}</a></h2>
+														<h2><a href="/public/posts/{{$posts[6]->id}}/show">{{ $posts[6]->title }}</a></h2>
 														</header>
 														<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
 														<p>{{ substr($posts[6]->content, 0, 400)}}{{strlen($posts[6]->content) > 400 ? "..." : ""}}</p>
 														<ul class="actions special">
-															<li><a href="#" class="button">Lire le focus</a></li>
+															<li><a href="/public/posts/{{$posts[6]->id}}/show" class="button">Lire le focus</a></li>
 														</ul>
 													</article>
 												</section>
@@ -186,14 +191,14 @@
 												<footer>
 													<div class="pagination">
 														<!--<a href="#" class="previous">Prev</a>-->
-														<a href="#" class="page active">1</a>
+														{{-- <a href="#" class="page active">1</a>
 														<a href="#" class="page">2</a>
 														<a href="#" class="page">3</a>
 														<span class="extra">&hellip;</span>
 														<a href="#" class="page">8</a>
 														<a href="#" class="page">9</a>
 														<a href="#" class="page">10</a>
-														<a href="#" class="next">Next</a>
+														<a href="#" class="next">Next</a> --}}
 													</div>
 												</footer>
 												

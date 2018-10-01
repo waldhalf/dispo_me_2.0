@@ -30,6 +30,13 @@
         <p class="alert alert-danger">{{ $errors->first('post_image') }}</p>
         @endif
     </div>
+    <div class="form-group">
+        <label for="post_slug">Slug</label>
+        <input type="text" class="form-control" id="post_slug" name="post_slug" placeholder="Insérez le slug ici." value="{{ old('post_title') }}">
+        @if ($errors->has('post_slug'))
+        <p class="alert alert-danger">{{ $errors->first('post_slug') }}</p>
+        @endif
+    </div>
     <button type="submit" class="btn btn-primary" name="upload">Submit</button>
 </form>
 </div>
