@@ -71,16 +71,20 @@
                 @endforeach
             </div>
         </div>
-        <!-- Pagination -->
-            <div>
-              {!! $posts->links(); !!}
-            </div> 
-
-
         
+        
+        
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+            {!! $posts->links() !!}
+          </div>
+          </div>
+        </div> 
         
       </div>
-    <!-- /.container -->
+      <!-- /.container -->
+      <!-- Pagination -->
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

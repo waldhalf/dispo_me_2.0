@@ -9,20 +9,16 @@ use Session;
 
 class PostController extends Controller
 {
-
+    // Cette méthode protége l'ensemble des routes afin
+    // que seul l'admin puisse y accéder
+    public function __construct() {
+        $this->middleware('is_admin');
+    }
         /**
      * Display a listing of the resource on the welcome page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function welcome() {
-        // On récupére les 7 derniers posts (sort DESC)
-        $posts = PostModel::orderBy('id', 'DESC')->take(7)->get();
-
-        // On les envoie à la welcome page
-        return view ('welcome')->with('posts', $posts);
-    }
-
 
     /**
      * Display a listing of the resource.
@@ -30,6 +26,19 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        // les lignes qui suivent sont là si on veut éviter d'utiliser un middleware Auth
+        // $user = Auth::user();
+        // var_dump($user);
+        // if ($user['is_admin'] == 1) {
+        //     $posts = PostModel::orderBy('id', 'DESC')->paginate(10);
+        //     return view ('index_post')->with('Posts', $posts);
+        // } else {
+        //     // On récupére les 7 derniers posts (sort DESC)
+        //     $posts = PostModel::orderBy('id', 'DESC')->take(7)->get();
+
+        //     // On les envoie à la welcome page
+        //     return view ('welcome')->with('posts', $posts);
+        // }
         $posts = PostModel::orderBy('id', 'DESC')->paginate(10);
         return view ('index_post')->with('Posts', $posts);
     }

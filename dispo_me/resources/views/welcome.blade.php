@@ -111,7 +111,7 @@
 						<h2><a href="/public/posts/{{$posts[0]->id}}/show">{{ $posts[0]->title }}</a></h2>
 							<p>{{ substr($posts[0]->content, 0, 400)}}{{strlen($posts[0]->content) > 400 ? "..." : ""}}</p>
 							</header>
-							<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
+							<hr>
 							<ul class="actions special">
 								<li><a href="/public/posts/{{$posts[0]->id}}/show" class="button large">Lire le focus</a></li>
 							</ul>
@@ -124,7 +124,7 @@
 									<span class="date">{{ date('j M, Y', strtotime($posts[1]->updated_at)) }}</span>
 									<h2><a href="/public/posts/{{$posts[1]->id}}/show">{{ $posts[1]->title }}</a></h2>
 									</header>
-									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+									<hr>
 									<p>{{ substr($posts[1]->content, 0, 400)}}{{strlen($posts[1]->content) > 400 ? "..." : ""}}</p>
 									<ul class="actions special">
 										<li><a href="/public/posts/{{$posts[1]->id}}/show" class="button">Lire le focus</a></li>
@@ -135,7 +135,7 @@
 										<span class="date">{{ date('j M, Y', strtotime($posts[2]->updated_at)) }}</span>
 										<h2><a href="/public/posts/{{$posts[2]->id}}/show">{{ $posts[2]->title }}</a></h2>
 										</header>
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+										<hr>
 										<p>{{ substr($posts[2]->content, 0, 400)}}{{strlen($posts[2]->content) > 400 ? "..." : ""}}</p>
 										<ul class="actions special">
 											<li><a href="/public/posts/{{$posts[2]->id}}/show" class="button">Lire le focus</a></li>
@@ -146,7 +146,7 @@
 											<span class="date">{{ date('j M, Y', strtotime($posts[3]->updated_at)) }}</span>
 											<h2><a href="/public/posts/{{$posts[3]->id}}/show">{{ $posts[3]->title }}</a></h2>
 											</header>
-											<a href="/public/posts/{{$posts[3]->id}}/show"class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+											<hr>
 											<p>{{ substr($posts[3]->content, 0, 400)}}{{strlen($posts[3]->content) > 400 ? "..." : ""}}</p>
 											<ul class="actions special">
 												<li><a href="/public/posts/{{$posts[3]->id}}/show" class="button">Lire le focus</a></li>
@@ -157,7 +157,7 @@
 												<span class="date">{{ date('j M, Y', strtotime($posts[4]->updated_at)) }}</span>
 												<h2><a href="/public/posts/{{$posts[4]->id}}/show">{{ $posts[4]->title }}</a></h2>
 												</header>
-												<a href="/public/posts/{{$posts[4]->id}}/show" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+												<hr>
 												<p>{{ substr($posts[4]->content, 0, 400)}}{{strlen($posts[4]->content) > 400 ? "..." : ""}}</p>
 												<ul class="actions special">
 													<li><a href="/public/posts/{{$posts[4]->id}}/show" class="button">Lire le focus</a></li>
@@ -168,7 +168,7 @@
 													<span class="date">{{ date('j M, Y', strtotime($posts[5]->updated_at)) }}</span>
 													<h2><a href="/public/posts/{{$posts[5]->id}}/show">{{ $posts[5]->title }}</a></h2>
 													</header>
-													<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+													<hr>
 													<p>{{ substr($posts[5]->content, 0, 400)}}{{strlen($posts[5]->content) > 400 ? "..." : ""}}</p>
 													<ul class="actions special">
 														<li><a href="/public/posts/{{$posts[5]->id}}/show" class="button">Lire le focus</a></li>
@@ -179,7 +179,7 @@
 														<span class="date">{{ date('j M, Y', strtotime($posts[6]->updated_at)) }}</span>
 														<h2><a href="/public/posts/{{$posts[6]->id}}/show">{{ $posts[6]->title }}</a></h2>
 														</header>
-														<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+														<hr>
 														<p>{{ substr($posts[6]->content, 0, 400)}}{{strlen($posts[6]->content) > 400 ? "..." : ""}}</p>
 														<ul class="actions special">
 															<li><a href="/public/posts/{{$posts[6]->id}}/show" class="button">Lire le focus</a></li>
