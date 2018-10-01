@@ -69,7 +69,7 @@
                 <!-- Post Content -->
                 <p class="lead">{{ $post[0]->content }} </p>
                 <hr>
-
+                {{-- {{ $post[0]->category->category_name}} --}}
             </div> 
         </div>
         

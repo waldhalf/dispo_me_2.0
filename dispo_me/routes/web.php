@@ -38,8 +38,9 @@ Route::get('/posts/{id}/edit', 'PostController@edit');
 Route::post('/posts/{id}/edit', 'PostController@update')->name('post.update');
 Route::get('/posts/{id}/delete', 'PostController@destroy');
 
-/* Password reset routes */
-
+/* CRUD pour les categorie ADMIN */
+Route::get('/categories/index', 'CategoryController@index')->name('categories.index');
+Route::post('/categories/index', 'CategoryController@store')->name('categories.store');
 
 
 Route::get('/admin', 'AdminController@admin')->middleware('is_admin');
