@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PostModel;
 
+
 class PublicPostController extends Controller
 {
 
@@ -22,7 +23,8 @@ class PublicPostController extends Controller
      */
     public function index()
     {
-        $posts = PostModel::orderBy('id', 'desc')->paginate(5);
+        $posts = PostModel::orderBy('id', 'DESC')->paginate(5);
+
         return view('public_index_posts')->withPosts($posts);
     }
 

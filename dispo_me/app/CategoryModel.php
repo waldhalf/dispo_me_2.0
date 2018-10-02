@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryModel extends Model
 {
-    // Du fait qu'on ne suit pas la conventionde nomage de la table
+    // Du fait qu'on ne suit pas la convention de nomage de la table
     // on dit ici à Laravel quel est le nom de la table que l'on va
     // utiliser
     protected $table = 'categories';

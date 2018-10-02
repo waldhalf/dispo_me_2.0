@@ -16,9 +16,9 @@
 	</head>
 	<body class="is-preload">
 		
-		
-		@yield('content')									
-											<!-- Scripts -->
+		@yield('content')		
+
+		<!-- Scripts -->
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.scrollex.min.js"></script>
         <script src="js/jquery.scrolly.min.js"></script>

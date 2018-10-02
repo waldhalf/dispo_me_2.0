@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\UserProfileModel;
 
 class User extends Authenticatable
 {
@@ -34,5 +35,9 @@ class User extends Authenticatable
 
     public function isAdmin() {        
         return $this->is_admin === self::ADMIN_TYPE;    
+    }
+
+    public function profile() {
+        return $this->belongsTo('App\UserProfileModel');
     }
 }

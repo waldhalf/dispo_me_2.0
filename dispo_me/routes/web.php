@@ -12,7 +12,7 @@
 */
 
 // Page principale
-Route::get('/', 'PublicPostController@welcome');
+Route::get('/', 'PublicPostController@welcome')->name('welcome');
 
 
 Auth::routes();
@@ -42,5 +42,9 @@ Route::get('/posts/{id}/delete', 'PostController@destroy');
 Route::get('/categories/index', 'CategoryController@index')->name('categories.index');
 Route::post('/categories/index', 'CategoryController@store')->name('categories.store');
 
+/* Comlplétion du profil */
+Route::get('/profile_step_1', 'UserProfileController@getStep1')->name('profile.getStep1');
+Route::post('/profile_step_1', 'UserProfileController@storeStep1');
+Route::get('/profile/{slug}', 'UserProfileController@getProfile');
 
 Route::get('/admin', 'AdminController@admin')->middleware('is_admin');

@@ -36,6 +36,18 @@
         <p class="alert alert-danger">{{ $errors->first('post_slug') }}</p>
         @endif
     </div>
+    <!-- Partie à ajouter si l'on veut add les catégories aux posts -->
+    {{-- <div class="form-group">
+        <label for="post_category">Catégorie</label>
+        <select class="form-control" id="post_category" name="post_category" }}>
+            @foreach ($categories as $category)                 
+            <option value="{{$category->id}}">{{$category->category_name}}</option>
+            @endforeach
+        </select> 
+        @if ($errors->has('post_category'))
+        <p class="alert alert-danger">{{ $errors->first('post_category') }}</p>
+        @endif
+    </div> --}}
     <button type="submit" class="btn btn-primary" name="upload">Save</button>
     <a href="{{ url('/posts')}}" class="btn btn-danger">Cancel</a>
 </form>

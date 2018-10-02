@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\PostModel;
+use App\CategoryModel;
 use Session;
 
 class PostController extends Controller
@@ -50,7 +51,8 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        return view ('create_post');        
+        $categories = CategoryModel::all();
+        return view ('create_post')->withCategories($categories);        
     }
 
     /**
@@ -82,6 +84,8 @@ class PostController extends Controller
         $post->author_id = $user_id;
         $post->img_path = $newImageName;
         $post->slug = $request->post_slug;
+        // A ajouter si on veut add les catégories aux posts
+        // $post->category_id = $request->post_category;
         $post->save();
 
         // On créé un flash message qui sera envoyé à la prochaine view (only once)
@@ -112,7 +116,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = PostModel::find($id);
-        return view('edit_post')->withPost($post);
+        $categories = CategoryModel::all();
+        return view('edit_post')->withPost($post)->withCategories($categories);
     }
 
     /**
