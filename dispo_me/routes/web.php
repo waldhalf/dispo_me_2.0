@@ -1,5 +1,5 @@
 <?php
-
+use App\SkillTagModel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +18,11 @@ Route::get('/', 'PublicPostController@welcome')->name('welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+/* Test */
+Route::get('/test', function() {
+    $tags = SkillTagModel::all();
+    return view('select2')->withTags($tags);
+});
 
 /* Public miscellaneous*/
 Route::get('/disclaimer', function() { return view('disclaimer'); });
@@ -42,9 +46,18 @@ Route::get('/posts/{id}/delete', 'PostController@destroy');
 Route::get('/categories/index', 'CategoryController@index')->name('categories.index');
 Route::post('/categories/index', 'CategoryController@store')->name('categories.store');
 
-/* Comlplétion du profil */
+/* Complétion du profil */
 Route::get('/profile_step_1', 'UserProfileController@getStep1')->name('profile.getStep1');
 Route::post('/profile_step_1', 'UserProfileController@storeStep1');
-Route::get('/profile/{slug}', 'UserProfileController@getProfile');
+Route::get('/profile/{slug}', 'UserProfileController@getProfile')->name('profile.index');
+
+/* CRUD pour les skill_tags ADMIN */
+Route::get('/tags', 'TagController@index');
+Route::get('/tags/create', 'TagController@create')->name('tags.index');
+Route::post('/tags/create', 'TagController@store')->name('tags.store');
+Route::get('/tags/{id}/edit', 'TagController@edit');
+Route::post('/tags/{id}/edit', 'TagController@edit');
+Route::get('/tags/{id}/delete', 'TagController@destroy')->name('tags.delete');
+
 
 Route::get('/admin', 'AdminController@admin')->middleware('is_admin');

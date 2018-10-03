@@ -44,7 +44,7 @@
 						</li>
 						@if ($user=Auth::user())
 						<li class="nav-item">
-							<a class="nav-link active" href="{{ route ('profile.index') }}">Mon profil</a>
+							{{-- <a class="nav-link active" href="{{ route ('profile.index') }}">Mon profil</a> --}}
 						</li>
 						<li class="nav-item">
 								<a class="nav-link active" href="#">Mes disponibilités</a>
@@ -88,7 +88,7 @@
 				<ul class="links">
 					<li class="active"><a href="index.html">A la une</a></li>
 					@if ($user=Auth::user())
-					<li><a href="{{ route ('profile.index') }}">Mon profil</a></li>
+					{{-- <li><a href="{{ route ('profile.index') }}">Mon profil</a></li> --}}
 					@endif
 					@if ($user=Auth::user())
 					<li><a href="elements.html">Mes disponibilités</a></li>

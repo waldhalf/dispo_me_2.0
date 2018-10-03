@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\SkillTagModel;
 
 class UserProfileModel extends Model
 {
@@ -16,6 +17,10 @@ class UserProfileModel extends Model
     // users
     public function user() {
         return $this->hasOne('App\User');
+    }
+
+    public function tags() {
+        return $this->belongsToMany('App\SkillTagModel', 'user_skill_tags', 'profile_id', 'skill_tag_id');
     }
 
 }

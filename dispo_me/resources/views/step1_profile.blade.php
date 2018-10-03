@@ -1,11 +1,27 @@
-@extends('layouts/app')
+<!DOCTYPE html>
 
-@section('content')
+<html>
+
+<head>
+
+	<title>Dispo.me | Mon profil</title>
+
+	<link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+</head>
+
+<body>
 <div class="container">
         <h1 class="text-center">Step 1 du profil</h1>
+        <form action="" method="POST" class="well">
     <div class="row">
         <div class = "col-md-6">
-            <form action="" method="POST" class="well">
             @csrf
             <h4 class="head">Créer votre compte gratuitement</h4>
             <div class="sect">
@@ -74,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <div class = "col-md-6">
+        <div class="col-md-6">
             <div class="sect">
                 <div class="form-group">
                     <label for="searched_job">Emploi recherché ? &nbsp; </label> </br>
@@ -86,10 +102,10 @@
             </div>
             <div class="sect">
                     <div class="form-group">
-                        <label for="actual_job">Emploi actuel &nbsp; </label> </br>
-                        <input type="text" name="actual_job" class="form-control" id="actual_job" placeholder=" exemple : Web Developper">
-                        @if ($errors->has('actual_job'))
-                        <p class="alert alert-danger">{{ $errors->first('actual_job') }}</p>
+                        <label for="actuel_job">Emploi actuel &nbsp; </label> </br>
+                        <input type="text" name="actuel_job" class="form-control" id="actuel_job" placeholder=" exemple : Web Developper">
+                        @if ($errors->has('actuel_job'))
+                        <p class="alert alert-danger">{{ $errors->first('actuel_job') }}</p>
                         @endif
                     </div>
             </div>
@@ -122,30 +138,38 @@
                         @endif
                     </div>
             </div>
-            <div class="sect">
-                    <div class="form-group">
-                        <label for="actual_company">Compétences &nbsp; </label> </br>
-                        <input type="text" name="actual_company" class="form-control" id="actual_company" placeholder=" exemple : Web Developper">
-                        @if ($errors->has('actual_company'))
-                        <p class="alert alert-danger">{{ $errors->first('actual_company') }}</p>
-                        @endif
-                    </div>
+                <div class="sect">
+                        
+                    {{ Form::label('skill_tags', 'Vos compétences')}}
+                        <select name="skill_tags[]" id="" class="form-control sel-status" multiple="multiple">
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->skill_name }}</option>
+                            @endforeach
+                        </select>  
+                </div>
             </div>
 
-
-
-
-
-
-
-
+            
         </div><!-- Fin du secon col-md-6-->
-                <button type="submit" class="btn btn-primary">Valider</button>
-                <a href="{{ route ('welcome') }}" class="btn btn-danger">Finir plus tard</a>
-                </form>
-            </div>
-    </div><!-- Fin du row-->
-    
+        <button type="submit" class="btn btn-primary">Valider</button>
+        <a href="{{ route ('welcome') }}" class="btn btn-danger">Finir plus tard</a>
+    </div>
+</div><!-- Fin du row-->
+</form>
  
 </div><!-- Fin du container-->
-@endsection
+
+
+<script>
+$(document).ready(function() {
+ 
+    $(".sel-status").select2({
+        placeholder: 'Compétences'
+    });
+
+});
+            
+        
+    </script>
+    </body>
+</html>
