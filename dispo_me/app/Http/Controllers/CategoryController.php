@@ -97,6 +97,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = CategoryModel::find($id);
+        $category->delete();
+
+        // On indique que tout s'est bien passé via un flas message
+        Session::flash('msg', 'La catégorie a bien été supprimé de la base de données');
+
+        return redirect()->route('categories.index');
     }
 }

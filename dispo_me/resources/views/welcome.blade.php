@@ -15,10 +15,11 @@
 		
 	</head>
 	<body class="is-preload">
-		
+		@if (Session::has('msg'))
+		<p class="alert alert-success" role="alert">{{ Session::get('msg') }}</p> 
+		@endif
 		<!-- Wrapper -->
 		<div id="wrapper" class="fade-in">
-			
 			<!-- Intro -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="#">Dispo.me</a>
@@ -28,9 +29,6 @@
 				
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Naviguer
@@ -44,7 +42,7 @@
 						</li>
 						@if ($user=Auth::user())
 						<li class="nav-item">
-							{{-- <a class="nav-link active" href="{{ route ('profile.index') }}">Mon profil</a> --}}
+							<a class="nav-link active" href="{{ url ('/profile/'.Auth::user()->slug) }}">Mon profil</a>
 						</li>
 						<li class="nav-item">
 								<a class="nav-link active" href="#">Mes disponibilités</a>
@@ -101,7 +99,7 @@
 					<li><a href="#"><img src="../img/logo-github.png" alt="logo-github"  class="logo-img"></a></li>
 				</ul>
 			</nav>
-			
+		
 			<!-- Main -->
 			<div id="main">
 				<!-- Featured Post -->

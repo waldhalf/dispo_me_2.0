@@ -101,45 +101,44 @@
                 </div>
             </div>
             <div class="sect">
-                    <div class="form-group">
-                        <label for="actuel_job">Emploi actuel &nbsp; </label> </br>
-                        <input type="text" name="actuel_job" class="form-control" id="actuel_job" placeholder=" exemple : Web Developper">
-                        @if ($errors->has('actuel_job'))
-                        <p class="alert alert-danger">{{ $errors->first('actuel_job') }}</p>
-                        @endif
-                    </div>
+                <div class="form-group">
+                    <label for="actuel_job">Emploi actuel &nbsp; </label> </br>
+                    <input type="text" name="actuel_job" class="form-control" id="actuel_job" placeholder=" exemple : Web Developper">
+                    @if ($errors->has('actuel_job'))
+                    <p class="alert alert-danger">{{ $errors->first('actuel_job') }}</p>
+                    @endif
+                </div>
             </div>
             <div class="sect">
-                    <div class="form-group">
-                        <label for="actual_company">Entreprise actuelle &nbsp; </label> </br>
-                        <input type="text" name="actual_company" class="form-control" id="actual_company" placeholder=" exemple : Web Developper">
-                        @if ($errors->has('actual_company'))
-                        <p class="alert alert-danger">{{ $errors->first('actual_company') }}</p>
-                        @endif
-                    </div>
+                <div class="form-group">
+                    <label for="actual_company">Entreprise actuelle &nbsp; </label> </br>
+                    <input type="text" name="actual_company" class="form-control" id="actual_company" placeholder=" exemple : Web Developper">
+                    @if ($errors->has('actual_company'))
+                    <p class="alert alert-danger">{{ $errors->first('actual_company') }}</p>
+                    @endif
+                </div>
             </div>
             <div class="sect">
-                    <div class="form-group">
-                        <label for="status_job">Statut &nbsp; </label> </br>
-                        <select id="status_job" name="status_job" class="form-control">
-                                <option value="CDD">CDD</option> 
-                                <option value="CDI" selected>CDI</option>
-                                <option value="Contrat d'apprentissage">Contrat d'apprentissage</option>
-                                <option value="Contrat professionnel">Contrat professionnel</option>
-                                <option value="Contrat de travail intermittent">Contrat de travail intermittent</option>
-                                <option value="Contrat de travail saisonnier">Contrat de travail saisonnier</option>
-                                <option value="Indépendant">Indépendant</option>
-                                <option value="Portage salarial">Portage salarial</option>
-                                <option value="Stagiaire">Stagiaire</option>
-                                <option value="Autre">Autre</option>
-                              </select>
-                        @if ($errors->has('status_job'))
-                        <p class="alert alert-danger">{{ $errors->first('status_job') }}</p>
-                        @endif
-                    </div>
+                <div class="form-group">
+                    <label for="status_job">Statut &nbsp; </label> </br>
+                    <select id="status_job" name="status_job" class="form-control">
+                        <option value="CDD">CDD</option> 
+                        <option value="CDI" selected>CDI</option>
+                        <option value="Contrat d'apprentissage">Contrat d'apprentissage</option>
+                        <option value="Contrat professionnel">Contrat professionnel</option>
+                        <option value="Contrat de travail intermittent">Contrat de travail intermittent</option>
+                        <option value="Contrat de travail saisonnier">Contrat de travail saisonnier</option>
+                        <option value="Indépendant">Indépendant</option>
+                        <option value="Portage salarial">Portage salarial</option>
+                        <option value="Stagiaire">Stagiaire</option>
+                        <option value="Autre">Autre</option>
+                        </select>
+                    @if ($errors->has('status_job'))
+                    <p class="alert alert-danger">{{ $errors->first('status_job') }}</p>
+                    @endif
+                </div>
             </div>
-                <div class="sect">
-                        
+                <div class="sect"> 
                     {{ Form::label('skill_tags', 'Vos compétences')}}
                         <select name="skill_tags[]" id="" class="form-control sel-status" multiple="multiple">
                             @foreach ($tags as $tag)
@@ -148,8 +147,7 @@
                         </select>  
                 </div>
             </div>
-
-            
+   
         </div><!-- Fin du secon col-md-6-->
         <button type="submit" class="btn btn-primary">Valider</button>
         <a href="{{ route ('welcome') }}" class="btn btn-danger">Finir plus tard</a>
@@ -161,15 +159,11 @@
 
 
 <script>
-$(document).ready(function() {
- 
-    $(".sel-status").select2({
-        placeholder: 'Compétences'
-    });
-
-});
-            
-        
-    </script>
-    </body>
+    $(document).ready(function() {
+        $(".sel-status").select2({
+            placeholder: 'Compétences'
+        });
+    }); 
+</script>
+</body>
 </html>

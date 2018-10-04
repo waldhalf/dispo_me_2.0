@@ -6,21 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\UserProfileModel;
 use App\SkillTagModel;
+use Session;
 
 class UserProfileController extends Controller
 {
     public function getStep1() {
         $tags = SkillTagModel::all();
-        return view('step1_profile')->withTags($tags);
-    }
-
-    public function select2LoadMore(Request $request)
-    {
-        // $search = $request->get('search');
-        // $data = SkillTagModel::select(['id', 'skill_name'])->where('skill_name', 'like', '%' . $search . '%')->orderBy('skill_name')->paginate(5);
-        $data = SkillTagModel::all();
-        return view('select2')->withData($data);
-        // return response()->json(['items' => $data->toArray()['data'], 'pagination' => $data->nextPageUrl() ? true : false]);
+        return view('profile_create_step1')->withTags($tags);
     }
 
     public function storeStep1(Request $request) {
@@ -58,10 +50,15 @@ class UserProfileController extends Controller
         //sur la table user_skill_tags le profile_id de la table user_profile
         // et le skill_tag_id dans la mếme table
         $profile->tags()->sync($request->skill_tags, false);
+        Session::flash('msg', 'Votre profil a bien été créé');
         return redirect('/');
     }
 
-    public function getProfile() {
-        return view('get_profile_step_1');
+    public function getProfile($slug) {
+        $user = Auth::user();
+        $id = Auth::id();
+        $profile = UserProfileModel::where('user_id', $id)->first();     
+          
+        return view('profile_index')->withProfile($profile)->withUser($user);
     }
 }

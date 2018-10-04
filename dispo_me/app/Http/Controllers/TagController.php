@@ -14,15 +14,6 @@ class TagController extends Controller
     public function __construct() {
         $this->middleware('is_admin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -31,8 +22,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        $tags = SkillTagModel::all();
-
+        $tags = SkillTagModel::orderBy('skill_name', 'ASC')->paginate(8);
+        
         return view('index_tags')->withTags($tags);
     }
 
@@ -44,23 +35,16 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, array('skill_name' => 'required|max:255'));
+        $this->validate($request, array('skill_name' => 'required|max:255|unique:skill_tags,skill_name'));
+
         $tag = new SkillTagModel;
         $tag->skill_name = $request->skill_name;
-        $tag->save();
-        Session::flash('msg', 'La compétence a été ajoutée à la base de données');
-        return redirect()->route('tags.index');
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $tag->save();
+
+        Session::flash('msg', 'La compétence a été ajoutée à la base de données');
+
+        return redirect()->route('tags.index');
     }
 
     /**

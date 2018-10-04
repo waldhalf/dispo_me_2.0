@@ -50,6 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'checkboxRgpd'=>'accepted',
@@ -64,9 +65,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $data['slug'] = $data['name'].'-'.$data['last_name'].'-'.strtotime(now());
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'last_name' => $data['last_name'],
+            'slug' => $data['slug'],
             'password' => Hash::make($data['password']),
         ]);
     }
