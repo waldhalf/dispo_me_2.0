@@ -40,14 +40,24 @@
 								<a class="dropdown-item" href="/contact">Qui sommes-nous?</a>
 							</div>
 						</li>
-						@if ($user=Auth::user())
+
+						@if (Auth::user() && Auth::user()->has_profile == 0)
+							<li class="nav-item">
+								<a class="nav-link active" href="{{ url ('/profile_step_1') }}">Créer un profil</a>
+							</li>
+						@endif
+
+						@if (Auth::user() && Auth::user()->has_profile == 1)
 						<li class="nav-item">
 							<a class="nav-link active" href="{{ url ('/profile/'.Auth::user()->slug) }}">Mon profil</a>
 						</li>
-						<li class="nav-item">
-								<a class="nav-link active" href="#">Mes disponibilités</a>
-						</li>
 						@endif
+							{{-- <li class="nav-item">
+									<a class="nav-link active" href="#">Mes disponibilités</a>
+							</li> --}}
+							
+						
+					
 					</ul>
 					@if (Route::has('login'))
 					<div class="top-right links">

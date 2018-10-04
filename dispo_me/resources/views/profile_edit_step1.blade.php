@@ -20,12 +20,12 @@
 
 <body>
 <div class="container">
-        <h1 class="text-center head-profile"">Compléter votre Profil : étape 1/2</h1>
+        <h1 class="text-center head-profile"">Editer votre Profil : étape 1/2</h1>
         <form action="" method="POST" class="well">
     <div class="row">
         <div class = "col-md-6">
             @csrf
-            <h4 class="class="head-profile"">Créer votre Profil gratuitement</h4>
+            <h4 class="class="head-profile"">Editer votre Profil</h4>
             <div class="sect">
                 <div class="form-group">
                 <label for="profile_free">Êtes-vous actuellement disponible ? &nbsp; </label></br>
@@ -56,7 +56,7 @@
             <div class="sect">
                 <div class="form-group">
                 <label for="profile_notice">Durée de votre préavis (en jours)</label>
-                <input type="text" name="profile_notice" class="form-control" id="profile_notice"  placeholder=" exemple : 90">
+                <input type="text" name="profile_notice" class="form-control" id="profile_notice" value="{{ $profile->notice }}" placeholder=" exemple : 90">
                 @if ($errors->has('profile_notice'))
                 <p class="alert alert-danger">{{ $errors->first('profile_notice') }}</p>
                 @endif
@@ -64,8 +64,8 @@
             </div>
                 <div class="sect">
                 <div class="form-group">
-                <label for="profile_percentage">Temps de travail disponible en %</label>
-                <input type="text" name="profile_percentage" class="form-control" id="profile_percentage" "placeholder="exemple : 50">
+                <label for="profile_percentage">Temps de travail disponible</label>
+                <input type="text" name="profile_percentage" class="form-control" id="profile_percentage" value="{{ $profile->percentage }}"placeholder="exemple : 50">
                 @if ($errors->has('profile_percentage'))
                 <p class="alert alert-danger">{{ $errors->first('profile_percentage') }}</p>
                 @endif
@@ -86,7 +86,7 @@
             <div class="sect">
                 <div class="form-group">
                     <label for="searched_job">Emploi recherché ? &nbsp; </label> </br>
-                    <input type="text" name="searched_job" class="form-control" id="searched_job" placeholder=" exemple : Web Developper">
+                    <input type="text" name="searched_job" class="form-control" id="searched_job" value="{{ $profile->searched_job }}"placeholder=" exemple : Web Developper">
                     @if ($errors->has('searched_job'))
                     <p class="alert alert-danger">{{ $errors->first('searched_job') }}</p>
                     @endif
@@ -95,7 +95,7 @@
             <div class="sect">
                 <div class="form-group">
                     <label for="actuel_job">Emploi actuel &nbsp; </label> </br>
-                    <input type="text" name="actuel_job" class="form-control" id="actuel_job" " placeholder=" exemple : Web Developper">
+                    <input type="text" name="actuel_job" class="form-control" id="actuel_job" value="{{ $profile->actuel_job }}" placeholder=" exemple : Web Developper">
                     @if ($errors->has('actuel_job'))
                     <p class="alert alert-danger">{{ $errors->first('actuel_job') }}</p>
                     @endif
@@ -104,7 +104,7 @@
             <div class="sect">
                 <div class="form-group">
                     <label for="actual_company">Entreprise actuelle &nbsp; </label> </br>
-                    <input type="text" name="actual_company" class="form-control" id="actual_company"  >
+                    <input type="text" name="actual_company" class="form-control" id="actual_company" value="{{ $profile->actual_company }}"  placeholder="exemple : Web Developper">
                     @if ($errors->has('actual_company'))
                     <p class="alert alert-danger">{{ $errors->first('actual_company') }}</p>
                     @endif
@@ -165,6 +165,7 @@
 <script>
     $(document).ready(function() {
         $(".sel-status").select2({placeholder: 'Compétences'});
+        $(".sel-status").select2().val({!! $profile->tags()->allRelatedIds() !!}).trigger('change');
     }); 
 </script>
 </body>

@@ -4,6 +4,31 @@
 @section('content')
 
 <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">Dispo.me</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        {{-- ici on peut mettre des link si necessaire dans la partie admin --}}
+                    </ul>
+                    @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                        <a href="{{ url('/home') }}" class="btn btn-primary">Déconnexion</a>
+                        @if ($user=Auth::user()->is_admin == 1)
+                        <a href="{{ url('/admin') }}" class="btn btn-danger">Admin</a>
+                        @endif
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                        <a href="{{ route('register') }}" class="btn btn-danger">Register</a>
+                        @endauth
+                    </div>
+                    @endif
+                </div>
+            </nav>
 <form method="POST" action="#" enctype="multipart/form-data" >
     @csrf
     <br>

@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">Dispo.me</a>
+              <a class="navbar-brand" href="/"style="font-size: 20px; color:black;">Dispo.me</a>
             </div>
         
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,8 +32,11 @@
               <ul class="nav navbar-nav">
                 @if ($user=Auth::user())
                 <li class="nav-item">
-                  <a class="nav-link active" href="{{ url ('/profile/'.Auth::user()->slug) }}">Mon profil</a>
+                  <a class=" btn btn-info" href="{{ url ('/profile/'.Auth::user()->id.'/edit') }}" style="font-size: 15px; color:black;">Mettre mon profil à jour</a>
                 </li>
+                <li class="nav-item">
+                    <a class=" btn btn-danger" href="{{ url ('/profile/'.Auth::user()->id.'/delete') }}" style="font-size: 15px; color:black;">Effacer mon profil</a>
+                  </li>
                 @endif
                   </ul>
                 </li>

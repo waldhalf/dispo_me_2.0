@@ -1,10 +1,7 @@
-
 <link rel="stylesheet" href="{{ '/css/font-awesome.min.css' }}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-
 @extends('layout')
-
 @section('content')
 
 
@@ -61,8 +58,11 @@
                     <td>{{$tag['id']}}</td>
                     <td>{{$tag['skill_name']}}</td>
                     <td class="d-flex justify-content-end">
-                        <a class="btn btn-default btn-lg "> <i class="fa fa-pencil"></i></a>
-                        <a href="{{route ('tags.delete', $tag['id']) }}" class="btn btn-default btn-lg "><i class="fa fa-trash-o"></i></a>
+                        <a href="{{route ('tags.edit', $tag['id']) }}" class="btn btn-default btn-lg "> <i class="fa fa-pencil"></i></a>
+                        {{ Form::open(['route' => ['tags.delete', $tag->id], 'method' => 'DELETE']) }}
+                            {{ Form::button('<i class="fa fa-trash-o"></i></a>', ['type' => 'submit','class' => 'btn btn-default btn-lg'])}}
+                        {{ Form::close() }}
+                        {{-- <a href="{{route ('tags.delete', $tag['id']) }}" class="btn btn-default btn-lg "><i class="fa fa-trash-o"></i></a> --}}
                     </td>
                 </tr>
                 @endforeach
@@ -80,11 +80,11 @@
     <div class="col-md-4">
         <br><br>
         <div class="jumbotron">
-            {!! Form::open(['route' => 'tags.store', 'method' => 'POST']) !!}
+            {!! Form::model($edited, ['route' => ['tags.update', $edited->id],'method' => 'PUT']) !!}
             <h2>Nouvelle compétence</h2>
             {{ Form::label('skill_name', 'Nom de la compétence: ')}}
             {{ Form::text('skill_name', null, ['class' => 'form-control'])}}
-            {{ Form::submit('Créer', ['class' => 'btn btn-success btn-block', 'style' => 'margin-top:5px;']) }}
+            {{ Form::submit('Modifier', ['class' => 'btn btn-success btn-block', 'style' => 'margin-top:5px;']) }}
             {!!Form::close() !!}
         </div>
     </div><!--fin de la md-3-->

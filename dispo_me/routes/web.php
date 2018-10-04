@@ -51,13 +51,16 @@ Route::get('/categories/{id}/delete', 'CategoryController@destroy')->name('categ
 Route::get('/profile_step_1', 'UserProfileController@getStep1')->name('profile.getStep1');
 Route::post('/profile_step_1', 'UserProfileController@storeStep1');
 Route::get('/profile/{slug}', 'UserProfileController@getProfile')->name('profile.index');
+Route::get('/profile/{id}/edit', 'UserProfileController@edit')->name('profile.edit');
+Route::post('/profile/{id}/edit', 'UserProfileController@update')->name('profile.update');
+Route::get('/profile/{id}/delete', 'UserProfileController@destroy')->name('profile.destroy');
 
 /* CRUD pour les skill_tags ADMIN */
 Route::get('/tags/create', 'TagController@create')->name('tags.index');
 Route::post('/tags/create', 'TagController@store')->name('tags.store');
-Route::get('/tags/{id}/edit', 'TagController@edit');
-Route::post('/tags/{id}/edit', 'TagController@edit');
-Route::get('/tags/{id}/delete', 'TagController@destroy')->name('tags.delete');
+Route::get('/tags/{id}/edit', 'TagController@edit')->name('tags.edit');
+Route::put('/tags/{id}/edit', 'TagController@update')->name('tags.update');
+Route::delete('/tags/{id}/delete', 'TagController@destroy')->name('tags.delete');
 
 
 Route::get('/admin', 'AdminController@admin')->middleware('is_admin');

@@ -24,7 +24,7 @@ class TagController extends Controller
     {
         $tags = SkillTagModel::orderBy('skill_name', 'ASC')->paginate(8);
         
-        return view('index_tags')->withTags($tags);
+        return view('tags_index')->withTags($tags);
     }
 
     /**
@@ -55,7 +55,10 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tags = SkillTagModel::orderBy('skill_name', 'ASC')->paginate(8);
+        $edited = SkillTagModel::find($id);
+        
+        return view('tags_edit')->withTags($tags)->withEdited($edited);
     }
 
     /**
@@ -67,7 +70,16 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $skill = SkillTagModel::find($id);
+
+        $this->validate($request, array('skill_name' => 'required|max:255|unique:skill_tags,skill_name'));
+
+        $skill->skill_name = $request->skill_name;
+        $skill->save();
+
+        Session::flash('msg', 'La compétence a été modifié en base de données');
+
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -79,9 +91,13 @@ class TagController extends Controller
     public function destroy($id)
     {
         $tag = SkillTagModel::find($id);
+        // On enléve de la base référentielle les occurences du skill_tags
+        // Comme il s'agit de foreign key si on ne fait pas ce detach avant 
+        // on ne peut pas delete le tag du fait de la contrainte SQL
+        $tag->userProfile()->detach();
         $tag->delete();
 
-        // On indique que tout s'est bien passé via un flas message
+        // On indique que tout s'est bien passé via un flash message
         Session::flash('msg', 'Le tag a bien été supprimé de la base de données');
 
         return redirect()->route('tags.index');
