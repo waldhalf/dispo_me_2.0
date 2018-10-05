@@ -213,57 +213,48 @@
 											</div>
 											
 											<!-- Footer -->
+											<a type="hidden" id="anchor_form">coucoucoucou</a>
 											<footer id="footer">
 												<section>
-													<form method="post" action="#">
+													@if (Session::has('msg'))
+													<p class="alert alert-success" role="alert">{{ Session::get('msg') }}</p> 
+													@endif
+												<form method="POST">
+													@csrf
 														<div class="fields">
 															<div class="field">
-																<label for="name">Nom</label>
-																<input type="text" name="name" id="name" />
+																<label for="name_contact_form">Nom</label>
+																<input type="text" name="name_contact_form" id="name_contact_form" />
+																@if ($errors->has('name_contact_form'))
+																<p class="alert alert-danger">{{ $errors->first('name_contact_form') }}</p>
+																@endif
 															</div>
 															<div class="field">
-																<label for="email">Email</label>
-																<input type="text" name="email" id="email" />
+																<label for="email_contact_form">Email</label>
+																<input type="text" name="email_contact_form" id="email_contact_form" />
+																@if ($errors->has('email_contact_form'))
+																<p class="alert alert-danger">{{ $errors->first('email_contact_form') }}</p>
+																@endif
 															</div>
 															<div class="field">
-																<label for="message">Message</label>
-																<textarea name="message" id="message" rows="3"></textarea>
+																<label for="message_contact_form">Message</label>
+																<textarea name="message_contact_form" id="message_contact_form" rows="3"></textarea>
+																@if ($errors->has('message_contact_form'))
+																<p class="alert alert-danger">{{ $errors->first('message_contact_form') }}</p>
+																@endif
 															</div>
 														</div>
 														<ul class="actions">
-															<li><input type="submit" value="Send Message" /></li>
+															<li><input type="submit" value="Envoyer le message" /></li>
 														</ul>
-													</form>
-												</section>
-												<section class="split contact">
-													<section class="alt">
-														<h3>Addresse</h3>
-														<p>7 bis rue Jacques Daguerre<br />
-															79000 Niort</p>
-														</section>
-														<section>
-															<h3>Téléphone</h3>
-															<p><a href="#">06 28 45 00 79</a></p>
-														</section>
-														<section>
-															<h3>Email</h3>
-															<p><a href="#">benoit.maneuvrier@wekey.fr</a></p>
-														</section>
-														<section>
-															<h3>Social</h3>
-															<ul class="icons alt">
-																<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-																<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-																<li><a href="#" class="icon alt fa-instagram"><span class="label">Google</span></a></li>
-																</ul>
-														</section>
-													</section>
-												</footer>
+												</form>
+												</section>	
+											</footer>
 												
-												<!-- Copyright -->
-												<div id="copyright">
-													<ul><li>&copy; Dispo.me</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-												</div>
+											<!-- Copyright -->
+											<div id="copyright">
+												<ul><li>&copy; Dispo.me</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+											</div>
 												
 											</div>
 											

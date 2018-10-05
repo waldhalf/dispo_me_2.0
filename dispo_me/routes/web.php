@@ -13,6 +13,7 @@ use App\SkillTagModel;
 
 // Page principale
 Route::get('/', 'PublicPostController@welcome')->name('welcome');
+Route::post('/', 'PublicPostController@sendContact')->name('send.contact');
 
 
 Auth::routes();
