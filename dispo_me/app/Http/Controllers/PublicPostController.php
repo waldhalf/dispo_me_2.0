@@ -58,7 +58,7 @@ class PublicPostController extends Controller
      */
     public function show($slug)
     {
-        $post = PostModel::where('slug','=', $slug)->get();
+        $post = PostModel::where('slug','=', $slug)->first();
         return view ('public_show_post')->withPost($post);
     }
 

@@ -32,7 +32,10 @@ Route::get('/contact', function() { return view('contact'); });
 
 /* Public posts*/
 Route::get('public/posts', 'PublicPostController@index')->name('public.posts');
-Route::get('public/posts/{slug}', 'PublicPostController@show');
+Route::get('public/posts/{slug}', 'PublicPostController@show')->name('post.show');
+
+/* Public comments */
+Route::post('/comments/{id}', 'CommentsController@store')->name('comments.store');
 
 /* CRUD pour les posts ADMIN*/
 Route::get('/posts', 'PostController@index')->name('posts.index');
