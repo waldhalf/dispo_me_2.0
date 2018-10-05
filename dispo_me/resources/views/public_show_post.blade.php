@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ '/css/blog-post.css' }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/css/font-awesome.min.css' }}">
 
 </head>
 
@@ -72,13 +73,15 @@
 
         <div class="row">
             <div class="col-md-8">
+              <h3 class="comment-title"><i class="fa fa-comment"></i>{{$post->comments()->count() }} Commentaire(s)</h3>
                 @foreach ($post->comments as $comment)
+                
                 <div class="comment">
                   <div class="author-info">
-                    <img src="" alt="img" class="author-img">
+                    <img src="{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($comment->email))) . "?s=50&d=retro" }}" alt="img" class="author-img">
                     <div class="author-name">
                       <h4>{{ $comment->name }}</h4>
-                      <p>{{ date('j M, Y', strtotime($comment->updated_at))}}</p>
+                      <p class="author-time">{{ date('j M, Y', strtotime($comment->updated_at))}}</p>
                     </div>
                   </div>
                   <div class="comment-content">
