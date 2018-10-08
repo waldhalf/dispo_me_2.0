@@ -124,7 +124,7 @@
                 <header class="major">
                     <span class="date">{{ date('j M, Y', strtotime($posts[0]->updated_at))}}</span>
                     <h2><a href="{{ url('/public/posts/'.$posts[0]->slug) }}">{{ $posts[0]->title }}</a></h2>
-                    <p>{{ substr($posts[0]->content, 0, 400)}}{{strlen($posts[0]->content) > 400 ? "..." : ""}}</p>
+                    <p>{!! substr($posts[0]->content, 0, 400)!!}{!!strlen($posts[0]->content) > 400 ? "..." : ""!!}</p>
                 </header>
                 <hr>
                 <ul class="actions special">
@@ -140,7 +140,7 @@
                         <h2><a href="{{ url('/public/posts/'.$posts[1]->slug) }}">{{ $posts[1]->title }}</a></h2>
                     </header>
                     <hr>
-                    <p>{{ substr($posts[1]->content, 0, 400)}}{{strlen($posts[1]->content) > 400 ? "..." : ""}}</p>
+                    <p>{!! substr($posts[1]->content, 0, 400)!!}{!!strlen($posts[1]->content) > 400 ? "..." : ""!!}</p>
                     <ul class="actions special">
                         <li><a href="{{ url('/public/posts/'.$posts[1]->slug) }}" class="button">Lire le focus</a></li>
                     </ul>
@@ -151,7 +151,7 @@
                         <h2><a href="{{ url('/public/posts/'.$posts[2]->slug) }}">{{ $posts[2]->title }}</a></h2>
                     </header>
                     <hr>
-                    <p>{{ substr($posts[2]->content, 0, 400)}}{{strlen($posts[2]->content) > 400 ? "..." : ""}}</p>
+                    <p>{!! substr($posts[2]->content, 0, 400)!!}{!!strlen($posts[2]->content) > 400 ? "..." : ""!!}</p>
                     <ul class="actions special">
                         <li><a href="{{ url('/public/posts/'.$posts[2]->slug) }}" class="button">Lire le focus</a></li>
                     </ul>
@@ -162,7 +162,7 @@
                         <h2><a href="{{ url('/public/posts/'.$posts[3]->slug) }}">{{ $posts[3]->title }}</a></h2>
                     </header>
                     <hr>
-                    <p>{{ substr($posts[3]->content, 0, 400)}}{{strlen($posts[3]->content) > 400 ? "..." : ""}}</p>
+                    <p>{!! substr($posts[3]->content, 0, 400)!!}{!!strlen($posts[3]->content) > 400 ? "..." : ""!!}</p>
                     <ul class="actions special">
                         <li><a href="{{ url('/public/posts/'.$posts[3]->slug) }}" class="button">Lire le focus</a></li>
                     </ul>
@@ -173,7 +173,7 @@
                         <h2><a href="{{ url('/public/posts/'.$posts[4]->slug) }}">{{ $posts[4]->title }}</a></h2>
                     </header>
                     <hr>
-                    <p>{{ substr($posts[4]->content, 0, 400)}}{{strlen($posts[4]->content) > 400 ? "..." : ""}}</p>
+                    <p>{!! substr($posts[4]->content, 0, 400)!!}{!!strlen($posts[4]->content) > 400 ? "..." : ""!!}</p>
                     <ul class="actions special">
                         <li><a href="{{ url('/public/posts/'.$posts[4]->slug) }}" class="button">Lire le focus</a></li>
                     </ul>
@@ -184,7 +184,7 @@
                         <h2><a href="{{ url('/public/posts/'.$posts[5]->slug) }}">{{ $posts[5]->title }}</a></h2>
                     </header>
                     <hr>
-                    <p>{{ substr($posts[5]->content, 0, 400)}}{{strlen($posts[5]->content) > 400 ? "..." : ""}}</p>
+                    <p>{!! substr($posts[5]->content, 0, 400) !!}{!! strlen($posts[5]->content) > 400 ? "..." : ""!!}</p>
                     <ul class="actions special">
                         <li><a href="{{ url('/public/posts/'.$posts[5]->slug) }}" class="button">Lire le focus</a></li>
                     </ul>
@@ -195,7 +195,7 @@
                         <h2><a href="{{ url('/public/posts/'.$posts[6]->slug) }}">{{ $posts[6]->title }}</a></h2>
                     </header>
                     <hr>
-                    <p>{{ substr($posts[6]->content, 0, 400)}}{{strlen($posts[6]->content) > 400 ? "..." : ""}}</p>
+                    <p>{!! substr($posts[6]->content, 0, 400) !!}{!! strlen($posts[6]->content) > 400 ? "..." : "" !!}</p>
                     <ul class="actions special">
                         <li><a href="{{ url('/public/posts/'.$posts[6]->slug) }}" class="button">Lire le focus</a></li>
                     </ul>

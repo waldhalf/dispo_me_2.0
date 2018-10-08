@@ -9,24 +9,10 @@ use Session;
 
 class CommentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    // Cette méthode protége l'ensemble des routes afin
+    // que seul l'admin puisse y accéder
+    public function __construct() {
+        $this->middleware('is_admin',['except' => 'store']);
     }
 
     /**
@@ -60,16 +46,6 @@ class CommentsController extends Controller
         // dd($request, $post_id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -79,7 +55,8 @@ class CommentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::find($id);
+        return view('comment_edit')->withComment($comment);
     }
 
     /**
@@ -91,7 +68,16 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array('comment' => 'required'));
+        $comment = Comment::find($id);
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->comment = $request->comment;
+
+        $comment->save();
+
+        Session::flash('msg', 'Le commentaire a été updaté');
+        return redirect()->route('posts.show', $comment->post->id);
     }
 
     /**
@@ -102,6 +88,9 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->delete();
+        Session::flash('msg', 'Le commentaire a été effacé');
+        return redirect()->route('posts.show', $comment->post->id);
     }
 }

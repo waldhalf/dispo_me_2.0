@@ -65,7 +65,7 @@
                 <img class="img-fluid rounded" src="/{{ $post->img_path }}" alt="image représentant le job" style="width: 900px; height:300px;">
                 <hr>
                 <!-- Post Content -->
-                <p class="lead">{{ $post->content }} </p>
+                <p class="lead">{!! $post->content !!} </p>
                 <hr>
                 {{-- {{ $post[0]->category->category_name}} --}}
             </div>

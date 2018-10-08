@@ -65,7 +65,7 @@
                 <img class="img-fluid rounded" src="/{{ $post->img_path }}" alt="image représentant le job" style="width: 900px; height:300px;">
                 <hr>
                 <!-- Post Content -->
-                <p class="lead">{{ substr($post->content, 0, 400)}}{{strlen($post->content) > 400 ? "..." : ""}} <a href="{{ url('/public/posts/'.$post->slug) }}">Lire la suite</a></p>
+                <p class="lead">{!! substr($post->content, 0, 400) !!}{!! strlen($post->content) > 400 ? "..." : ""!!} <a href="{{ url('/public/posts/'.$post->slug) }}">Lire la suite</a></p>
                 <hr>
 
                 @endforeach

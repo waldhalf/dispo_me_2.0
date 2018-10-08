@@ -36,12 +36,16 @@ Route::get('public/posts/{slug}', 'PublicPostController@show')->name('post.show'
 
 /* Public comments */
 Route::post('/comments/{id}', 'CommentsController@store')->name('comments.store');
+Route::get('/comments/{id}/edit', 'CommentsController@edit')->name('comments.edit');
+Route::put('/comments/{id}/edit', 'CommentsController@update')->name('comments.update');
+Route::get('/comments/{id}/delete', 'CommentsController@destroy')->name('comments.delete');
+
 
 /* CRUD pour les posts ADMIN*/
 Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts/create', 'PostController@store');
-Route::get('/posts/{id}/show', 'PostController@show');
+Route::get('/posts/{id}/show', 'PostController@show')->name('posts.show');
 Route::get('/posts/{id}/edit', 'PostController@edit');
 Route::post('/posts/{id}/edit', 'PostController@update')->name('post.update');
 Route::get('/posts/{id}/delete', 'PostController@destroy');

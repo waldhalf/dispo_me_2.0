@@ -1,5 +1,10 @@
 @extends('layout')
-
+<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+<script>
+    tinymce.init({
+      selector: '#post_text'
+    });
+    </script>
 @section('content')
 
 <div class="container">
