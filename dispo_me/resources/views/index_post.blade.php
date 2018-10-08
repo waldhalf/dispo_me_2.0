@@ -24,7 +24,7 @@
           <tr>
             <td>{{$post['id']}}</td>
             <td>{{$post['title']}}</td>
-            <td>{{ substr($post['content'], 0, 50)}}{{strlen($post['content']) > 50 ? "..." : ""}}</td>
+            <td>{!! substr($post['content'], 0, 50)!!}{!!strlen($post['content']) > 50 ? "..." : ""!!}</td>
             <td>{{ date('j M, Y', strtotime($post['created_at'])) }}</td>
             <td><a href="{{url ('/posts/'.$post['id'].'/show') }}"><img style="width:20px; height:20px;" src="img/edit_icone.png" alt="image edit"></a></td>
             <td><a href="{{url ('/posts/'.$post['id'].'/delete')}}"><img style="width:20px; height:20px;" src="img/delete_icone.png" alt="image delete"></a></td>

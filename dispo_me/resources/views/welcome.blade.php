@@ -101,7 +101,7 @@
         <!-- Nav -->
         <nav id="nav">
             <ul class="links">
-                <li class="active"><a href="index.html">A la une</a></li>
+                <li class="active"><a href="{{ url('/public/posts/'.$posts[0]->slug) }}">A la une</a></li>
                 @if ($user=Auth::user())
                 {{-- <li><a href="{{ route ('profile.index') }}">Mon profil</a></li> --}}
                 @endif
@@ -124,7 +124,7 @@
                 <header class="major">
                     <span class="date">{{ date('j M, Y', strtotime($posts[0]->updated_at))}}</span>
                     <h2><a href="{{ url('/public/posts/'.$posts[0]->slug) }}">{{ $posts[0]->title }}</a></h2>
-                    <p>{!! substr($posts[0]->content, 0, 400)!!}{!!strlen($posts[0]->content) > 400 ? "..." : ""!!}</p>
+                    <p>{!! substr($posts[0]->content, 0, 400) !!}{!! (strlen($posts[0]->content)) > 400 ? "..." : ""!!}</p>
                 </header>
                 <hr>
                 <ul class="actions special">

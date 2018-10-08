@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\PostModel;
 use App\CategoryModel;
 use Session;
+use Purifier;
 
 class PostController extends Controller
 {
@@ -80,7 +81,7 @@ class PostController extends Controller
         // Save dans DB si validation OK
         $post = new PostModel;
         $post->title = $request->post_title;
-        $post->content = $request->post_text;
+        $post->content = Purifier::clean($request->post_text);
         $post->author_id = $user_id;
         $post->img_path = $newImageName;
         $post->slug = $request->post_slug;
@@ -158,7 +159,7 @@ class PostController extends Controller
 
         // Save dans DB si validation OK
         $post->title = $request->post_title;
-        $post->content = $request->post_text;
+        $post->content = Purifier::clean($request->post_text);
         $post->author_id = $user_id;
         $post->img_path = $newImageName;
         $post->slug = $request->post_slug;
