@@ -8,9 +8,40 @@ use App\UserProfileModel;
 use App\SkillTagModel;
 use App\User;
 use Session;
+use DB;
 
 class UserProfileController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('is_admin',['except' => ['searchProfile', 'searchForm']]);
+    }
+
+    public function getFollowedProfile() {
+        return view ('profile_follow');
+    }
+
+    public function searchForm() {
+        return view ('profile_search');
+    }
+
+    public function searchProfile(Request $request) {
+        $searchedTag = DB::table('skill_tags')
+        ->join('user_skill_tags', 'skill_tags.id', '=', 'user_skill_tags.skill_tag_id' )
+        ->join('user_profile', 'user_profile.id' , '=', 'user_skill_tags.profile_id')
+        ->where('skill_name', 'like', '%' . $request->query_profile .'%')
+        ->get();
+
+        $tabProfiles = [];
+
+        foreach ($searchedTag as $tag){
+            $profile = UserProfileModel::where('id', $tag->profile_id)->first();
+            array_push($tabProfiles, $profile);
+        }
+        
+        return view ('profile_search')->withtabProfiles($tabProfiles);
+    }
+
     public function getStep1() {
         $skills = SkillTagModel::all();
         return view('profile_create_step1')->withSkills($skills);

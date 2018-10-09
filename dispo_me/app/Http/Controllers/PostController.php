@@ -81,6 +81,7 @@ class PostController extends Controller
         // Save dans DB si validation OK
         $post = new PostModel;
         $post->title = $request->post_title;
+        // En raison du WYSIWYG on utilise HTML purifier pour éviter les XSS
         $post->content = Purifier::clean($request->post_text);
         $post->author_id = $user_id;
         $post->img_path = $newImageName;

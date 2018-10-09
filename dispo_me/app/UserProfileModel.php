@@ -16,7 +16,7 @@ class UserProfileModel extends Model
     // On définit ici la relation entre la table 'user_profile' et la table
     // users
     public function user() {
-        return $this->hasOne('App\User');
+        return $this->hasOne('App\User', 'id', 'user_id');
     }
     // Le profile aura plusieurs skill_tags. On créé donc une relation à partir d'ici
     // Premier paramètre : le modèle que l'on souhaite couplé avec le modéle actuel

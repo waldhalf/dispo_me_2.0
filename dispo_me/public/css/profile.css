@@ -10,6 +10,14 @@ body {
   line-height: 2.375;
 }
 
+
+table {
+  color:white;
+}
+p, h2 {
+  color: #eee;
+}
+
 .head-profile {
   color: white;
 }

@@ -40,6 +40,11 @@ Route::get('/comments/{id}/edit', 'CommentsController@edit')->name('comments.edi
 Route::put('/comments/{id}/edit', 'CommentsController@update')->name('comments.update');
 Route::get('/comments/{id}/delete', 'CommentsController@destroy')->name('comments.delete');
 
+/* Public profile follow */
+Route::get('/profile/followed', 'UserProfileController@getFollowedProfile')->name('profile.followed');
+Route::get('/profile/search/', 'UserProfileController@searchForm')->name('profile.form');
+Route::post('/profile/search/', 'UserProfileController@searchProfile')->name('profile.search');
+
 
 /* CRUD pour les posts ADMIN*/
 Route::get('/posts', 'PostController@index')->name('posts.index');

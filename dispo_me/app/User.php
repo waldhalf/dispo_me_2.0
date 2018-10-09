@@ -38,7 +38,7 @@ class User extends Authenticatable
     }
 
     public function profile() {
-        return $this->belongsTo('App\UserProfileModel');
+        return $this->belongsTo('App\UserProfileModel', 'user_id', 'id');
     }
 
 }
