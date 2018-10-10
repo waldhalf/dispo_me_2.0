@@ -61,6 +61,7 @@ class UserProfileController extends Controller
         ]);
         $user = Auth::user();
         $user_id = Auth::id();
+
         $profile = new UserProfileModel;
         $profile->user_id = $user_id;
         $profile->free = $request->profile_free;
@@ -106,7 +107,12 @@ class UserProfileController extends Controller
         $user = Auth::user();
         $user_id = Auth::id();
         $profile = UserProfileModel::where('user_id', $user_id)->first();
-        // dd($profile);
+
+        $photo = $request->file('profile_photo');
+        $newPhotoName = rand(). '.' . $photo->getClientOriginalExtension();
+        $newPhotoName = '/img/profile_img/'.$newPhotoName;
+        $photo->move(public_path('/img/profile_img/'), $newPhotoName);
+        
         $profile->user_id = $user_id;
         $profile->profile_city = $request->profile_city;
         $profile->profile_city_range = $request->profile_city_range;
@@ -123,6 +129,7 @@ class UserProfileController extends Controller
         $profile->profile_viadeo_visible = $request->profile_viadeo_visible;
         $profile->profile_facebook = $request->profile_facebook;
         $profile->profile_facebook_visible = $request->profile_facebook_visible;
+        $profile->profile_photo = $newPhotoName;
  
         $profile->save();
 

@@ -69,7 +69,6 @@
                                             <img class="img-circle img-responsive" alt="" src="{{$profile->profile_photo}}">
                                         </figure>
                                     </div>
-
                                     <div class="col-xs-12 col-sm-8">
                                         <ul class="list-group">
                                             <li class="list-group-item">{{ $user->name }} {{ $user->last_name }}</li>
