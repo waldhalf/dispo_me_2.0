@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label for="profile_notice">Durée de votre préavis (en jours)</label>
                             <input type="text" name="profile_notice" class="form-control" id="profile_notice"
-                                placeholder=" exemple : 90">
+                                placeholder=" exemple : 90" value="{{ old('profile_notice') }}">
                             @if ($errors->has('profile_notice'))
                             <p class="alert alert-danger">{{ $errors->first('profile_notice') }}</p>
                             @endif
@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label for="profile_percentage">Temps de travail disponible en %</label>
                             <input type="text" name="profile_percentage" class="form-control" id="profile_percentage"
-                                "placeholder=" exemple : 50">
+                                "placeholder=" exemple : 50" value="{{ old('profile_percentage') }}">
                             @if ($errors->has('profile_percentage'))
                             <p class="alert alert-danger">{{ $errors->first('profile_percentage') }}</p>
                             @endif
@@ -93,7 +93,7 @@
                     <div class="sect">
                         <div class="form-group">
                             <label for="searched_job">Emploi recherché ? &nbsp; </label> </br>
-                            <input type="text" name="searched_job" class="form-control" id="searched_job" placeholder=" exemple : Web Developper">
+                            <input type="text" name="searched_job" class="form-control" id="searched_job" placeholder=" exemple : Web Developper" value="{{ old('searched_job') }}">
                             @if ($errors->has('searched_job'))
                             <p class="alert alert-danger">{{ $errors->first('searched_job') }}</p>
                             @endif
@@ -102,7 +102,7 @@
                     <div class="sect">
                         <div class="form-group">
                             <label for="actuel_job">Emploi actuel &nbsp; </label> </br>
-                            <input type="text" name="actuel_job" class="form-control" id="actuel_job" placeholder="exemple : Web Developper">
+                            <input type="text" name="actuel_job" class="form-control" id="actuel_job" placeholder="exemple : Web Developper" value="{{ old('actuel_job') }}">
                             @if ($errors->has('actuel_job'))
                             <p class="alert alert-danger">{{ $errors->first('actuel_job') }}</p>
                             @endif
@@ -111,7 +111,7 @@
                     <div class="sect">
                         <div class="form-group">
                             <label for="actual_company">Entreprise actuelle &nbsp; </label> </br>
-                            <input type="text" name="actual_company" class="form-control" id="actual_company">
+                            <input type="text" name="actual_company" class="form-control" id="actual_company" value="{{ old('actual_company') }}">
                             @if ($errors->has('actual_company'))
                             <p class="alert alert-danger">{{ $errors->first('actual_company') }}</p>
                             @endif
@@ -142,7 +142,7 @@
                                 {{ Form::label('skill_tags', 'Vos compétences')}}
                                 <select name="skill_tags[]" id="" class="form-control sel-status" multiple="multiple">
                                     @foreach ($skills as $skill)
-                                    <option value="{{ $skill->id }}">{{ $skill->skill_name }}</option>
+                                        <option value="{{ $skill->id }}">{{ $skill->skill_name }}</option>
                                     @endforeach
                                 </select>
                             </div>

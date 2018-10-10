@@ -20,7 +20,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center head-profile">Compléter votre Profil : étape 2/2</h1>
+        <h1 class="text-center head-profile">Editer votre Profil : étape 2/2</h1>
         <form action="" method="POST" class="well" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6">

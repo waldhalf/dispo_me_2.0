@@ -28,8 +28,9 @@
                             @if ($user=Auth::user())
                             <a class=" btn btn-primary" href="{{ url ('/profile/'.Auth::user()->id.'/edit_step_1') }}" style="font-size: 15px;">Mettre
                                 mon profil à jour</a>
-                            <a class=" btn btn-danger" href="{{ url ('/profile/'.Auth::user()->id.'/delete') }}" style="font-size: 15px;">Effacer
+                            <a href="{{ url ('/profile/'.Auth::user()->id.'/delete') }}" class=" btn btn-danger delete" style="font-size: 15px;">Effacer
                                 mon profil</a>
+                               
                             @endif
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -167,6 +168,11 @@
 
     </script>
     <!-- Scripts -->
+    <script>
+        $('.delete').click(function() {
+            return confirm("Etes-vous sûr de vouloir effacer votre profil?");
+        });
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.scrollex.min.js"></script>
     <script src="js/jquery.scrolly.min.js"></script>

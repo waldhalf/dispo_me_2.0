@@ -103,15 +103,20 @@ class UserProfileController extends Controller
             'profile_region'        => 'required',
             'profile_region_mobile' => 'required',
             'profile_country_mobile'=> 'required',
+            'profile_photo'         => 'mimes:png,jpg,jpeg|max:2048',
         ]);
         $user = Auth::user();
         $user_id = Auth::id();
         $profile = UserProfileModel::where('user_id', $user_id)->first();
-
-        $photo = $request->file('profile_photo');
-        $newPhotoName = rand(). '.' . $photo->getClientOriginalExtension();
-        $newPhotoName = '/img/profile_img/'.$newPhotoName;
-        $photo->move(public_path('/img/profile_img/'), $newPhotoName);
+        // récupération du nom du fichier, déplacement dans le dossier profile_photo et sauvegarde
+        // du path dans la BD
+        if ($request->file('profile_photo') != null){
+            $photo = $request->file('profile_photo');
+            $newPhotoName = rand(). '.' . $photo->getClientOriginalExtension();
+            $newPhotoName = '/img/profile_img/'.$newPhotoName;
+            $photo->move(public_path('/img/profile_img/'), $newPhotoName);
+            $profile->profile_photo = $newPhotoName;
+        }
         
         $profile->user_id = $user_id;
         $profile->profile_city = $request->profile_city;
@@ -129,7 +134,7 @@ class UserProfileController extends Controller
         $profile->profile_viadeo_visible = $request->profile_viadeo_visible;
         $profile->profile_facebook = $request->profile_facebook;
         $profile->profile_facebook_visible = $request->profile_facebook_visible;
-        $profile->profile_photo = $newPhotoName;
+        
  
         $profile->save();
 
@@ -202,6 +207,56 @@ class UserProfileController extends Controller
         $user = User::find($id);
         $profile = UserProfileModel::where('user_id', $user->id)->first();
         return view ('profile_edit_step2')->withProfile($profile);
+    }
+
+    public function updateStep2(Request $request, $id) {
+        // Validation du formulaire profile_update_step_2
+        $validatesData = $request->validate([
+            'profile_city'          => 'required|min:2|max:255',
+            'profile_city_range'    => 'required|integer',
+            'profile_county'        => 'required',
+            'profile_county_mobile' => 'required',
+            'profile_region'        => 'required',
+            'profile_region_mobile' => 'required',
+            'profile_country_mobile'=> 'required',
+            'profile_photo'         => 'mimes:png,jpg,jpeg|max:2048',
+        ]);
+
+        $user = User::find($id);
+        $user_id = Auth::id();
+        $profile = UserProfileModel::where('user_id', $user->id)->first();
+
+        if ($request->file('profile_photo') != null){
+            $photo = $request->file('profile_photo');
+            $newPhotoName = rand(). '.' . $photo->getClientOriginalExtension();
+            $newPhotoName = '/img/profile_img/'.$newPhotoName;
+            $photo->move(public_path('/img/profile_img/'), $newPhotoName);
+            $profile->profile_photo = $newPhotoName;
+        }
+        
+        $profile->user_id = $user_id;
+        $profile->profile_city = $request->profile_city;
+        $profile->profile_city_range = $request->profile_city_range;
+        $profile->profile_county = $request->profile_county;
+        $profile->profile_county_mobile = $request->profile_county_mobile;
+        $profile->profile_region = $request->profile_region;
+        $profile->profile_region_mobile = $request->profile_region_mobile;
+        $profile->profile_country_mobile = $request->profile_country_mobile;
+        $profile->profile_google = $request->profile_google;
+        $profile->profile_google_visible = $request->profile_google_visible;
+        $profile->profile_linkedin = $request->profile_linkedin;
+        $profile->profile_google = $request->profile_linkedin_visible;
+        $profile->profile_viadeo = $request->profile_viadeo;
+        $profile->profile_viadeo_visible = $request->profile_viadeo_visible;
+        $profile->profile_facebook = $request->profile_facebook;
+        $profile->profile_facebook_visible = $request->profile_facebook_visible;
+ 
+        $profile->save();
+
+        Session::flash('msg', 'Votre profil complet a bien été mis à jour');
+        
+        return redirect('/profile/'. Auth::user()->slug);
+
     }
 
     public function destroy($id) {  
