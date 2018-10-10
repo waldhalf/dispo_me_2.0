@@ -32,30 +32,22 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item" >
-                            <a  style="color:black;margin-left:15px;"href="/public/posts">Présentation des métiers!</a>
-                            <a  style="color:black;margin-left:15px;"href="/manual">Mode d'emploi</a>
-                            <a  style="color:black;margin-left:15px;"href="/profile/search">Chercher un profil</a>
-                            <a  style="color:black;margin-left:15px;"href="/contact">Qui sommes-nous?</a>    
-                    </li>
-
-                    @if (Auth::user() && Auth::user()->has_profile == 0)
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url ('/profile_step_1') }}">Créer un profil</a>
-                    </li>
-                    @endif
-
-                    @if (Auth::user() && Auth::user()->has_profile == 1)
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ url ('/profile/'.Auth::user()->slug) }}">Mon profil</a>
-                    </li>
-                    @endif
-                    {{-- <li class="nav-item">
+                        <a style="color:black;margin-left:15px;" href="/public/posts">Présentation des métiers!</a>
+                        <a style="color:black;margin-left:15px;" href="/manual">Mode d'emploi</a>
+                        <a style="color:black;margin-left:15px;" href="/profile/search">Chercher un profil</a>
+                        <a style="color:black;margin-left:15px;" href="/contact">Qui sommes-nous?</a>
+                        @if (Auth::user() && Auth::user()->has_profile == 0)
+                        <a style="color:black;margin-left:15px;" href="{{ url ('/profile_step_1') }}">Créer un profil</a>
+                        @endif
+                        @if (Auth::user() && Auth::user()->has_profile == 1)
+                        <a style="color:black;margin-left:15px;" href="{{ url ('/profile/'.Auth::user()->slug) }}">Mon
+                            profil</a>
+                        @endif
+                        {{-- <li class="nav-item">
                         <a class="nav-link active" href="#">Mes disponibilités</a>
                     </li> --}}
-
-
-
+                    </li>
                 </ul>
                 @if (Route::has('login'))
                 <div class="top-right links">

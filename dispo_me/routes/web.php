@@ -61,11 +61,16 @@ Route::post('/categories/index', 'CategoryController@store')->name('categories.s
 Route::get('/categories/{id}/delete', 'CategoryController@destroy')->name('categories.delete');
 
 /* Complétion du profil */
+Route::get('/profile/{slug}', 'UserProfileController@getProfile')->name('profile.index');
 Route::get('/profile_step_1', 'UserProfileController@getStep1')->name('profile.getStep1');
 Route::post('/profile_step_1', 'UserProfileController@storeStep1');
-Route::get('/profile/{slug}', 'UserProfileController@getProfile')->name('profile.index');
-Route::get('/profile/{id}/edit', 'UserProfileController@edit')->name('profile.edit');
-Route::post('/profile/{id}/edit', 'UserProfileController@update')->name('profile.update');
+Route::get('/profile_step_2', 'UserProfileController@getStep2')->name('profile.getStep2');
+Route::post('/profile_step_2', 'UserProfileController@storeStep2')->name('profile.storeStep2');
+Route::get('/profile/{id}/edit_step_1', 'UserProfileController@editStep1')->name('profile.edit_step_1');
+Route::post('/profile/{id}/edit_step_1', 'UserProfileController@updateStep1')->name('profile.update_step_1');
+Route::get('/profile/{id}/edit_step_2', 'UserProfileController@editStep2')->name('profile.edit_step_2');
+Route::post('/profile/{id}/edit_step_2', 'UserProfileController@updateStep2')->name('profile.update_step_2');
+
 Route::get('/profile/{id}/delete', 'UserProfileController@destroy')->name('profile.destroy');
 
 /* CRUD pour les skill_tags ADMIN */

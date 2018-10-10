@@ -10,7 +10,9 @@ body {
   line-height: 2.375;
 }
 
-
+.vertical-align {
+  margin-top: 8px;
+}
 table {
   color:white;
 }

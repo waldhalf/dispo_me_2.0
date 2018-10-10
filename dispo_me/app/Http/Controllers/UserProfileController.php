@@ -13,10 +13,6 @@ use DB;
 class UserProfileController extends Controller
 {
 
-    public function __construct() {
-        $this->middleware('is_admin',['except' => ['searchProfile', 'searchForm']]);
-    }
-
     public function getFollowedProfile() {
         return view ('profile_follow');
     }
@@ -86,26 +82,71 @@ class UserProfileController extends Controller
         //sur la table user_skill_tags le profile_id de la table user_profile
         // et le skill_tag_id dans la mếme table
         $profile->tags()->sync($request->skill_tags, false);
-        Session::flash('msg', 'Votre profil a bien été créé');
-        return redirect('/profile/'.Auth::user()->slug);
+        Session::flash('msg', 'La première étape de votre profil a été enregistré');
+        return redirect('/profile_step_2');
+        // return redirect('/profile/'.Auth::user()->slug);
+    }
+
+    public function getStep2() {
+        return view('profile_create_step2');
+    }
+
+    public function storeStep2(Request $request) {
+        // dd($request);
+        // Validation du formulaire profile_edit_step_2
+        $validatesData = $request->validate([
+            'profile_city'          => 'required|min:2|max:255',
+            'profile_city_range'    => 'required|integer',
+            'profile_county'        => 'required',
+            'profile_county_mobile' => 'required',
+            'profile_region'        => 'required',
+            'profile_region_mobile' => 'required',
+            'profile_country_mobile'=> 'required',
+        ]);
+        $user = Auth::user();
+        $user_id = Auth::id();
+        $profile = UserProfileModel::where('user_id', $user_id)->first();
+        // dd($profile);
+        $profile->user_id = $user_id;
+        $profile->profile_city = $request->profile_city;
+        $profile->profile_city_range = $request->profile_city_range;
+        $profile->profile_county = $request->profile_county;
+        $profile->profile_county_mobile = $request->profile_county_mobile;
+        $profile->profile_region = $request->profile_region;
+        $profile->profile_region_mobile = $request->profile_region_mobile;
+        $profile->profile_country_mobile = $request->profile_country_mobile;
+        $profile->profile_google = $request->profile_google;
+        $profile->profile_google_visible = $request->profile_google_visible;
+        $profile->profile_linkedin = $request->profile_linkedin;
+        $profile->profile_google = $request->profile_linkedin_visible;
+        $profile->profile_viadeo = $request->profile_viadeo;
+        $profile->profile_viadeo_visible = $request->profile_viadeo_visible;
+        $profile->profile_facebook = $request->profile_facebook;
+        $profile->profile_facebook_visible = $request->profile_facebook_visible;
+ 
+        $profile->save();
+
+        Session::flash('msg', 'Votre profil complet a bien été créé');
+        
+        return redirect('/profile/'. Auth::user()->slug);
+        
     }
 
     public function getProfile($slug) {
         $user = Auth::user();
         $id = Auth::id();
         $profile = UserProfileModel::where('user_id', $id)->first();     
-          
         return view('profile_index')->withProfile($profile)->withUser($user);
     }
 
-    public function edit($id) {
+    public function editStep1($id) {
         $user = User::find($id);
         $profile = UserProfileModel::where('user_id', $user->id)->first();
         $skills = SkillTagModel::all();  
         return view ('profile_edit_step1')->withProfile($profile)->withSkills($skills);
     }
 
-    public function update(Request $request, $id) {
+    public function updateStep1(Request $request, $id) {
         $validatesData = $request->validate([
             'profile_free'              => 'required',
             'profile_search'            => 'required',
@@ -145,7 +186,15 @@ class UserProfileController extends Controller
         }
 
         Session::flash('msg', 'Votre profil a bien été mis à jour');
-        return redirect('/profile/'.Auth::user()->slug);
+
+        return redirect('/profile/'. $id .'/edit_step_2');
+        // return redirect('/profile/'.Auth::user()->slug);
+    }
+
+    public function editStep2($id) {
+        $user = User::find($id);
+        $profile = UserProfileModel::where('user_id', $user->id)->first();
+        return view ('profile_edit_step2')->withProfile($profile);
     }
 
     public function destroy($id) {  
