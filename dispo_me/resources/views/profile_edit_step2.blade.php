@@ -50,9 +50,9 @@
                         <div class="form-group">
                             <label for="profile_county">Votre département</label>
                             <select name="profile_county" class="form-control" id="profile_county">
-                                <option value="Deux-Sévres">Deux-Sévres</option>
-                                <option value="Loire Atlantique">Loire Atlantique</option>
-                                <option value="Ile de France">Ile de France</option>
+                                @foreach ($dpts as $dpt)   
+                                <option value="{{$dpt->nom}}">{{$dpt->nom}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -71,9 +71,19 @@
                         <div class="form-group">
                             <label for="profile_region">Votre Région</label>
                             <select name="profile_region" class="form-control" id="profile_region">
-                                <option value="Nouvelle Aquitaine">Nouvelle Aquitaine</option>
-                                <option value="Loire Atlantique">Loire Atlantique</option>
+                                <option value="Hauts de France">Hauts de France</option>
+                                <option value="Normandie">Normandie</option>
                                 <option value="Ile de France">Ile de France</option>
+                                <option value="Grand Est">Grand Est</option>
+                                <option value="Bretagne">Bretagne</option>
+                                <option value="Pays de la Loire">Pays de la Loire</option>
+                                <option value="Centre Val de Loire">Centre Val de Loire</option>
+                                <option value="Bourgogne Franche-Comté">Bourgogne Franche-Comté</option>
+                                <option value="Nouvelle Aquitaine">Nouvelle Aquitaine</option>
+                                <option value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</option>
+                                <option value="Occitanie">Occitanie/option>
+                                <option value="Provence-Alpes-Côtes d'Azur">Provence-Alpes-Côtes d'Azur</option>
+                                <option value="Corse">Corse</option>
                             </select>
                         </div>
                     </div>

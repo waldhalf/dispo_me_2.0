@@ -66,7 +66,7 @@ Route::get('/profile_step_1', 'UserProfileController@getStep1')->name('profile.g
 Route::post('/profile_step_1', 'UserProfileController@storeStep1');
 Route::get('/profile_step_2', 'UserProfileController@getStep2')->name('profile.getStep2');
 Route::post('/profile_step_2', 'UserProfileController@storeStep2')->name('profile.storeStep2');
-Route::get('/profile/{id}/edit_step_1', 'UserProfileController@editStep1')->name('profile.edit_step_1');
+Route::get('/profile/{id}/edit_step_1', 'UserProfileController@editStep1')->name('profile.edit_step_1')->middleware('auth');
 Route::post('/profile/{id}/edit_step_1', 'UserProfileController@updateStep1')->name('profile.update_step_1');
 Route::get('/profile/{id}/edit_step_2', 'UserProfileController@editStep2')->name('profile.edit_step_2');
 Route::post('/profile/{id}/edit_step_2', 'UserProfileController@updateStep2')->name('profile.update_step_2');

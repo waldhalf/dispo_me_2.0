@@ -67,7 +67,7 @@
                                 <div class="col-lg-12">
                                     <div class="col-xs-12 col-sm-4">
                                         <figure>
-                                            <img class="img-circle img-responsive" alt="" src="{{$profile->profile_photo}}">
+                                            <img id="image_de_profil" class="img-circle img-responsive" alt="photo_de_profil" src="{{$profile->profile_photo}}">
                                         </figure>
                                     </div>
                                     <div class="col-xs-12 col-sm-8">
@@ -77,9 +77,9 @@
                                             <li class="list-group-item">Entreprise actuelle: {{
                                                 $profile->actual_company }}</li>
                                             @if ($profile->free == 1)
-                                            <li class="list-group-item">Disponible : Oui </li>
+                                            <li class="list-group-item">Disponible: Oui </li>
                                             @else
-                                            <li class="list-group-item">Disponible : Non </li>
+                                            <li class="list-group-item">Disponible: Non </li>
                                             @endif
                                             @if ($profile->visible_on_web == 1)
                                             <li class="list-group-item"><i class="fa fa-envelope"></i> {{$user->email}}</li>
@@ -133,19 +133,19 @@
                                 <div>
                                     @if ($profile->profile_google_visible == 1)
                                     <a style="" href="{{$profile->profile_google}}">
-                                        <img src="/img/icone_google.png" style="width:50px; height:50px; margin:15px;" alt=""></a>
+                                        <img src="/img/icone_google.png" class="icone_social" alt=""></a>
                                     @endif
                                     @if ($profile->profile_facebook_visible == 1)
                                     <a href="{{$profile->profile_facebook}}">
-                                        <img src="/img/icone_facebook.jpg" style="width:50px; height:50px; margin:15px;" alt=""></a>       
+                                        <img src="/img/icone_facebook.jpg" class="icone_social" alt=""></a>       
                                     @endif
                                     @if ($profile->profile_linkedin_visible == 1)
                                     <a href="{{$profile->profile_linkedin}}">
-                                        <img src="/img/icone_linkedin.png" style="width:50px; height:50px; margin:15px;" alt=""></a> 
+                                        <img src="/img/icone_linkedin.png" class="icone_social" alt=""></a> 
                                     @endif
                                     @if ($profile->profile_viadeo_visible == 1)
                                     <a href="{{$profile->profile_viadeo}}">
-                                        <img src="/img/icone_viadeo.png" style="width:50px; height:50px; margin:15px;" alt=""></a>
+                                        <img src="/img/icone_viadeo.png" class="icone_social" alt=""></a>
                                     @endif
                                 </div>
                                 <h4 style="margin-top:10px;">Infos</h4>

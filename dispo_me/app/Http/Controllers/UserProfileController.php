@@ -89,7 +89,8 @@ class UserProfileController extends Controller
     }
 
     public function getStep2() {
-        return view('profile_create_step2');
+        $dpts = DB::select('SELECT nom FROM dpts');
+        return view('profile_create_step2')->withDpts($dpts);
     }
 
     public function storeStep2(Request $request) {
@@ -153,6 +154,13 @@ class UserProfileController extends Controller
 
     public function editStep1($id) {
         $user = User::find($id);
+        $user_id = Auth::id();
+
+        if ($user_id != (int)$id)
+        {
+            return 'Vous ne pouvez pas modifier un profil qui n\'est pas le vôtre!';
+        }
+
         $profile = UserProfileModel::where('user_id', $user->id)->first();
         $skills = SkillTagModel::all();  
         return view ('profile_edit_step1')->withProfile($profile)->withSkills($skills);
@@ -206,7 +214,8 @@ class UserProfileController extends Controller
     public function editStep2($id) {
         $user = User::find($id);
         $profile = UserProfileModel::where('user_id', $user->id)->first();
-        return view ('profile_edit_step2')->withProfile($profile);
+        $dpts = DB::select('SELECT nom from dpts');
+        return view ('profile_edit_step2')->withProfile($profile)->withDpts($dpts);
     }
 
     public function updateStep2(Request $request, $id) {
