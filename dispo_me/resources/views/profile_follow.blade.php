@@ -14,7 +14,7 @@
     <title>Profil</title>
 </head>
 
-<body>
+<body> 
     <div class="container col-md-8">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">Dispo.Me</a>
@@ -72,30 +72,24 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($followedProfiles as $profile)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{$profile->user->id}}</th>
+                    <td>{{$profile->user->name}}</td>
+                    <td>{{$profile->user->last_name}}</td>
+                    <td>
+                    @foreach ($profile->tags as $tag)
+                    <span class="badge badge-info"> {{$tag->skill_name}} </span>
+                    @endforeach
+                    </td>
+                    @if ($profile->free == 0)
+                    <td class="text-right">Non</td>
+                    @else
                     <td class="text-right">Oui</td>
-                    <td><a href="/" class="btn btn-danger float-right">Effacer</a></td>
+                    @endif
+                    <td><a href="{{route('profile.deleteFollowed', $profile->user_id)}}" class="btn btn-danger float-right">Effacer</a></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td class="text-right">Oui</td>
-                    <td><a href="/" class="btn btn-danger float-right">Effacer</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td class="text-right">Oui</td>
-                    <td><a href="/" class="btn btn-danger float-right">Effacer</a></td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

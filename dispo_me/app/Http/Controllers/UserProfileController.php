@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\UserProfileModel;
 use App\SkillTagModel;
 use App\User;
+use App\Follow;
 use Session;
 use DB;
 
@@ -14,7 +15,19 @@ class UserProfileController extends Controller
 {
 
     public function getFollowedProfile() {
-        return view ('profile_follow');
+        $user_id = Auth::id();
+        $list = DB::table('follows')
+        ->where('follower_id', $user_id)
+        ->get();
+
+        $followedProfiles = [];
+
+        for($i = 0; $i < count($list); $i++){
+            $followed = UserProfileModel::where('user_id', $list[$i]->followed_id)->first();
+            array_push($followedProfiles, $followed);
+        }
+
+        return view ('profile_follow')->withFollowedProfiles($followedProfiles);
     }
 
     public function searchForm() {
@@ -298,9 +311,23 @@ class UserProfileController extends Controller
 
     }
 
-    public function addFollowed(Request $request) {
+    public function addFollowed($id_followed) {
         
-        return 'coucou';
+        $follower = UserprofileModel::where('user_id',Auth::id())->first();
+        $followed = UserprofileModel::where('user_id',$id_followed)->first();
+        $follows = new Follow();
+        $follows->follower_id = $follower->user_id;
+        $follows->followed_id = $followed->user_id;
+        $follows->save();
+        return redirect()->route('profile.followed');
+    }
+
+    public function deleteFollowed($id_followed) { 
+        $follower = UserprofileModel::where('user_id',Auth::id())->first();
+        $followed = UserprofileModel::where('user_id',$id_followed)->first();
+        $follows = Follow::where('follower_id', $follower->user_id)->where('followed_id', $followed->user_id);
+        $follows->delete();
+        return redirect()->route('profile.followed');
     }
 
     public function destroy($id) {  

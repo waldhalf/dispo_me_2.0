@@ -97,7 +97,7 @@
                     <td class="text-right">Oui</td>
                     @endif
 
-                    <td><a href="{{ url ('/profile/addFollowed//').$profile->user_id }}" class="btn btn-success float-right">Ajouter</a></td>
+                    <td><a href="{{ url ('/profile/add_followed/'.$profile->user_id) }}" class="btn btn-success float-right">Ajouter</a></td>
                            {{-- href="{{ route ('categories.delete', $categorie['id']) }}" --}}
                 </tr>
                 @endif
