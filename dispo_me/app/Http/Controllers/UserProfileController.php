@@ -32,27 +32,27 @@ class UserProfileController extends Controller
         // A la sortie de laravel 5.7 groupBy connait des pb
         // les lignes suivantes sont là pour le faire "a la main"
 
-        // On récupére en les mappant la list des id
-        $listOfId= $searchedTag->map(function ($user){
-            return $user->id;
-        })->unique();
+        $searchedTag = $searchedTag->unique('user_id');
+        
         // On les met dans un array pour y avoir accés via un indice
         // qui commence à 0
         $list2 = [];
-        foreach($listOfId as $key=>$value) {
+        foreach($searchedTag as $key=>$value) {
             array_push($list2, $value);
         }
+        
         // On va récupérer dans la base les lignes correspondantes avec
         // une id unique même si 2 tag se ressemblent (exemple CSS et CSS 3)
         // renvoie 2 lignes différentes alors qu'il s'agit du même profil
         // Le profil en question avait les deux tags donc.
         for ($i = 0 ; $i < count($list2) ; $i++) {
-            $profile = UserProfileModel::where('id', $list2[$i])->first();
+            $profile = UserProfileModel::where('user_id', $list2[$i]->user_id)->first();
             array_push($tabProfiles, $profile);
         }
+        
         // version rapide de ce qui est fait plus haut à remettre quand le groupBy
         // sera à nouveau fonctionnel (il faudra le rajouter dans la requête)
-        
+
         // foreach ($searchedTag as $tag){
         //     $profile = UserProfileModel::where('id', $tag->profile_id)->first();
         //     array_push($tabProfiles, $profile);
@@ -296,6 +296,11 @@ class UserProfileController extends Controller
         
         return redirect('/profile/'. Auth::user()->slug);
 
+    }
+
+    public function addFollowed(Request $request) {
+        
+        return 'coucou';
     }
 
     public function destroy($id) {  

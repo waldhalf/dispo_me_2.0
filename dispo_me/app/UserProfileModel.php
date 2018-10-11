@@ -30,4 +30,12 @@ class UserProfileModel extends Model
         return $this->belongsToMany('App\SkillTagModel', 'user_skill_tags', 'profile_id', 'skill_tag_id');
     }
 
+    public function follower() {
+        return $this->belongsToMany('App\UserProfileModel', 'user_profile', 'user_id', 'follower_id');
+    }
+
+    public function followed() {
+        return $this->belongsToMany('App\UserProfileModel', 'user_profile', 'user_id', 'followed_id');
+    }
+
 }

@@ -44,6 +44,7 @@ Route::get('/comments/{id}/delete', 'CommentsController@destroy')->name('comment
 Route::get('/profile/followed', 'UserProfileController@getFollowedProfile')->name('profile.followed');
 Route::get('/profile/search/', 'UserProfileController@searchForm')->name('profile.form');
 Route::post('/profile/search/', 'UserProfileController@searchProfile')->name('profile.search');
+Route::get('/profile/add_followed', 'UserProfileController@addFollowed')->name('profile.addFollowed');
 
 
 /* CRUD pour les posts ADMIN*/
