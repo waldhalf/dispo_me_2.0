@@ -63,7 +63,8 @@
                     <button class="btn btn-info ml-auto" type="submit">Chercher</button>
                 </form>
             </div>
-        </div>
+       </div>
+        
         <table class="table">
             <thead>
                 <tr>
@@ -71,13 +72,15 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Compétences</th>
+                    <th scope="col" class="text-center">Profil</th>
                     <th scope="col" class="text-right">Disponible</th>
-                    <th scope="col" class="text-right">Suivre?</th>
+                    <th scope="col" class="text-center">Suivre?</th>
                 </tr>
             </thead>
             <tbody>
                 @if (isset($tabProfiles))
                 @foreach ($tabProfiles as $profile)
+                @if ($profile->visible_on_website == 1)
                 <tr>
                     <th scope="row">{{$profile->user->id}}</th>
                     <td>{{$profile->user->name}}</td>
@@ -87,6 +90,7 @@
                         <span class="badge badge-info"> {{$tag->skill_name}} </span>
                         @endforeach
                     </td>
+                    <td><a href="/profile/{{ $profile->user->slug}}" class="btn btn-primary float-right">Voir le profil</a></td>
                     @if ($profile->free == 0)
                     <td class="text-right">Non</td>
                     @else
@@ -95,6 +99,7 @@
 
                     <td><a href="/" class="btn btn-success float-right">Ajouter</a></td>
                 </tr>
+                @endif
                 @endforeach
                 @endif
             </tbody>

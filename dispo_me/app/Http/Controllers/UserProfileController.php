@@ -29,11 +29,34 @@ class UserProfileController extends Controller
         ->get();
 
         $tabProfiles = [];
+        // A la sortie de laravel 5.7 groupBy connait des pb
+        // les lignes suivantes sont là pour le faire "a la main"
 
-        foreach ($searchedTag as $tag){
-            $profile = UserProfileModel::where('id', $tag->profile_id)->first();
+        // On récupére en les mappant la list des id
+        $listOfId= $searchedTag->map(function ($user){
+            return $user->id;
+        })->unique();
+        // On les met dans un array pour y avoir accés via un indice
+        // qui commence à 0
+        $list2 = [];
+        foreach($listOfId as $key=>$value) {
+            array_push($list2, $value);
+        }
+        // On va récupérer dans la base les lignes correspondantes avec
+        // une id unique même si 2 tag se ressemblent (exemple CSS et CSS 3)
+        // renvoie 2 lignes différentes alors qu'il s'agit du même profil
+        // Le profil en question avait les deux tags donc.
+        for ($i = 0 ; $i < count($list2) ; $i++) {
+            $profile = UserProfileModel::where('id', $list2[$i])->first();
             array_push($tabProfiles, $profile);
         }
+        // version rapide de ce qui est fait plus haut à remettre quand le groupBy
+        // sera à nouveau fonctionnel (il faudra le rajouter dans la requête)
+        
+        // foreach ($searchedTag as $tag){
+        //     $profile = UserProfileModel::where('id', $tag->profile_id)->first();
+        //     array_push($tabProfiles, $profile);
+        // }
         
         return view ('profile_search')->withtabProfiles($tabProfiles);
     }
@@ -146,16 +169,16 @@ class UserProfileController extends Controller
     }
 
     public function getProfile($slug) {
-        $user = Auth::user();
-        $id = Auth::id();
+        $user = User::where('slug', $slug)->first();
+        $id = $user->id;
         $profile = UserProfileModel::where('user_id', $id)->first();     
         return view('profile_index')->withProfile($profile)->withUser($user);
     }
 
     public function editStep1($id) {
         $user = User::find($id);
-        $user_id = Auth::id();
 
+        $user_id = Auth::id();
         if ($user_id != (int)$id)
         {
             return 'Vous ne pouvez pas modifier un profil qui n\'est pas le vôtre!';
@@ -213,6 +236,13 @@ class UserProfileController extends Controller
 
     public function editStep2($id) {
         $user = User::find($id);
+        $user_id = Auth::id();
+        
+        if ($user_id != (int)$id)
+        {
+            return 'Vous ne pouvez pas modifier un profil qui n\'est pas le vôtre!';
+        }
+
         $profile = UserProfileModel::where('user_id', $user->id)->first();
         $dpts = DB::select('SELECT nom from dpts');
         return view ('profile_edit_step2')->withProfile($profile)->withDpts($dpts);

@@ -14,6 +14,8 @@
 </head>
 
 <body>
+
+
     <div class="container">
         <div class="row">
             <nav class="navbar navbar-default">
@@ -25,12 +27,11 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="vertical-align">
                         <ul class="nav navbar-nav">
-                            @if ($user=Auth::user())
+                            @if (Auth::user() == $user)
                             <a class=" btn btn-primary" href="{{ url ('/profile/'.Auth::user()->id.'/edit_step_1') }}" style="font-size: 15px;">Mettre
                                 mon profil à jour</a>
                             <a href="{{ url ('/profile/'.Auth::user()->id.'/delete') }}" class=" btn btn-danger delete" style="font-size: 15px;">Effacer
-                                mon profil</a>
-                               
+                                mon profil</a>  
                             @endif
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -132,7 +133,7 @@
                                 <h4>Réseaux Sociaux</h4>
                                 <div>
                                     @if ($profile->profile_google_visible == 1)
-                                    <a style="" href="{{$profile->profile_google}}">
+                                    <a href="{{$profile->profile_google}}">
                                         <img src="/img/icone_google.png" class="icone_social" alt=""></a>
                                     @endif
                                     @if ($profile->profile_facebook_visible == 1)
