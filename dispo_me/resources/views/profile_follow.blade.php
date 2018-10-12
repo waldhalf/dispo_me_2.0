@@ -16,6 +16,9 @@
 
 <body> 
     <div class="container col-md-8">
+        @if (Session::has('msg'))
+        <p class="alert alert-success" role="alert">{{ Session::get('msg') }}</p> 
+        @endif
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">Dispo.Me</a>
 

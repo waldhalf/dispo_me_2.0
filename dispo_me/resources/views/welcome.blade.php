@@ -34,9 +34,6 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a style="color:black;margin-left:15px;" href="/public/posts">Présentation des métiers!</a>
-                        <a style="color:black;margin-left:15px;" href="/manual">Mode d'emploi</a>
-                        <a style="color:black;margin-left:15px;" href="/profile/search">Chercher un profil</a>
-                        <a style="color:black;margin-left:15px;" href="/contact">Qui sommes-nous?</a>
                         @if (Auth::user() && Auth::user()->has_profile == 0)
                         <a style="color:black;margin-left:15px;" href="{{ url ('/profile_step_1') }}">Créer un profil</a>
                         @endif
@@ -44,6 +41,10 @@
                         <a style="color:black;margin-left:15px;" href="{{ url ('/profile/'.Auth::user()->slug) }}">Mon
                             profil</a>
                         @endif
+                        <a style="color:black;margin-left:15px;" href="/profile/search">Chercher un profil</a>
+                        <a style="color:black;margin-left:15px;" href="/profile/followed">Profils suivis</a>
+                        <a style="color:black;margin-left:15px;" href="/manual">Mode d'emploi</a>
+                        <a style="color:black;margin-left:15px;" href="/contact">Qui sommes-nous?</a>
                         {{-- <li class="nav-item">
                         <a class="nav-link active" href="#">Mes disponibilités</a>
                     </li> --}}
@@ -70,9 +71,9 @@
             </h1>
             <p> Prenez votre planning en main!</p>
             <ul class="actions">
-                <li><img src="../img/nbr1.png" alt="number1" class="imgnbr"> Renseignez vos informations ainsi que vos
+                <li class="mode-emploi"><img src="../img/nbr1.png" alt="number1" class="imgnbr"> Renseignez vos informations ainsi que vos
                     disponibilités</li>
-                <li><img src="../img/nbr2.png" alt="number1" class="imgnbr"> Un lien unique vous est attribué. Recopiez
+                <li class="mode-emploi"><img src="../img/nbr2.png" alt="number1" class="imgnbr"> Un lien unique vous est attribué. Recopiez
                     le lien et synchronisez le avec tous vos profils.</li>
                 <li><img src="../img/nbr3.png" alt="number1" class="imgnbr"> Changez sans délai et sans contrainte
                     votre statut sur l'ensemble des plateformes.</li>

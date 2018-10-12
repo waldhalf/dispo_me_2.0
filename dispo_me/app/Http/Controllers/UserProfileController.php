@@ -315,11 +315,19 @@ class UserProfileController extends Controller
         
         $follower = UserprofileModel::where('user_id',Auth::id())->first();
         $followed = UserprofileModel::where('user_id',$id_followed)->first();
-        $follows = new Follow();
-        $follows->follower_id = $follower->user_id;
-        $follows->followed_id = $followed->user_id;
-        $follows->save();
-        return redirect()->route('profile.followed');
+        $follows_maybe = Follow::where('follower_id', $follower->user_id)->where('followed_id', $followed->user_id)->first();
+        if ($follows_maybe ==  null) {
+            $follows = new Follow();
+            $follows->follower_id = $follower->user_id;
+            $follows->followed_id = $followed->user_id;
+            $follows->save();
+            Session::flash('msg', 'Le profil a bien été ajouté à votre liste de suivi');
+            return redirect()->route('profile.followed');
+        }
+        else {
+            Session::flash('msg', 'Vous suivez déjà ce profil');
+            return redirect()->route('profile.followed');
+        }
     }
 
     public function deleteFollowed($id_followed) { 
@@ -327,6 +335,7 @@ class UserProfileController extends Controller
         $followed = UserprofileModel::where('user_id',$id_followed)->first();
         $follows = Follow::where('follower_id', $follower->user_id)->where('followed_id', $followed->user_id);
         $follows->delete();
+        Session::flash('msg', 'Le profil a bien été effacé de votre liste de suivi');
         return redirect()->route('profile.followed');
     }
 

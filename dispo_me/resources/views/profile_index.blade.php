@@ -28,10 +28,12 @@
                     <div class="vertical-align">
                         <ul class="nav navbar-nav">
                             @if (Auth::user() == $user)
-                            <a class=" btn btn-primary" href="{{ url ('/profile/'.Auth::user()->id.'/edit_step_1') }}" style="font-size: 15px;">Mettre
+                            <a class=" btn btn-primary" href="{{ url ('/profile/'.Auth::user()->id.'/edit_step_1') }}"
+                                style="font-size: 15px;">Mettre
                                 mon profil à jour</a>
-                            <a href="{{ url ('/profile/'.Auth::user()->id.'/delete') }}" class=" btn btn-danger delete" style="font-size: 15px;">Effacer
-                                mon profil</a>  
+                            <a href="{{ url ('/profile/'.Auth::user()->id.'/delete') }}" class=" btn btn-danger delete"
+                                style="font-size: 15px;">Effacer
+                                mon profil</a>
                             @endif
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -57,18 +59,41 @@
     <div class="container">
         <div class="resume">
             <header class="page-header">
-                <h1 class="head-profile">Profil de {{ $user->name }} {{ $user->last_name }} </h1>
+                <h1 class="head-profile">{{ $user->name }} {{ $user->last_name }} </h1>
                 <small id="head-time"> <i class="fa fa-clock-o"></i> Mis à jour: <time>{{ $profile->updated_at }}</time></small>
             </header>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+                    <div style="background-color: white;" class="panel panel-default">
+                        @if ($profile->search_job == 1)
+                        <img style="width: 100px; height:100px; margin: auto; display: block; margin-top:20px;" src="/img/recherche_emploi.svg"
+                            alt="">
+                        <h3 class="text-center">A la recherche d'un emploi</h3>
+                        @if ($profile->free == 1)
+                        <p>Disponible de suite</p>
+                        @else
+                        <p>Disponible avec un préavis de {{ $profile->notice }} jours</p>
+                        @endif
+                        @elseif ($profile->listen == 1)
+                        <img style="width: 100px; height:100px; margin: auto; display: block; margin-top:20px;" src="/img/ecoute_du_marche.svg"
+                            alt="">
+                        <h3 class="text-center">A l'écoute du marché</h3>
+                        <p class="text-center" style="color: black;">Disponible avec un préavis de <strong>{{
+                                $profile->notice }}</strong> jours</p>
+                        @else
+                        <img style="width: 100px; height:100px; margin: auto; display: block; margin-top:20px;" src="/img/indisponible.svg"
+                            alt="">
+                        <h3 class="text-center">Ni en recherche, ni à l'écoute</h3>
+                        @endif
+                    </div>
                     <div class="panel panel-default">
                         <div class="panel-heading resume-heading">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="col-xs-12 col-sm-4">
                                         <figure>
-                                            <img id="image_de_profil" class="img-circle img-responsive" alt="photo_de_profil" src="{{$profile->profile_photo}}">
+                                            <img id="image_de_profil" class="img-circle img-responsive" alt="photo_de_profil"
+                                                src="{{$profile->profile_photo}}">
                                         </figure>
                                     </div>
                                     <div class="col-xs-12 col-sm-8">
@@ -138,11 +163,11 @@
                                     @endif
                                     @if ($profile->profile_facebook_visible == 1)
                                     <a href="{{$profile->profile_facebook}}">
-                                        <img src="/img/icone_facebook.jpg" class="icone_social" alt=""></a>       
+                                        <img src="/img/icone_facebook.jpg" class="icone_social" alt=""></a>
                                     @endif
                                     @if ($profile->profile_linkedin_visible == 1)
                                     <a href="{{$profile->profile_linkedin}}">
-                                        <img src="/img/icone_linkedin.png" class="icone_social" alt=""></a> 
+                                        <img src="/img/icone_linkedin.png" class="icone_social" alt=""></a>
                                     @endif
                                     @if ($profile->profile_viadeo_visible == 1)
                                     <a href="{{$profile->profile_viadeo}}">
@@ -153,7 +178,8 @@
                                 <h5>Préavis :{{ $profile->notice }} jours</h5>
                                 <h5>Temps de travail souhaité : {{ $profile->percentage }} %</h5>
                                 <h5>Emploi recherché: {{ $profile->searched_job }} </h5>
-                            </div><!--fin de la seconde md-6-->
+                            </div>
+                            <!--fin de la seconde md-6-->
                         </div>
                     </div>
 
@@ -161,6 +187,14 @@
             </div>
         </div>
     </div>
+    <footer>
+        <div id="copyright">
+            <ul>
+                <li>&copy; Dispo.me</li>
+                <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </footer>
 
     <script>
         $(function () {
@@ -170,9 +204,10 @@
     </script>
     <!-- Scripts -->
     <script>
-        $('.delete').click(function() {
+        $('.delete').click(function () {
             return confirm("Etes-vous sûr de vouloir effacer votre profil?");
         });
+
     </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.scrollex.min.js"></script>
