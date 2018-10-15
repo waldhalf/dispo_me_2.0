@@ -9,6 +9,7 @@ use App\SkillTagModel;
 use App\User;
 use App\Follow;
 use Session;
+use Mail;
 use DB;
 
 class UserProfileController extends Controller
@@ -35,18 +36,20 @@ class UserProfileController extends Controller
     }
 
     public function searchProfile(Request $request) {
-        $searchedTag = DB::table('skill_tags')
-        ->join('user_skill_tags', 'skill_tags.id', '=', 'user_skill_tags.skill_tag_id' )
-        ->join('user_profile', 'user_profile.id' , '=', 'user_skill_tags.profile_id')
+        $tabProfiles    = [];
+
+        $searchedTag = UserProfileModel::join('user_skill_tags', 'user_profile.id', '=', 'user_skill_tags.profile_id' )
+        ->join('skill_tags', 'skill_tags.id' , '=', 'user_skill_tags.skill_tag_id')
+        ->join('users', 'users.id', '=', 'user_profile.user_id')
         ->where('skill_name', 'like', '%' . $request->query_profile .'%')
+        ->orWhere('name', 'like', '%' .$request->query_profile. '%')
+        ->orWhere('last_name', 'like', '%' .$request->query_profile. '%')
         ->get();
 
-        $tabProfiles = [];
         // A la sortie de laravel 5.7 groupBy connait des pb
         // les lignes suivantes sont là pour le faire "a la main"
-
         $searchedTag = $searchedTag->unique('user_id');
-        
+
         // On les met dans un array pour y avoir accés via un indice
         // qui commence à 0
         $list2 = [];
@@ -71,7 +74,7 @@ class UserProfileController extends Controller
         //     array_push($tabProfiles, $profile);
         // }
         
-        return view ('profile_search')->withtabProfiles($tabProfiles);
+        return view ('profile_search')->withTabProfiles($tabProfiles);
     }
 
     public function getStep1() {
@@ -218,6 +221,36 @@ class UserProfileController extends Controller
         ]);
         $user = User::find($id);
         $profile = UserProfileModel::where('user_id', $user->id)->first();
+        // On récupére de la BD l'état du User avant modif
+        $free = $profile->free;
+        $search_job = $profile->search_job;
+        $listen = $profile->listen;
+        // On récupére la liste des personnes qui suivent le user
+        $listeFollower = Follow::where('followed_id', $user->id)->get();
+        // On teste chacun des statuts entre l'ancien et le nouveau statut
+        // Si un des trois statut a changé on envoie un mail de notif au follower
+        if ($free != $request->profile_free || 
+            $search_job != $request->profile_search || 
+            $listen != $request->profile_listen &&
+            $listeFollower != null) {
+
+                $data = array(
+                    'name'          => $user->name,
+                    'last_name'     => $user->last_name,
+                    'bodyMessage'   => 'a changé son statut. Ce message vous est envoyé depuis le site dispo.me : http://www.dispo.me', 
+                    'email'         => 'dispo.me.contact@gmail.com',
+            );
+            // Pour ajouter $toFollower il faut l'inclure dans la closure car le scope de la closure est restreint
+            foreach ($listeFollower as $follower) {
+                $toFollower = User::where('id', $follower->follower_id)->first();
+        
+                Mail::send('email_modif_statut', $data, function($message_closure) use ($data, $toFollower) {
+                    $message_closure->from($data['email']);
+                    $message_closure->subject('Message en provenance de Dispo.me');
+                    $message_closure->to($toFollower->email);
+                    });
+                }
+        }
         $profile->free = $request->profile_free;
         $profile->search_job = $request->profile_search;
         $profile->listen = $request->profile_listen;

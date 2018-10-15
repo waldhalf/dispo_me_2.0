@@ -58,7 +58,7 @@
             <div class="col-md-7">
                 <form class="form-inline float-sm-right" method="POST">
                     @csrf
-                    <input name="query_profile" class="form-control col-md-9 mt-3 mb-3 mr-0" type="search" placeholder="Compétence recherchée"
+                    <input name="query_profile" class="form-control col-md-9 mt-3 mb-3 mr-0" type="search" placeholder="Compétence recherchée ou nom"
                         style="width: 500px;">
                     <button class="btn btn-info ml-auto" type="submit">Chercher</button>
                 </form>
@@ -69,8 +69,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Compétences</th>
                     <th scope="col" class="text-center">Profil</th>
                     <th scope="col" class="text-right">Disponible</th>
@@ -78,6 +78,7 @@
                 </tr>
             </thead>
             <tbody>
+                
                 @if (isset($tabProfiles))
                 @foreach ($tabProfiles as $profile)
                 @if ($profile->visible_on_website == 1)
@@ -102,7 +103,7 @@
                 </tr>
                 @endif
                 @endforeach
-                @endif
+                @endif                
             </tbody>
         </table>
     </div>

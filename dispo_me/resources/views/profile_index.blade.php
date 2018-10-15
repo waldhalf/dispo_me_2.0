@@ -8,7 +8,6 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="{{ '/css/font-awesome.min.css' }}" />
     <link rel="stylesheet" href="{{'/css/profile.css'}}">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Profil</title>
 </head>
@@ -60,7 +59,8 @@
         <div class="resume">
             <header class="page-header">
                 <h1 class="head-profile">{{ $user->name }} {{ $user->last_name }} </h1>
-                <small id="head-time"> <i class="fa fa-clock-o"></i> Mis à jour: <time>{{ $profile->updated_at }}</time></small>
+                <small id="head-time"> <i class="fa fa-clock-o"></i> Mis à jour: <time>{{ date('j M, Y',
+                        strtotime($profile->updated_at)) }}</time></small>
             </header>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
@@ -70,9 +70,10 @@
                             alt="">
                         <h3 class="text-center">A la recherche d'un emploi</h3>
                         @if ($profile->free == 1)
-                        <p>Disponible de suite</p>
+                        <p class="text-center" style="color: black;">Disponible de suite</p>
                         @else
-                        <p>Disponible avec un préavis de {{ $profile->notice }} jours</p>
+                        <p class="text-center" style="color: black;">Disponible avec un préavis de {{ $profile->notice
+                            }} jours</p>
                         @endif
                         @elseif ($profile->listen == 1)
                         <img style="width: 100px; height:100px; margin: auto; display: block; margin-top:20px;" src="/img/ecoute_du_marche.svg"
@@ -84,6 +85,13 @@
                         <img style="width: 100px; height:100px; margin: auto; display: block; margin-top:20px;" src="/img/indisponible.svg"
                             alt="">
                         <h3 class="text-center">Ni en recherche, ni à l'écoute</h3>
+                        @endif
+                    </div>
+                    <div style="background-color: white;" class="panel panel-default">
+                        @if (Auth::id() == $profile->user->id)
+                        <span style="font-size: 20px; margin-left: 5px;">Mon lien unique: </span><input disabled class="form-control-inline"
+                            style="font-size: 15px; width: 65%; border-radius:5px;" type="text" id="input" value="http://www.dispo.me/profile/{{ $profile->user->slug }}" />
+                        <button class="btn btn-info" style="width: 10%; height: 40px; margin-bottom: 6px;" id="copy">Copier</button>
                         @endif
                     </div>
                     <div class="panel panel-default">
@@ -195,13 +203,6 @@
             </ul>
         </div>
     </footer>
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-
-    </script>
     <!-- Scripts -->
     <script>
         $('.delete').click(function () {
@@ -209,13 +210,9 @@
         });
 
     </script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.scrollex.min.js"></script>
-    <script src="js/jquery.scrolly.min.js"></script>
-    <script src="js/browser.min.js"></script>
-    <script src="js/breakpoints.min.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/js/button_copy.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
