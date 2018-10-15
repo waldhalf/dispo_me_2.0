@@ -16,18 +16,15 @@ class UserProfileController extends Controller
 {
 
     public function getFollowedProfile() {
-        $user_id = Auth::id();
-        $list = DB::table('follows')
-        ->where('follower_id', $user_id)
-        ->get();
-
         $followedProfiles = [];
+        $user_id = Auth::id();
+        $list = Follow::where('follower_id', $user_id)->get();
 
-        for($i = 0; $i < count($list); $i++){
-            $followed = UserProfileModel::where('user_id', $list[$i]->followed_id)->first();
+        foreach ($list as $id) {
+            $followed = UserProfileModel::where('user_id', $id->followed_id)->first();
             array_push($followedProfiles, $followed);
-        }
-
+        }      
+        
         return view ('profile_follow')->withFollowedProfiles($followedProfiles);
     }
 
@@ -175,7 +172,6 @@ class UserProfileController extends Controller
         $profile->profile_facebook = $request->profile_facebook;
         $profile->profile_facebook_visible = $request->profile_facebook_visible;
         
- 
         $profile->save();
 
         Session::flash('msg', 'Votre profil complet a bien été créé');
@@ -385,7 +381,6 @@ class UserProfileController extends Controller
 
         Session::flash('msg', 'Votre profil a bien été effacé');
 
-        return redirect('/');
-        
+        return redirect('/'); 
     }
 }

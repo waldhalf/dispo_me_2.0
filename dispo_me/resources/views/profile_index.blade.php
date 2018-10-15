@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @if ($profile->visible_on_web == 0)
+    <meta name="robots" content="noindex, nofollow">       
+    @endif
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="{{ '/css/font-awesome.min.css' }}" />
     <link rel="stylesheet" href="{{'/css/profile.css'}}">

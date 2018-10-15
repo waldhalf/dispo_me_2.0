@@ -67,8 +67,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Compétences</th>
                     <th scope="col" class="text-right">Disponible</th>
                     <th scope="col" class="text-right">Ne plus suivre</th>
