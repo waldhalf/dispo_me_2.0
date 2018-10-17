@@ -16,8 +16,6 @@
 </head>
 
 <body>
-
-
     <div class="container">
         <div class="row">
             <nav class="navbar navbar-default">
@@ -169,24 +167,26 @@
                                 <h4>Réseaux Sociaux</h4>
                                 <div>
                                     @if ($profile->profile_google_visible == 1)
-                                    <a href="{{$profile->profile_google}}">
+                                    <a href="{{ url ($profile->profile_google) }}">
                                         <img src="/img/icone_google.png" class="icone_social" alt=""></a>
                                     @endif
                                     @if ($profile->profile_facebook_visible == 1)
-                                    <a href="{{$profile->profile_facebook}}">
+                                    <a href="{{ url ($profile->profile_facebook) }}">
                                         <img src="/img/icone_facebook.jpg" class="icone_social" alt=""></a>
                                     @endif
                                     @if ($profile->profile_linkedin_visible == 1)
-                                    <a href="{{$profile->profile_linkedin}}">
+                                    <a href="{{ url ($profile->profile_linkedin) }}">
                                         <img src="/img/icone_linkedin.png" class="icone_social" alt=""></a>
                                     @endif
                                     @if ($profile->profile_viadeo_visible == 1)
-                                    <a href="{{$profile->profile_viadeo}}">
+                                    <a href="{{ url($profile->profile_viadeo) }}">
                                         <img src="/img/icone_viadeo.png" class="icone_social" alt=""></a>
                                     @endif
                                 </div>
                                 <h4 style="margin-top:10px;">Infos</h4>
-                                <h5>Préavis :{{ $profile->notice }} jours</h5>
+                                @if ($profile->listen == 1 || $profile->search_job == 1 && $profile->free == 0)
+                                <h5>Préavis :{{ $profile->notice }} jours</h5>     
+                                @endif
                                 <h5>Temps de travail souhaité : {{ $profile->percentage }} %</h5>
                                 <h5>Emploi recherché: {{ $profile->searched_job }} </h5>
                             </div>
@@ -211,7 +211,6 @@
         $('.delete').click(function () {
             return confirm("Etes-vous sûr de vouloir effacer votre profil?");
         });
-
     </script>
     <script src="/js/button_copy.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

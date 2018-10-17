@@ -34,16 +34,11 @@ class UserProfileController extends Controller
 
     public function searchProfile(Request $request) {
         $tabProfiles    = [];
+        $id_user_log = Auth::id();
+        // On appelle la fonction staic research (à voir dsans le modéle correspondant)
+        $searchedTag = UserProfileModel::researchUserByTagOrName($request->query_profile);
 
-        $searchedTag = UserProfileModel::join('user_skill_tags', 'user_profile.id', '=', 'user_skill_tags.profile_id' )
-        ->join('skill_tags', 'skill_tags.id' , '=', 'user_skill_tags.skill_tag_id')
-        ->join('users', 'users.id', '=', 'user_profile.user_id')
-        ->where('skill_name', 'like', '%' . $request->query_profile .'%')
-        ->orWhere('name', 'like', '%' .$request->query_profile. '%')
-        ->orWhere('last_name', 'like', '%' .$request->query_profile. '%')
-        ->get();
-
-        // A la sortie de laravel 5.7 groupBy connait des pb
+        // A la sortie de laravel 5.7 "groupBy" connait des pbs
         // les lignes suivantes sont là pour le faire "a la main"
         $searchedTag = $searchedTag->unique('user_id');
 
@@ -53,24 +48,34 @@ class UserProfileController extends Controller
         foreach($searchedTag as $key=>$value) {
             array_push($list2, $value);
         }
+        // Liste des suivi par suiveur
+        $listFollowedByFollower = Follow::where('follower_id', $id_user_log)->get();
         
         // On va récupérer dans la base les lignes correspondantes avec
         // une id unique même si 2 tag se ressemblent (exemple CSS et CSS 3)
         // renvoie 2 lignes différentes alors qu'il s'agit du même profil
         // Le profil en question avait les deux tags donc.
-        for ($i = 0 ; $i < count($list2) ; $i++) {
-            $profile = UserProfileModel::where('user_id', $list2[$i]->user_id)->first();
+        foreach ($list2 as $L) {
+            $profile = UserProfileModel::where('user_id', $L->user_id)->first();
             array_push($tabProfiles, $profile);
         }
-        
-        // version rapide de ce qui est fait plus haut à remettre quand le groupBy
+
+        for ($i = 0 ; $i < count($tabProfiles) ; $i++) {
+            for ($j = 0 ; $j < count($listFollowedByFollower) ; $j++) {
+                if ($tabProfiles[$i]->user_id == $listFollowedByFollower[$j]->followed_id) {
+                    $tabProfiles[$i]->suivi = true;
+                }
+            }
+
+        }
+        // Version rapide de ce qui est fait plus haut à remettre quand le groupBy
         // sera à nouveau fonctionnel (il faudra le rajouter dans la requête)
 
         // foreach ($searchedTag as $tag){
         //     $profile = UserProfileModel::where('id', $tag->profile_id)->first();
         //     array_push($tabProfiles, $profile);
-        // }
-        
+        // }  
+        // dd($tabProfiles);
         return view ('profile_search')->withTabProfiles($tabProfiles);
     }
 
@@ -80,7 +85,6 @@ class UserProfileController extends Controller
     }
 
     public function storeStep1(Request $request) {
-        // dd($request);
         // Validation du formulaire profile_edit_step_1
         $validatesData = $request->validate([
             'profile_free'              => 'required',
@@ -99,29 +103,28 @@ class UserProfileController extends Controller
         $user_id = Auth::id();
 
         $profile = new UserProfileModel;
-        $profile->user_id = $user_id;
-        $profile->free = $request->profile_free;
-        $profile->search_job = $request->profile_search;
-        $profile->listen = $request->profile_listen;
-        $profile->notice = $request->profile_notice;
-        $profile->percentage = $request->profile_percentage;
-        $profile->visible_on_web = $request->profile_visible_on_web;
-        $profile->visible_on_website = $request->profile_visible_on_website;
-        $profile->searched_job = $request->searched_job;
-        $profile->actuel_job = $request->actuel_job;
-        $profile->actual_company = $request->actual_company;
-        $profile->status_job = $request->status_job;
+        $profile->user_id               = $user_id;
+        $profile->free                  = $request->profile_free;
+        $profile->search_job            = $request->profile_search;
+        $profile->listen                = $request->profile_listen;
+        $profile->notice                = $request->profile_notice;
+        $profile->percentage            = $request->profile_percentage;
+        $profile->visible_on_web        = $request->profile_visible_on_web;
+        $profile->visible_on_website    = $request->profile_visible_on_website;
+        $profile->searched_job          = $request->searched_job;
+        $profile->actuel_job            = $request->actuel_job;
+        $profile->actual_company        = $request->actual_company;
+        $profile->status_job            = $request->status_job;
         $profile->save();
 
         $user->has_profile = TRUE;
         $user->save();
         // On appelle la methode tags de UserProfileModel afin de lier
-        //sur la table user_skill_tags le profile_id de la table user_profile
+        // sur la table user_skill_tags le profile_id de la table user_profile
         // et le skill_tag_id dans la mếme table
         $profile->tags()->sync($request->skill_tags, false);
         Session::flash('msg', 'La première étape de votre profil a été enregistré');
         return redirect('/profile_step_2');
-        // return redirect('/profile/'.Auth::user()->slug);
     }
 
     public function getStep2() {
@@ -130,7 +133,6 @@ class UserProfileController extends Controller
     }
 
     public function storeStep2(Request $request) {
-        // dd($request);
         // Validation du formulaire profile_edit_step_2
         $validatesData = $request->validate([
             'profile_city'          => 'required|min:2|max:255',
@@ -155,22 +157,22 @@ class UserProfileController extends Controller
             $profile->profile_photo = $newPhotoName;
         }
         
-        $profile->user_id = $user_id;
-        $profile->profile_city = $request->profile_city;
-        $profile->profile_city_range = $request->profile_city_range;
-        $profile->profile_county = $request->profile_county;
-        $profile->profile_county_mobile = $request->profile_county_mobile;
-        $profile->profile_region = $request->profile_region;
-        $profile->profile_region_mobile = $request->profile_region_mobile;
-        $profile->profile_country_mobile = $request->profile_country_mobile;
-        $profile->profile_google = $request->profile_google;
-        $profile->profile_google_visible = $request->profile_google_visible;
-        $profile->profile_linkedin = $request->profile_linkedin;
-        $profile->profile_google = $request->profile_linkedin_visible;
-        $profile->profile_viadeo = $request->profile_viadeo;
-        $profile->profile_viadeo_visible = $request->profile_viadeo_visible;
-        $profile->profile_facebook = $request->profile_facebook;
-        $profile->profile_facebook_visible = $request->profile_facebook_visible;
+        $profile->user_id                   = $user_id;
+        $profile->profile_city              = $request->profile_city;
+        $profile->profile_city_range        = $request->profile_city_range;
+        $profile->profile_county            = $request->profile_county;
+        $profile->profile_county_mobile     = $request->profile_county_mobile;
+        $profile->profile_region            = $request->profile_region;
+        $profile->profile_region_mobile     = $request->profile_region_mobile;
+        $profile->profile_country_mobile    = $request->profile_country_mobile;
+        $profile->profile_google            = $request->profile_google;
+        $profile->profile_google_visible    = $request->profile_google_visible;
+        $profile->profile_linkedin          = $request->profile_linkedin;
+        $profile->profile_google            = $request->profile_linkedin_visible;
+        $profile->profile_viadeo            = $request->profile_viadeo;
+        $profile->profile_viadeo_visible    = $request->profile_viadeo_visible;
+        $profile->profile_facebook          = $request->profile_facebook;
+        $profile->profile_facebook_visible  = $request->profile_facebook_visible;
         
         $profile->save();
 
@@ -181,9 +183,10 @@ class UserProfileController extends Controller
     }
 
     public function getProfile($slug) {
-        $user = User::where('slug', $slug)->first();
-        $id = $user->id;
-        $profile = UserProfileModel::where('user_id', $id)->first();     
+        $user       = User::where('slug', $slug)->first();
+        
+        $id         = $user->id;
+        $profile    = UserProfileModel::where('user_id', $id)->first();     
         return view('profile_index')->withProfile($profile)->withUser($user);
     }
 
@@ -235,6 +238,7 @@ class UserProfileController extends Controller
                     'last_name'     => $user->last_name,
                     'bodyMessage'   => 'a changé son statut. Ce message vous est envoyé depuis le site dispo.me : http://www.dispo.me', 
                     'email'         => 'dispo.me.contact@gmail.com',
+                    'slug'          => 'http://www.dispo.me/profile/' . $user->slug
             );
             // Pour ajouter $toFollower il faut l'inclure dans la closure car le scope de la closure est restreint
             foreach ($listeFollower as $follower) {
@@ -247,17 +251,17 @@ class UserProfileController extends Controller
                     });
                 }
         }
-        $profile->free = $request->profile_free;
-        $profile->search_job = $request->profile_search;
-        $profile->listen = $request->profile_listen;
-        $profile->notice = $request->profile_notice;
-        $profile->percentage = $request->profile_percentage;
-        $profile->visible_on_web = $request->profile_visible_on_web;
-        $profile->visible_on_website = $request->profile_visible_on_website;
-        $profile->searched_job = $request->searched_job;
-        $profile->actuel_job = $request->actuel_job;
-        $profile->actual_company = $request->actual_company;
-        $profile->status_job = $request->status_job;
+        $profile->free              = $request->profile_free;
+        $profile->search_job        = $request->profile_search;
+        $profile->listen            = $request->profile_listen;
+        $profile->notice            = $request->profile_notice;
+        $profile->percentage        = $request->profile_percentage;
+        $profile->visible_on_web    = $request->profile_visible_on_web;
+        $profile->visible_on_website= $request->profile_visible_on_website;
+        $profile->searched_job      = $request->searched_job;
+        $profile->actuel_job        = $request->actuel_job;
+        $profile->actual_company    = $request->actual_company;
+        $profile->status_job        = $request->status_job;
         $profile->save();
         
         // Si le user ne rentre aucun skill_tag on fait la vérif avant la
@@ -315,22 +319,22 @@ class UserProfileController extends Controller
             $profile->profile_photo = $newPhotoName;
         }
         
-        $profile->user_id = $user_id;
-        $profile->profile_city = $request->profile_city;
-        $profile->profile_city_range = $request->profile_city_range;
-        $profile->profile_county = $request->profile_county;
-        $profile->profile_county_mobile = $request->profile_county_mobile;
-        $profile->profile_region = $request->profile_region;
-        $profile->profile_region_mobile = $request->profile_region_mobile;
-        $profile->profile_country_mobile = $request->profile_country_mobile;
-        $profile->profile_google = $request->profile_google;
-        $profile->profile_google_visible = $request->profile_google_visible;
-        $profile->profile_linkedin = $request->profile_linkedin;
-        $profile->profile_google = $request->profile_linkedin_visible;
-        $profile->profile_viadeo = $request->profile_viadeo;
-        $profile->profile_viadeo_visible = $request->profile_viadeo_visible;
-        $profile->profile_facebook = $request->profile_facebook;
-        $profile->profile_facebook_visible = $request->profile_facebook_visible;
+        $profile->user_id                   = $user_id;
+        $profile->profile_city              = $request->profile_city;
+        $profile->profile_city_range        = $request->profile_city_range;
+        $profile->profile_county            = $request->profile_county;
+        $profile->profile_county_mobile     = $request->profile_county_mobile;
+        $profile->profile_region            = $request->profile_region;
+        $profile->profile_region_mobile     = $request->profile_region_mobile;
+        $profile->profile_country_mobile    = $request->profile_country_mobile;
+        $profile->profile_google            = $request->profile_google;
+        $profile->profile_google_visible    = $request->profile_google_visible;
+        $profile->profile_linkedin          = $request->profile_linkedin;
+        $profile->profile_google            = $request->profile_linkedin_visible;
+        $profile->profile_viadeo            = $request->profile_viadeo;
+        $profile->profile_viadeo_visible    = $request->profile_viadeo_visible;
+        $profile->profile_facebook          = $request->profile_facebook;
+        $profile->profile_facebook_visible  = $request->profile_facebook_visible;
  
         $profile->save();
 

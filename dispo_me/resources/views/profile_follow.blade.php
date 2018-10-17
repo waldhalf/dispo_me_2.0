@@ -9,6 +9,8 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="{{ '/css/font-awesome.min.css' }}" />
     <link rel="stylesheet" href="{{'/css/profile.css'}}">
+    {{-- Utilisation de DataTables --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Profil</title>
@@ -63,12 +65,11 @@
                 <a href="{{route ('profile.search')}}" class="btn btn-info float-right mt-3 mb-3">Chercher de nouveaux profils</a>
             </div>
         </div>
-        <table class="table">
+        <table class="table table-striped table-dark" id="table_id">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Prénom</th>
+                <tr>     
                     <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
                     <th scope="col">Compétences</th>
                     <th scope="col" class="text-right">Disponible</th>
                     <th scope="col" class="text-right">Ne plus suivre</th>
@@ -76,10 +77,9 @@
             </thead>
             <tbody>
                 @foreach ($followedProfiles as $profile)
-                <tr>
-                    <th scope="row">{{$profile->user->id}}</th>
-                    <td>{{$profile->user->name}}</td>
+                <tr>               
                     <td>{{$profile->user->last_name}}</td>
+                    <td>{{$profile->user->name}}</td>
                     <td>
                     @foreach ($profile->tags as $tag)
                     <span class="badge badge-info"> {{$tag->skill_name}} </span>
@@ -90,35 +90,42 @@
                     @else
                     <td class="text-right">Oui</td>
                     @endif
-                    <td><a href="{{route('profile.deleteFollowed', $profile->user_id)}}" class="btn btn-danger float-right">Effacer</a></td>
+                    <td><a href="{{route('profile.deleteFollowed', $profile->user_id)}}" class="btn btn-danger float-right">Ne plus suivre</a></td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 
-
-
-
-
-
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-
-    </script>
     <!-- Scripts -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.scrollex.min.js"></script>
-    <script src="js/jquery.scrolly.min.js"></script>
-    <script src="js/browser.min.js"></script>
-    <script src="js/breakpoints.min.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable( {
+                "columns": [
+                    null,
+                    null,
+                    { "orderable": false },
+                    null,
+                    { "orderable": false },
+                ],
+                "searching": false,
+                "language": {
+                    "lengthMenu": "Accés à  _MENU_ résulats par page",
+                    "zeroRecords": "Rien de trouvé, désolé",
+                    "info": "Page _PAGE_ sur _PAGES_",
+                    "infoEmpty": "Pas de résultats disponibles",
+                    "infoFiltered": "(filtré sur un total de _MAX_ résultats)",
+                    "search": "Rechercher dans les résultats",
+                    "paginate": {
+                        "previous": "Précédent",
+                        "next": "Suivant"
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

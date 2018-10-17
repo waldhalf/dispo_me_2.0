@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="{{ '/css/font-awesome.min.css' }}" />
     <link rel="stylesheet" href="{{'/css/profile.css'}}">
-
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    {{-- Utilisation de DataTables --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    {{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> --}}
     <title>Profil</title>
 </head>
 <body>
@@ -27,6 +28,9 @@
                 <ul class="navbar-nav ml-auto">
                     @if (Route::has('login'))
                     @auth
+                    <li class="nav-item mr-2">
+                        <a href="{{ url('/profile/followed') }}" class="btn btn-info nav-button">Mes profils suivis</a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ url('/home') }}" class="btn btn-primary nav-button">Déconnexion</a>
                     </li>
@@ -65,12 +69,11 @@
             </div>
        </div>
         
-        <table class="table">
+        <table class="table table-striped table-dark" id="table_id">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Prénom</th>
                     <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
                     <th scope="col">Compétences</th>
                     <th scope="col" class="text-center">Profil</th>
                     <th scope="col" class="text-right">Disponible</th>
@@ -78,14 +81,12 @@
                 </tr>
             </thead>
             <tbody>
-                
                 @if (isset($tabProfiles))
                 @foreach ($tabProfiles as $profile)
                 @if ($profile->visible_on_website == 1)
                 <tr>
-                    <th scope="row">{{$profile->user->id}}</th>
-                    <td>{{$profile->user->name}}</td>
                     <td>{{$profile->user->last_name}}</td>
+                    <td>{{$profile->user->name}}</td>
                     <td>
                         @foreach ($profile->tags as $tag)
                         <span class="badge badge-info"> {{$tag->skill_name}} </span>
@@ -97,9 +98,12 @@
                     @else
                     <td class="text-right">Oui</td>
                     @endif
-
+                    @if ($profile->suivi == true)
+                    <td><a href="{{ url ('/profile/remove_followed/'.$profile->user_id) }}" class="btn btn-danger float-right">Retirer</a></td>
+                    @else
                     <td><a href="{{ url ('/profile/add_followed/'.$profile->user_id) }}" class="btn btn-success float-right">Ajouter</a></td>
-                           {{-- href="{{ route ('categories.delete', $categorie['id']) }}" --}}
+                    @endif
+
                 </tr>
                 @endif
                 @endforeach
@@ -107,20 +111,36 @@
             </tbody>
         </table>
     </div>
+    <!-- Scripts -->
+    {{-- Utilisatioçn de DataTables --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
+        $(document).ready( function () {
+            $('#table_id').DataTable( {
+                "columns": [
+                    null,
+                    null,
+                    { "orderable": false },
+                    { "orderable": false },
+                    null,
+                    { "orderable": false },
+                ],
+                "searching": false,
+                "language": {
+                    "lengthMenu": "Accés à  _MENU_ résulats par page",
+                    "zeroRecords": "Rien de trouvé, désolé",
+                    "info": "Page _PAGE_ sur _PAGES_",
+                    "infoEmpty": "Pas de résultats disponibles",
+                    "infoFiltered": "(filtré sur un total de _MAX_ résultats)",
+                    "search": "Rechercher dans les résultats",
+                    "paginate": {
+                        "previous": "Précédent",
+                        "next": "Suivant"
+                    }
+                }
+            });
         });
     </script>
-    <!-- Scripts -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.scrollex.min.js"></script>
-    <script src="js/jquery.scrolly.min.js"></script>
-    <script src="js/browser.min.js"></script>
-    <script src="js/breakpoints.min.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

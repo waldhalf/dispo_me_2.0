@@ -14,7 +14,19 @@ body {
     margin-top: 8px;
 }
 
-table {
+td {
+    background-color: #212931;
+}
+
+#table_id_filter {
+    color: white;
+}
+
+#table_id_length {
+    color: white;
+}
+
+#table_id_info {
     color: white;
 }
 
