@@ -35,12 +35,13 @@ class UserProfileController extends Controller
     public function searchProfile(Request $request) {
         $tabProfiles    = [];
         $id_user_log = Auth::id();
-        // On appelle la fonction staic research (à voir dsans le modéle correspondant)
-        $searchedTag = UserProfileModel::researchUserByTagOrName($request->query_profile);
+        $explodedQuerry = explode(" ", $request->query_profile);
+
+        // On appelle la fonction static research (à voir dans le modéle correspondant)
+        $searchedTag = UserProfileModel::researchUserByTagOrName($explodedQuerry);
 
         // A la sortie de laravel 5.7 "groupBy" connait des pbs
         // les lignes suivantes sont là pour le faire "a la main"
-        $searchedTag = $searchedTag->unique('user_id');
 
         // On les met dans un array pour y avoir accés via un indice
         // qui commence à 0
@@ -59,24 +60,23 @@ class UserProfileController extends Controller
             $profile = UserProfileModel::where('user_id', $L->user_id)->first();
             array_push($tabProfiles, $profile);
         }
-
+        // On ajoute l'attribut suivi à l'objet s'il fait partie des suivi du user
         for ($i = 0 ; $i < count($tabProfiles) ; $i++) {
             for ($j = 0 ; $j < count($listFollowedByFollower) ; $j++) {
                 if ($tabProfiles[$i]->user_id == $listFollowedByFollower[$j]->followed_id) {
                     $tabProfiles[$i]->suivi = true;
                 }
             }
-
         }
-        // Version rapide de ce qui est fait plus haut à remettre quand le groupBy
-        // sera à nouveau fonctionnel (il faudra le rajouter dans la requête)
+        // On rend les profils uniques
+        $unique = array();
+        foreach ($tabProfiles as $tag)
+        {
+            $unique[$tag['user_id']] = $tag;
+        } 
+        $data = array_values($unique);
 
-        // foreach ($searchedTag as $tag){
-        //     $profile = UserProfileModel::where('id', $tag->profile_id)->first();
-        //     array_push($tabProfiles, $profile);
-        // }  
-        // dd($tabProfiles);
-        return view ('profile_search')->withTabProfiles($tabProfiles);
+        return view ('profile_search')->withTabProfiles($data);
     }
 
     public function getStep1() {

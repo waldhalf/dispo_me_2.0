@@ -89,7 +89,7 @@
                     <td>{{$profile->user->name}}</td>
                     <td>
                         @foreach ($profile->tags as $tag)
-                        <span class="badge badge-info"> {{$tag->skill_name}} </span>
+                        <span class="badge badge-info"> {{$tag->skill_name}}</span>
                         @endforeach
                     </td>
                     <td><a href="/profile/{{ $profile->user->slug}}" class="btn btn-primary float-right">Voir le profil</a></td>

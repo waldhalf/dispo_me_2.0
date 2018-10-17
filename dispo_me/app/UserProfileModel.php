@@ -30,15 +30,23 @@ class UserProfileModel extends Model
         return $this->belongsToMany('App\SkillTagModel', 'user_skill_tags', 'profile_id', 'skill_tag_id');
     }
 
-    public static function researchUserByTagOrName($query) {
-        $searchedTag = UserProfileModel::join('user_skill_tags', 'user_profile.id', '=', 'user_skill_tags.profile_id' )
-        ->join('skill_tags', 'skill_tags.id' , '=', 'user_skill_tags.skill_tag_id')
-        ->join('users', 'users.id', '=', 'user_profile.user_id')
-        ->leftJoin('follows', 'follows.followed_id', '=', 'user_profile.user_id')
-        ->where('skill_name', 'like', '%' . $query .'%')
-        ->orWhere('name', 'like', '%' . $query . '%')
-        ->orWhere('last_name', 'like', '%' . $query . '%')
-        ->get();
-        return $searchedTag;
+    public static function researchUserByTagOrName($explodedQuery) {
+        $tab = [];
+        foreach ($explodedQuery as $query) {
+            $searchedTag = UserProfileModel::
+            join('user_skill_tags', 'user_profile.id', '=', 'user_skill_tags.profile_id' )
+            ->join('skill_tags', 'skill_tags.id' , '=', 'user_skill_tags.skill_tag_id')
+            ->join('users', 'users.id', '=', 'user_profile.user_id')
+            ->leftJoin('follows', 'follows.followed_id', '=', 'user_profile.user_id')
+            ->where('skill_name', 'like', '%' . $query .'%')
+            ->orWhere('name', 'like', '%' . $query . '%')
+            ->orWhere('last_name', 'like', '%' . $query . '%')
+            ->get();
+            foreach ($searchedTag as $profile) {
+                array_push($tab, $profile);
+            }
+            
+        }
+        return $tab;
     }
 }
