@@ -154,7 +154,7 @@ class UserProfileController extends Controller
         // On récupére les 4 premiers partenaires de la base de données que 'lon veut mettre en avant
         $partners = Partner::orderBy('ranking')->take(4)->get();
         
-        // Test sur les entrées user pour s'assurer que l'url entrée contient mot clef (regexp à faire pour être au plus juste)
+        // Test sur les entrées user pour s'assurer que l'url entré contient mot clef (regexp à faire pour être au plus juste)
         // Si le test échoue on affecte à l'entrée une valeur par défaut, ici, "Non renseigné"
         if ($request->profile_network_01 == NULL || strpos(strtolower($request->profile_network_01), strtolower($partners[0]->network_name)) === FALSE) {
             $request->profile_network_01 = 'Non renseigné';
@@ -395,7 +395,8 @@ class UserProfileController extends Controller
         if ($request->profile_network_04 == NULL || strpos(strtolower($request->profile_network_04), strtolower($partners[3]->network_name)) === FALSE) {
             $request->profile_network_04 = 'Non renseigné';
         }
-
+        // On récupére les entrées Form et on les met dans un tableau afin de pouvoir boucler dedans avec un foreach
+        //(Il faudra trouver quelquechose de plus élégant)
         $index = 0;
         $tabPartners = [
             $request->profile_network_01,
