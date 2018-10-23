@@ -397,6 +397,8 @@ class UserProfileController extends Controller
         }
         // On récupére les entrées Form et on les met dans un tableau afin de pouvoir boucler dedans avec un foreach
         //(Il faudra trouver quelquechose de plus élégant)
+
+        
         $index = 0;
         $tabPartners = [
             $request->profile_network_01,
