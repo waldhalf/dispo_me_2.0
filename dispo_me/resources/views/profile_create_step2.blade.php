@@ -124,86 +124,86 @@
                     <h4>Mes réseaux sociaux</h4>
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_google">Votre profil Google</label>
-                            <input type="text" name="profile_google" class="form-control" id="profile_google"
-                                placeholder="Le lien vers vers profil Google (non obligatoire)">
-                            @if ($errors->has('profile_google'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_google') }}</p>
+                            <label for="profile_network_01">Votre profil {{ $partners[0]->network_name}}</label>
+                            <input type="text" name="profile_network_01" class="form-control" id="profile_network_01"
+                                placeholder="Le lien vers vers profil {{ $partners[0]->network_name}} (non obligatoire)">
+                            @if ($errors->has('profile_network_01'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_01') }}</p>
                             @endif
                         </div>
                     </div>
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_google_visible">Souhaitez vous que votre profil Google apparaisse sur
+                            <label for="profile_network_01_visible">Souhaitez vous que votre profil {{ $partners[0]->network_name}} apparaisse sur
                                 votre fiche? &nbsp; </label> </br>
-                            <input type="radio" name="profile_google_visible" value="1" class="radio-inline" checked="checked">
-                            Oui <input type="radio" name="profile_google_visible" value="0" class="radio-inline"> Non
-                            @if ($errors->has('profile_google_visible'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_google_visible') }}</p>
+                            <input type="radio" name="profile_network_01_visible" value="1" class="radio-inline" checked="checked">
+                            Oui <input type="radio" name="profile_network_01_visible" value="0" class="radio-inline"> Non
+                            @if ($errors->has('profile_network_01_visible'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_01_visible') }}</p>
                             @endif
                         </div>
                     </div>
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_linkedin">Votre profil LinkedIn</label>
-                            <input type="text" name="profile_linkedin" class="form-control" id="profile_linkedin"
-                                placeholder="Le lien vers vers profil LinkedIn (non obligatoire)">
-                            @if ($errors->has('profile_linkedin'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_linkedin') }}</p>
+                            <label for="profile_network_02">Votre profil {{ $partners[1]->network_name}}</label>
+                            <input type="text" name="profile_network_02" class="form-control" id="profile_network_02"
+                                placeholder="Le lien vers vers profil {{ $partners[1]->network_name}} (non obligatoire)">
+                            @if ($errors->has('profile_network_02'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_02') }}</p>
                             @endif
                         </div>
                     </div>
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_linkedin_visible">Souhaitez vous que votre profil LinkedIn apparaisse
+                            <label for="profile_network_02_visible">Souhaitez vous que votre profil {{ $partners[1]->network_name}} apparaisse
                                 sur votre fiche? &nbsp; </label> </br>
-                            <input type="radio" name="profile_linkedin_visible" value="1" class="radio-inline" checked="checked">
-                            Oui <input type="radio" name="profile_linkedin_visible" value="0" class="radio-inline"> Non
-                            @if ($errors->has('profile_linkedin_visible'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_linkedin_visible') }}</p>
+                            <input type="radio" name="profile_network_02_visible" value="1" class="radio-inline" checked="checked">
+                            Oui <input type="radio" name="profile_network_02_visible" value="0" class="radio-inline"> Non
+                            @if ($errors->has('profile_network_02_visible'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_02_visible') }}</p>
                             @endif
                         </div>
                     </div>
 
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_viadeo">Votre profil Viadeo</label>
-                            <input type="text" name="profile_viadeo" class="form-control" id="profile_viadeo"
-                                placeholder="Le lien vers vers profil Viadéo (non obligatoire)">
-                            @if ($errors->has('profile_viadeo'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_viadeo') }}</p>
+                            <label for="profile_network_03">Votre profil {{ $partners[2]->network_name}}</label>
+                            <input type="text" name="profile_network_03" class="form-control" id="profile_network_03"
+                                placeholder="Le lien vers vers profil {{ $partners[2]->network_name}} (non obligatoire)">
+                            @if ($errors->has('profile_network_03'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_03') }}</p>
                             @endif
                         </div>
                     </div>
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_viadeo_visible">Souhaitez vous que votre profil Viadeo apparaisse sur
+                            <label for="profile_network_03_visible">Souhaitez vous que votre profil {{ $partners[2]->network_name}} apparaisse sur
                                 votre fiche? &nbsp; </label> </br>
-                            <input type="radio" name="profile_viadeo_visible" value="1" class="radio-inline" checked="checked">
-                            Oui <input type="radio" name="profile_viadeo_visible" value="0" class="radio-inline"> Non
-                            @if ($errors->has('profile_viadeo_visible'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_viadeo_visible') }}</p>
+                            <input type="radio" name="profile_network_03_visible" value="1" class="radio-inline" checked="checked">
+                            Oui <input type="radio" name="profile_network_03_visible" value="0" class="radio-inline"> Non
+                            @if ($errors->has('profile_network_03_visible'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_03_visible') }}</p>
                             @endif
                         </div>
                     </div>
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_facebook">Votre profil Facebook</label>
-                            <input type="text" name="profile_facebook" class="form-control" id="profile_facebook"
-                                placeholder="Le lien vers vers profil Facebook (non obligatoire)">
-                            @if ($errors->has('profile_facebook'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_facebook') }}</p>
+                            <label for="profile_network_04">Votre profil {{ $partners[3]->network_name}}</label>
+                            <input type="text" name="profile_network_04" class="form-control" id="profile_network_04"
+                                placeholder="Le lien vers vers profil {{ $partners[3]->network_name}} (non obligatoire)">
+                            @if ($errors->has('profile_network_04'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_04') }}</p>
                             @endif
                         </div>
                     </div>
                     <div class="sect">
                         <div class="form-group">
-                            <label for="profile_facebook_visible">Souhaitez vous que votre profil Facebook apparaisse
+                            <label for="profile_network_04_visible">Souhaitez vous que votre profil {{ $partners[3]->network_name}} apparaisse
                                 sur votre fiche? &nbsp; </label> </br>
-                            <input type="radio" name="profile_facebook_visible" value="1" class="radio-inline" checked="checked">
-                            Oui <input type="radio" name="profile_facebook_visible" value="0" class="radio-inline"> Non
-                            @if ($errors->has('profile_facebook_visible'))
-                            <p class="alert alert-danger">{{ $errors->first('profile_facebook_visible') }}</p>
+                            <input type="radio" name="profile_network_04_visible" value="1" class="radio-inline" checked="checked">
+                            Oui <input type="radio" name="profile_network_04_visible" value="0" class="radio-inline"> Non
+                            @if ($errors->has('profile_network_04_visible'))
+                            <p class="alert alert-danger">{{ $errors->first('profile_network_04_visible') }}</p>
                             @endif
                         </div>
                     </div>
@@ -218,16 +218,6 @@
     </form>
 
     </div><!-- Fin du container-->
-
-
-    <script>
-        $(document).ready(function () {
-            $(".sel-status").select2({
-                placeholder: 'Compétences'
-            });
-        });
-
-    </script>
 </body>
 
 </html>

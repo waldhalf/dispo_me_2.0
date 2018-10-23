@@ -30,6 +30,10 @@ class UserProfileModel extends Model
         return $this->belongsToMany('App\SkillTagModel', 'user_skill_tags', 'profile_id', 'skill_tag_id');
     }
 
+    public function partners() {
+        return $this->belongsToMany('App\Partner', 'partners_UserProfile', 'profile_id', 'partner_id');
+    }
+
     public static function researchUserByTagOrName($explodedQuery) {
         $tab = [];
         foreach ($explodedQuery as $query) {

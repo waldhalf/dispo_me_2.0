@@ -17,6 +17,9 @@
 
 <body>
     <div class="container">
+        @if (Session::has('msg'))
+        <p class="alert alert-success" role="alert">{{ Session::get('msg') }}</p> 
+        @endif
         <div class="row">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -166,22 +169,12 @@
                             <div class="col-md-6">
                                 <h4>Réseaux Sociaux</h4>
                                 <div>
-                                    @if ($profile->profile_google_visible == 1)
-                                    <a href="{{ url ($profile->profile_google) }}">
-                                        <img src="/img/icone_google.png" class="icone_social" alt=""></a>
-                                    @endif
-                                    @if ($profile->profile_facebook_visible == 1)
-                                    <a href="{{ url ($profile->profile_facebook) }}">
-                                        <img src="/img/icone_facebook.jpg" class="icone_social" alt=""></a>
-                                    @endif
-                                    @if ($profile->profile_linkedin_visible == 1)
-                                    <a href="{{ url ($profile->profile_linkedin) }}">
-                                        <img src="/img/icone_linkedin.png" class="icone_social" alt=""></a>
-                                    @endif
-                                    @if ($profile->profile_viadeo_visible == 1)
-                                    <a href="{{ url($profile->profile_viadeo) }}">
-                                        <img src="/img/icone_viadeo.png" class="icone_social" alt=""></a>
-                                    @endif
+                                    @foreach ($partners as $partner)
+                                    @if ($partner->visible == 1 && $partner->urlPartner != 'Non renseigné')
+                                    <a href="{{ url ($partner->urlPartner) }}">
+                                            <img src="/{{$partner->icon}}" class="icone_social" alt=""></a>
+                                    @endif 
+                                    @endforeach
                                 </div>
                                 <h4 style="margin-top:10px;">Infos</h4>
                                 @if ($profile->listen == 1 || $profile->search_job == 1 && $profile->free == 0)

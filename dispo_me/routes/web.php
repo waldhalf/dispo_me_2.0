@@ -72,7 +72,6 @@ Route::get('/profile/{id}/edit_step_1', 'UserProfileController@editStep1')->name
 Route::post('/profile/{id}/edit_step_1', 'UserProfileController@updateStep1')->name('profile.update_step_1');
 Route::get('/profile/{id}/edit_step_2', 'UserProfileController@editStep2')->name('profile.edit_step_2');
 Route::post('/profile/{id}/edit_step_2', 'UserProfileController@updateStep2')->name('profile.update_step_2');
-
 Route::get('/profile/{id}/delete', 'UserProfileController@destroy')->name('profile.destroy');
 
 /* CRUD pour les skill_tags ADMIN */
@@ -81,6 +80,15 @@ Route::post('/tags/create', 'TagController@store')->name('tags.store');
 Route::get('/tags/{id}/edit', 'TagController@edit')->name('tags.edit');
 Route::put('/tags/{id}/edit', 'TagController@update')->name('tags.update');
 Route::delete('/tags/{id}/delete', 'TagController@destroy')->name('tags.delete');
+
+/* CRUD pour les partenaires ADMIN */
+Route::get('/partners/index', 'PartnerController@index')->name('partners.index');
+Route::get('/partners/create', 'PartnerController@create')->name('partners.create');
+Route::post('/partners/create', 'PartnerController@store')->name('partners.store');
+Route::get('/partners/{id}/edit', 'PartnerController@edit')->name('partners.edit');
+Route::post('/partners/{id}/edit', 'PartnerController@update')->name('partners.update');
+Route::delete('/partners/{id}/delete', 'PartnerController@destroy')->name('partners.delete');
+
 
 
 Route::get('/admin', 'AdminController@admin')->middleware('is_admin');

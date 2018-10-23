@@ -19,6 +19,6 @@ class SkillTagModel extends Model
     // l'id du profil
     // Cela implique qu'un même profile_id pourra avoir plusieurs skill_tag_id
     public function userProfile() {
-        return $this->belongsToMany('App\UserProfileModel', 'user_skill_tags', 'skill_tag_id', 'profile_id');
+        return $this->belongsTo('App\UserProfileModel', 'user_skill_tags', 'skill_tag_id', 'profile_id');
     }
 }

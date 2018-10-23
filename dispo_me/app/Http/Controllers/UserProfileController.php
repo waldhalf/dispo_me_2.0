@@ -8,6 +8,8 @@ use App\UserProfileModel;
 use App\SkillTagModel;
 use App\User;
 use App\Follow;
+use App\Partner;
+use App\PartnerProfile;
 use Session;
 use Mail;
 use DB;
@@ -60,7 +62,7 @@ class UserProfileController extends Controller
             $profile = UserProfileModel::where('user_id', $L->user_id)->first();
             array_push($tabProfiles, $profile);
         }
-        // On ajoute l'attribut suivi à l'objet s'il fait partie des suivi du user
+        // On ajoute l'attribut suivi à l'objet s'il fait partie des suivis du user
         for ($i = 0 ; $i < count($tabProfiles) ; $i++) {
             for ($j = 0 ; $j < count($listFollowedByFollower) ; $j++) {
                 if ($tabProfiles[$i]->user_id == $listFollowedByFollower[$j]->followed_id) {
@@ -129,7 +131,8 @@ class UserProfileController extends Controller
 
     public function getStep2() {
         $dpts = DB::select('SELECT nom FROM dpts');
-        return view('profile_create_step2')->withDpts($dpts);
+        $partners = Partner::orderBy('ranking')->take(4)->get();
+        return view('profile_create_step2')->withDpts($dpts)->withPartners($partners);
     }
 
     public function storeStep2(Request $request) {
@@ -146,8 +149,26 @@ class UserProfileController extends Controller
         ]);
         $user = Auth::user();
         $user_id = Auth::id();
+        // On récupére les infos du step 1
         $profile = UserProfileModel::where('user_id', $user_id)->first();
-        // récupération du nom du fichier, déplacement dans le dossier profile_photo et sauvegarde
+        // On récupére les 4 premiers partenaires de la base de données que 'lon veut mettre en avant
+        $partners = Partner::orderBy('ranking')->take(4)->get();
+        
+        // Test sur les entrées user pour s'assurer que l'url entrée contient mot clef (regexp à faire pour être au plus juste)
+        // Si le test échoue on affecte à l'entrée une valeur par défaut, ici, "Non renseigné"
+        if ($request->profile_network_01 == NULL || strpos(strtolower($request->profile_network_01), strtolower($partners[0]->network_name)) === FALSE) {
+            $request->profile_network_01 = 'Non renseigné';
+        }
+        if ($request->profile_network_02 == NULL || strpos(strtolower($request->profile_network_02), strtolower($partners[1]->network_name)) === FALSE) {
+            $request->profile_network_02 = 'Non renseigné';
+        }
+        if ($request->profile_network_03 == NULL || strpos(strtolower($request->profile_network_03), strtolower($partners[2]->network_name)) === FALSE) {
+            $request->profile_network_03 = 'Non renseigné';
+        }
+        if ($request->profile_network_04 == NULL || strpos(strtolower($request->profile_network_04), strtolower($partners[3]->network_name)) === FALSE) {
+            $request->profile_network_04 = 'Non renseigné';
+        }
+        // Récupération du nom du fichier en provenance du form, déplacement dans le dossier profile_photo et sauvegarde
         // du path dans la BD
         if ($request->file('profile_photo') != null){
             $photo = $request->file('profile_photo');
@@ -165,16 +186,30 @@ class UserProfileController extends Controller
         $profile->profile_region            = $request->profile_region;
         $profile->profile_region_mobile     = $request->profile_region_mobile;
         $profile->profile_country_mobile    = $request->profile_country_mobile;
-        $profile->profile_google            = $request->profile_google;
-        $profile->profile_google_visible    = $request->profile_google_visible;
-        $profile->profile_linkedin          = $request->profile_linkedin;
-        $profile->profile_google            = $request->profile_linkedin_visible;
-        $profile->profile_viadeo            = $request->profile_viadeo;
-        $profile->profile_viadeo_visible    = $request->profile_viadeo_visible;
-        $profile->profile_facebook          = $request->profile_facebook;
-        $profile->profile_facebook_visible  = $request->profile_facebook_visible;
         
         $profile->save();
+        $index = 0;
+        $tabPartners = [
+            $request->profile_network_01,
+            $request->profile_network_02,
+            $request->profile_network_03,
+            $request->profile_network_04
+        ];
+        $tabVisible = [
+            $request->profile_network_01_visible,
+            $request->profile_network_02_visible,
+            $request->profile_network_03_visible,
+            $request->profile_network_04_visible
+        ];
+        foreach ($partners as $partner) {
+            $tmp = new PartnerProfile;
+            $tmp->profile_id = $profile->id;
+            $tmp->partner_id = $partner->id;
+            $tmp->urlPartner = $tabPartners[$index];
+            $tmp->visible    = $tabVisible[$index];
+            $index++;
+            $tmp->save();
+        }        
 
         Session::flash('msg', 'Votre profil complet a bien été créé');
         
@@ -184,10 +219,11 @@ class UserProfileController extends Controller
 
     public function getProfile($slug) {
         $user       = User::where('slug', $slug)->first();
-        
-        $id         = $user->id;
-        $profile    = UserProfileModel::where('user_id', $id)->first();     
-        return view('profile_index')->withProfile($profile)->withUser($user);
+        $profile    = UserProfileModel::where('user_id', $user->id)->first();
+        $partners   = PartnerProfile::join('partners', 'partners.id', '=', 'partners_UserProfile.partner_id')
+        ->where('profile_id', $profile->id)->get();
+
+        return view('profile_index')->withProfile($profile)->withUser($user)->withPartners($partners);
     }
 
     public function editStep1($id) {
@@ -284,14 +320,22 @@ class UserProfileController extends Controller
         $user = User::find($id);
         $user_id = Auth::id();
         
+        $profile = UserProfileModel::where('user_id', $user->id)->first();
+        $partners = PartnerProfile::
+        join('partners', 'partners.id', '=', 'partners_UserProfile.partner_id')
+        ->join('user_profile', 'user_profile.id', '=', 'partners_UserProfile.profile_id')
+        ->where('user_profile.id', $profile->id)
+        ->orderBy('ranking')
+        ->get();
+        
         if ($user_id != (int)$id)
         {
             return 'Vous ne pouvez pas modifier un profil qui n\'est pas le vôtre!';
         }
 
-        $profile = UserProfileModel::where('user_id', $user->id)->first();
-        $dpts = DB::select('SELECT nom from dpts');
-        return view ('profile_edit_step2')->withProfile($profile)->withDpts($dpts);
+        $dpts = DB::select('SELECT nom from dpts');        
+
+        return view ('profile_edit_step2')->withProfile($profile)->withDpts($dpts)->withPartners($partners);
     }
 
     public function updateStep2(Request $request, $id) {
@@ -327,16 +371,51 @@ class UserProfileController extends Controller
         $profile->profile_region            = $request->profile_region;
         $profile->profile_region_mobile     = $request->profile_region_mobile;
         $profile->profile_country_mobile    = $request->profile_country_mobile;
-        $profile->profile_google            = $request->profile_google;
-        $profile->profile_google_visible    = $request->profile_google_visible;
-        $profile->profile_linkedin          = $request->profile_linkedin;
-        $profile->profile_google            = $request->profile_linkedin_visible;
-        $profile->profile_viadeo            = $request->profile_viadeo;
-        $profile->profile_viadeo_visible    = $request->profile_viadeo_visible;
-        $profile->profile_facebook          = $request->profile_facebook;
-        $profile->profile_facebook_visible  = $request->profile_facebook_visible;
- 
+
         $profile->save();
+
+        // On récupére les 4 premiers partenaires de la base de données que l'on veut mettre en avant
+        $partners = Partner::
+        join('partners_UserProfile', 'partners_UserProfile.partner_id', '=', 'partners.id')
+        ->where('profile_id', $profile->id)
+        ->orderBy('ranking')
+        ->get();
+
+        // Test sur les entrées user pour s'assurer que l'url entrée contient mot clef (regexp à faire pour être au plus juste)
+        // Si le test échoue on affecte à l'entrée une valeur par défaut, ici, "Non renseigné"
+        if ($request->profile_network_01 == NULL || strpos(strtolower($request->profile_network_01), strtolower($partners[0]->network_name)) === FALSE) {
+            $request->profile_network_01 = 'Non renseigné';
+        }
+        if ($request->profile_network_02 == NULL || strpos(strtolower($request->profile_network_02), strtolower($partners[1]->network_name)) === FALSE) {
+            $request->profile_network_02 = 'Non renseigné';
+        }
+        if ($request->profile_network_03 == NULL || strpos(strtolower($request->profile_network_03), strtolower($partners[2]->network_name)) === FALSE) {
+            $request->profile_network_03 = 'Non renseigné';
+        }
+        if ($request->profile_network_04 == NULL || strpos(strtolower($request->profile_network_04), strtolower($partners[3]->network_name)) === FALSE) {
+            $request->profile_network_04 = 'Non renseigné';
+        }
+
+        $index = 0;
+        $tabPartners = [
+            $request->profile_network_01,
+            $request->profile_network_02,
+            $request->profile_network_03,
+            $request->profile_network_04
+        ];
+        $tabVisible = [
+            $request->profile_network_01_visible,
+            $request->profile_network_02_visible,
+            $request->profile_network_03_visible,
+            $request->profile_network_04_visible
+        ];
+        foreach ($partners as $partner) {
+            $partner = PartnerProfile::find($partner->id);
+            $partner->urlPartner = $tabPartners[$index];
+            $partner->visible = $tabVisible[$index];
+            $partner->save();
+            $index++;
+        }
 
         Session::flash('msg', 'Votre profil complet a bien été mis à jour');
         
@@ -387,4 +466,5 @@ class UserProfileController extends Controller
 
         return redirect('/'); 
     }
+
 }
