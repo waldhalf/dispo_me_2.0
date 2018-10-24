@@ -35,8 +35,8 @@
                                 style="font-size: 15px;">Mettre
                                 mon profil à jour</a>
                             <a href="{{ url ('/profile/'.Auth::user()->id.'/delete') }}" class=" btn btn-danger delete"
-                                style="font-size: 15px;">Effacer
-                                mon profil</a>
+                                style="font-size: 15px;">Supprimer mon profil
+                                </a>
                             @endif
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
