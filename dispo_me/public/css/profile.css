@@ -10,6 +10,14 @@ body {
     line-height: 2.375;
 }
 
+#nav-header {
+    margin-right: 50px;
+}
+
+#nav-deco {
+     margin-right: 15px;
+}
+
 .vertical-align {
     margin-top: 8px;
 }

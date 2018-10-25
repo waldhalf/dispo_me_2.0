@@ -4466,6 +4466,9 @@ input, select, textarea {
 		}
 
 /* Nav Panel */
+#nav-header-brand {
+	margin-right: 50px;
+}
 
 	#navPanelToggle {
 		text-decoration: none;
@@ -4661,3 +4664,6 @@ input, select, textarea {
 		}
 
 	}
+.mode-emploi {
+	color: black;
+}

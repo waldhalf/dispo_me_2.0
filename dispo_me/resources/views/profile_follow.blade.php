@@ -17,7 +17,6 @@
 </head>
 
 <body> 
-    <div class="container col-md-8">
         @if (Session::has('msg'))
         <p class="alert alert-success" role="alert">{{ Session::get('msg') }}</p> 
         @endif
@@ -54,7 +53,6 @@
                 @endif
             </div>
         </nav>
-    </div>
 
     <div class="container col-md-8">
         <div class="row">

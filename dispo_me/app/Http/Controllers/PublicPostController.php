@@ -12,7 +12,7 @@ class PublicPostController extends Controller
 
     public function welcome() {
         // On récupére les 7 derniers posts (sort DESC)
-        $posts = PostModel::orderBy('id', 'DESC')->take(7)->get();
+        $posts = PostModel::orderBy('updated_at', 'DESC')->take(7)->get();
 
         // On les envoie à la welcome page
         return view ('welcome')->with('posts', $posts);

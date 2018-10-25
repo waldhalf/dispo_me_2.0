@@ -24,7 +24,7 @@
     <div id="wrapper" class="fade-in">
         <!-- Intro -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Dispo.me</a>
+            <a class="navbar-brand" href="#" id="nav-header-brand">Dispo.me</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a style="color:black;margin-left:15px;" href="/public/posts">Présentation des métiers!</a>
+                        <a style="color:black;margin-left:15px;" href="/public/posts">Présentation des métiers !</a>
                         @if (Auth::user() && Auth::user()->has_profile == 0)
                         <a style="color:black;margin-left:15px;" href="{{ url ('/profile_step_1') }}">Créer un profil</a>
                         @endif
@@ -44,7 +44,7 @@
                         <a style="color:black;margin-left:15px;" href="/profile/search">Chercher un profil</a>
                         <a style="color:black;margin-left:15px;" href="/profile/followed">Profils suivis</a>
                         <a style="color:black;margin-left:15px;" href="/manual">Mode d'emploi</a>
-                        <a style="color:black;margin-left:15px;" href="/contact">Qui sommes-nous?</a>
+                        <a style="color:black;margin-left:15px;" href="/contact">Qui sommes-nous ?</a>
                         {{-- <li class="nav-item">
                         <a class="nav-link active" href="#">Mes disponibilités</a>
                     </li> --}}
@@ -58,8 +58,8 @@
                     <a href="{{ url('/admin') }}" class="btn btn-danger">Admin</a>
                     @endif
                     @else
-                    <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-danger">Register</a>
+                    <a href="{{ route('login') }}" class="btn btn-primary">Se Connecter</a>
+                    <a href="{{ route('register') }}" class="btn btn-danger">S'inscrire</a>
                     @endauth
                 </div>
                 @endif
@@ -75,7 +75,7 @@
                     disponibilités</li>
                 <li class="mode-emploi"><img src="../img/nbr2.png" alt="number1" class="imgnbr"> Un lien unique vous est attribué. Recopiez
                     le lien et synchronisez le avec tous vos profils.</li>
-                <li><img src="../img/nbr3.png" alt="number1" class="imgnbr"> Changez sans délai et sans contrainte
+                <li class="mode-emploi"><img src="../img/nbr3.png" alt="number1" class="imgnbr"> Changez sans délai et sans contrainte
                     votre statut sur l'ensemble des plateformes.</li>
             </ul>
         </div>
@@ -91,9 +91,6 @@
                 <li class="active"><a href="{{ url('/public/posts/'.$posts[0]->slug) }}">A la une</a></li>
                 @if ($user=Auth::user())
                 {{-- <li><a href="{{ route ('profile.index') }}">Mon profil</a></li> --}}
-                @endif
-                @if ($user=Auth::user())
-                <li><a href="elements.html">Mes disponibilités</a></li>
                 @endif
             </ul>
             <ul class="icons">

@@ -21,7 +21,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partners = Partner::all();
+        $partners = Partner::orderBy('ranking')->get();
         return view('partner_index')->withPartners($partners);
     }
 

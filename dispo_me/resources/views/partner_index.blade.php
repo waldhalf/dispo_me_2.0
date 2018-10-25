@@ -39,7 +39,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nom du partenaires</th>
+            <th scope="col">Nom du partenaire</th>
             <th scope="col">Actif?</th>
             <th scope="col">Rang</th>
             <th scope="col">Créé le</th>

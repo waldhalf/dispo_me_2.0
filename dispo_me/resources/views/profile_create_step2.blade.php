@@ -71,19 +71,9 @@
                         <div class="form-group">
                             <label for="profile_region">Votre Région</label>
                             <select name="profile_region" class="form-control" id="profile_region">
-                                    <option value="Hauts de France">Hauts de France</option>
-                                    <option value="Normandie">Normandie</option>
-                                    <option value="Ile de France">Ile de France</option>
-                                    <option value="Grand Est">Grand Est</option>
-                                    <option value="Bretagne">Bretagne</option>
-                                    <option value="Pays de la Loire">Pays de la Loire</option>
-                                    <option value="Centre Val de Loire">Centre Val de Loire</option>
-                                    <option value="Bourgogne Franche-Comté">Bourgogne Franche-Comté</option>
-                                    <option value="Nouvelle Aquitaine">Nouvelle Aquitaine</option>
-                                    <option value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</option>
-                                    <option value="Occitanie">Occitanie/option>
-                                    <option value="Provence-Alpes-Côtes d'Azur">Provence-Alpes-Côtes d'Azur</option>
-                                    <option value="Corse">Corse</option>
+                                @foreach ($regions as $region)
+                                <option value="{{ $region->region_name }}">{{ $region->region_name  }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

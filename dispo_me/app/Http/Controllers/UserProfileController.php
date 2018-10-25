@@ -10,6 +10,7 @@ use App\User;
 use App\Follow;
 use App\Partner;
 use App\PartnerProfile;
+use App\Mail\EmailDispo;
 use Session;
 use Mail;
 use DB;
@@ -131,8 +132,9 @@ class UserProfileController extends Controller
 
     public function getStep2() {
         $dpts = DB::select('SELECT nom FROM dpts');
+        $regions = DB::select('SELECT region_name FROM region');
         $partners = Partner::orderBy('ranking')->take(4)->get();
-        return view('profile_create_step2')->withDpts($dpts)->withPartners($partners);
+        return view('profile_create_step2')->withDpts($dpts)->withPartners($partners)->withRegions($regions);
     }
 
     public function storeStep2(Request $request) {
@@ -279,12 +281,8 @@ class UserProfileController extends Controller
             // Pour ajouter $toFollower il faut l'inclure dans la closure car le scope de la closure est restreint
             foreach ($listeFollower as $follower) {
                 $toFollower = User::where('id', $follower->follower_id)->first();
-        
-                Mail::send('email_modif_statut', $data, function($message_closure) use ($data, $toFollower) {
-                    $message_closure->from($data['email']);
-                    $message_closure->subject('Message en provenance de Dispo.me');
-                    $message_closure->to($toFollower->email);
-                    });
+                
+                Mail::to($toFollower)->send(new EmailDispo($data));
                 }
         }
         $profile->free              = $request->profile_free;
@@ -327,6 +325,7 @@ class UserProfileController extends Controller
         ->where('user_profile.id', $profile->id)
         ->orderBy('ranking')
         ->get();
+        $regions = DB::select('SELECT region_name FROM region');
         
         if ($user_id != (int)$id)
         {
@@ -335,7 +334,7 @@ class UserProfileController extends Controller
 
         $dpts = DB::select('SELECT nom from dpts');        
 
-        return view ('profile_edit_step2')->withProfile($profile)->withDpts($dpts)->withPartners($partners);
+        return view ('profile_edit_step2')->withProfile($profile)->withDpts($dpts)->withPartners($partners)->withRegions($regions);
     }
 
     public function updateStep2(Request $request, $id) {

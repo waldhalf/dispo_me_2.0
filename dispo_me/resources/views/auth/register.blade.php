@@ -79,7 +79,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="checkboxRgpd" id="checkboxRgpd" {{ old('checkboxRgpd') ? 'checked' : '' }}>
                                     <label class="form-check-label" for="checkboxRgpd">
-                                       <a href="/disclaimer">{{ __('J\'accepte les conditions générales RGPD') }}</a> 
+                                       <a href="/disclaimer" target="_blank">{{ __('J\'accepte les conditions générales RGPD') }}</a> 
                                     </label>
                                     @if ($errors->has('checkboxRgpd'))
                                         <p class="alert alert-danger">{{ $errors->first('checkboxRgpd') }}</p>

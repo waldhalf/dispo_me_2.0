@@ -15,7 +15,7 @@
     <title>Profil</title>
 </head>
 <body>
-    <div class="container col-md-8">
+    
         <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
             <a class="navbar-brand" href="/">Dispo.Me</a>
 
@@ -52,7 +52,6 @@
                 @endif
             </div>
         </nav>
-    </div>
 
     <div class="container col-md-8">
         <div class="row">
@@ -128,7 +127,7 @@
                 ],
                 "searching": false,
                 "language": {
-                    "lengthMenu": "Accés à  _MENU_ résulats par page",
+                    "lengthMenu": "Accès à  _MENU_ résultats par page",
                     "zeroRecords": "Rien de trouvé, désolé",
                     "info": "Page _PAGE_ sur _PAGES_",
                     "infoEmpty": "Pas de résultats disponibles",

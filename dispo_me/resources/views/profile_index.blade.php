@@ -16,15 +16,14 @@
 </head>
 
 <body>
-    <div class="container">
         @if (Session::has('msg'))
         <p class="alert alert-success" role="alert">{{ Session::get('msg') }}</p> 
         @endif
-        <div class="row">
+        <div>
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
+                    <div class="navbar-header" id="nav-header">
                         <a class="navbar-brand" href="/" style="font-size: 20px; color:black;">Dispo.me</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,9 +38,9 @@
                                 </a>
                             @endif
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav navbar-right" id="nav-deco">
                             @if (Route::has('login'))
-                            <div class="top-right links">
+                            <div>
                                 @auth
                                 <a href="{{ url('/home') }}" class="btn btn-primary">Déconnexion</a>
                                 @if (Auth::user()->is_admin == 1)
@@ -58,12 +57,11 @@
                 </div><!-- /.container-fluid -->
             </nav>
         </div>
-    </div>
     <div class="container">
         <div class="resume">
             <header class="page-header">
                 <h1 class="head-profile">{{ $user->name }} {{ $user->last_name }} </h1>
-                <small id="head-time"> <i class="fa fa-clock-o"></i> Mis à jour: <time>{{ date('j M, Y',
+                <small id="head-time"> <i class="fa fa-clock-o"></i> Mis à jour : <time>{{ date('j M, Y',
                         strtotime($profile->updated_at)) }}</time></small>
             </header>
             <div class="row">
@@ -111,17 +109,15 @@
                                     <div class="col-xs-12 col-sm-8">
                                         <ul class="list-group">
                                             <li class="list-group-item">{{ $user->name }} {{ $user->last_name }}</li>
-                                            <li class="list-group-item">Emploi actuel: {{ $profile->actuel_job }}</li>
+                                            <li class="list-group-item">Emploi actuel : {{ $profile->actuel_job }}</li>
                                             <li class="list-group-item">Entreprise actuelle: {{
                                                 $profile->actual_company }}</li>
                                             @if ($profile->free == 1)
-                                            <li class="list-group-item">Disponible: Oui </li>
+                                            <li class="list-group-item">Disponible : Oui </li>
                                             @else
-                                            <li class="list-group-item">Disponible: Non </li>
+                                            <li class="list-group-item">Disponible : Non </li>
                                             @endif
-                                            @if ($profile->visible_on_web == 1)
-                                            <li class="list-group-item"><i class="fa fa-envelope"></i> {{$user->email}}</li>
-                                            @endif
+                                            <li class="list-group-item"> <a href="{{ url ('/profile/add_followed/'.$profile->user_id) }}" class="btn btn-info">Ajouter à ma liste de profils suivis</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -141,23 +137,23 @@
                             <div class="col-md-6">
                                 <h4>Zone géographique</h4>
                                 <h5>Ville : {{$profile->profile_city}}</h5>
-                                <p style="color:black">Rayon en km autour de {{$profile->profile_city}}:
+                                <p style="color:black">Rayon en km autour de {{$profile->profile_city}} :
                                     {{$profile->profile_city_range}} </p>
                                 <h5>Département : {{$profile->profile_county}}</h5>
-                                <p style="color:black">Mobilité dans le département:
+                                <p style="color:black">Mobilité dans le département :
                                     @if ($profile->profile_county_mobile == 1 )
                                     OUI</p>
                                 @else
                                 NON</p>
                                 @endif
                                 <h5>Région: {{$profile->profile_region}}</h5>
-                                <p style="color:black">Mobilité dans la région:
+                                <p style="color:black">Mobilité dans la région :
                                     @if ($profile->profile_region_mobile == 1 )
                                     OUI</p>
                                 @else
                                 NON</p>
                                 @endif
-                                <h5>Modilité nationale:
+                                <h5>Mobilité nationale :
                                     @if ($profile->profile_country_mobile == 1 )
                                     OUI</h5>
                                 @else
@@ -171,7 +167,7 @@
                                 <div>
                                     @foreach ($partners as $partner)
                                     @if ($partner->visible == 1 && $partner->urlPartner != 'Non renseigné')
-                                    <a href="{{ url ($partner->urlPartner) }}">
+                                    <a href="{{ url ($partner->urlPartner) }}" target="_blank">
                                             <img src="/{{$partner->icon}}" class="icone_social" alt=""></a>
                                     @endif 
                                     @endforeach
@@ -195,7 +191,7 @@
         <div id="copyright">
             <ul>
                 <li>&copy; Dispo.me</li>
-                <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                <li>Design : <a href="https://html5up.net">HTML5 UP</a></li>
             </ul>
         </div>
     </footer>
