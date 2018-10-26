@@ -22,8 +22,8 @@
             <a href="{{ url('/admin') }}" class="btn btn-danger">Admin</a>
             @endif
             @else
-            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
-            <a href="{{ route('register') }}" class="btn btn-danger">Register</a>
+            <a href="{{ route('login') }}" class="btn btn-primary">Se connecter</a>
+            <a href="{{ route('register') }}" class="btn btn-danger">S'inscrire</a>
             @endauth
         </div>
         @endif
