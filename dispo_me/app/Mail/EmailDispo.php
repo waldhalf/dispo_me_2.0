@@ -49,19 +49,19 @@ class EmailDispo extends Mailable
     //                 ->replyTo($address, $name)
     //                 ->subject($subject)
     //                 ->with([ 'message' => $this->data['bodyMessage']]);
-    return $this
-    ->view('test_mail')
-    ->subject('subject')
-    ->from('from@example.com')
-    ->to(['rem@magic.fr'])
-    ->sendgrid([
-        'personalizations' => [
-            [
-                'substitutions' => [
-                    ':myname' => 's-ichikawa',
-                ],
-            ],
-        ],
-    ]);
+    // return $this
+    // ->view('test_mail')
+    // ->subject('subject')
+    // ->from('from@example.com')
+    // ->to(['rem@magic.fr'])
+    // ->sendgrid([
+    //     'personalizations' => [
+    //         [
+    //             'substitutions' => [
+    //                 ':myname' => 's-ichikawa',
+    //             ],
+    //         ],
+    //     ],
+    // ]);
     }
 }
