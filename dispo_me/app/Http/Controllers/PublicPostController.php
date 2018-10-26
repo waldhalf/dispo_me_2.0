@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PostModel;
+use App\Http\Controllers\MailController;
+use App\Mail\EmailDispo;
 use Session;
 use Mail;
 
@@ -106,14 +108,28 @@ class PublicPostController extends Controller
         $data = array(
             'name'          =>$request->name_contact_form,
             'email'         =>$request->email_contact_form,
-            'bodyMessage'   =>$request->message_contact_form
+            'bodyMessage'   =>$request->message_contact_form,
     );
-
-        Mail::send('email_contact', $data, function($message_closure) use ($data) {
-            $message_closure->from($data['email']);
-            $message_closure->subject('Message en provenance de Dispo.me');
-            $message_closure->to('dispo.me.contact@gmail.com');
+        error_log ('coucou est moi1');
+        
+        // Mail::to('rem@magic.fr')->send(new EmailDispo($data));
+        Mail::send('test_mail', $data, function ($message) {
+            $message
+                ->to('rem@magic.fr', 'foo_name')
+                ->from('bar@example.com', 'bar_name')
+                ->replyTo('foo@bar.com', 'foobar')
+                ->subject('sub');
         });
+        
+        error_log ('coucou est moi2');
+        
+        $user = [
+            'name'=>'toto',
+            'email'=>'rem@magic.fr'
+        ];
+
+
+
         Session::flash('msg', 'Votre message a bien été envoyé. Nous reviendrons vers vous dans les plus brefs délais.');
 
         return redirect(url()->previous() . '#anchor_form');   

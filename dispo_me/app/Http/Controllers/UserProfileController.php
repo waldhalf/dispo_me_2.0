@@ -281,9 +281,9 @@ class UserProfileController extends Controller
             // Pour ajouter $toFollower il faut l'inclure dans la closure car le scope de la closure est restreint
             foreach ($listeFollower as $follower) {
                 $toFollower = User::where('id', $follower->follower_id)->first();
-                
+
                 Mail::to($toFollower)->send(new EmailDispo($data));
-                }
+            }
         }
         $profile->free              = $request->profile_free;
         $profile->search_job        = $request->profile_search;
